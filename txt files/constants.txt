@@ -1,0 +1,54 @@
+>>> Physical constants: 
+
+> speed of light in vacuum = 2.99792458 * 10^8m/s (symbol: c)
+
+
+> Gravitational constant = 6.67408 * 10^-11, 'N m^2/kg^2 (symbol: G)
+
+
+> Mass of electron = 9.11 * 10^-31kg (symbol: Me)
+
+
+> Mass of proton = 1.67 * 10^-27kg (symbol: Mp)
+
+
+> Mass of neutron = 1.67 * 10^-27kg (Symbol: Mn)
+
+
+> Atomic mass unit = 1.66 * 10^-27kg (symbol: u)
+
+
+> Advogadro constant = 6.023 * 10^23mol^-1 (symbol: NA)
+
+
+> Plank constant = 6.63 * 10^-34js (symbol: h)
+
+
+> Faraday constant = 9.65 * 10^4Cmol^-1 (symbol: F)
+
+
+> Electron charge = 1.60 * 10^-19C (symbol: e)
+
+
+> Electron volt = 1.6 * 10^-19j (symbol: eV)
+
+
+> Electn charge to mass ratio = 1.76 * 10^11Ckg^-1 (symbol: e/Me)
+
+
+> Proton charge to mass ratio = 9.6 * 10^7Ckg^-1
+
+
+> Permittivity of vacuum = 8.5 * 10^-12Fm^-1 (synbol: Eo)
+
+
+> Molar gas constant = 8.31447JK^-1mol^-1 (symbol: R)
+
+
+> Acceleration due to gravity = 9.807ms^-2 (symbol: g)
+
+
+> Standard athmospheric pressure = 1.01325 * 10^5Nm^-2 (symbol: P)
+
+
+

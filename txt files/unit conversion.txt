@@ -1,0 +1,174 @@
+>>> Unit conversions:
+
+> Area:
+	> 1 m^2 = 10000 cm^2 = 10^4 cm^2
+	
+	> 1 m^2 = 1000000 mm^2 = 10^6 mm^2
+
+	> 1 mm^2 = 10^-6 m^2
+
+	> 1 cm^2 = 10^-4 m^2
+
+	> 1 m^2 = 10.76 ft^2
+
+	> 1 cm^2 = 0.155 in^2
+
+
+> Length:
+	> 1 m = 100cm = 10^2 cm
+
+	> 1 m = 1000mm = 10^3 mm
+
+	> 1 m = 1000000um = 10^6 um
+
+	> 1 m = 1000000000nm = 10^9 nm
+
+	> 1 m = 3.281 ft
+
+	> 1 m = 39.37 in
+
+	> 1 cm = 0.3937 in 
+
+	> 1 in = 2.540 cm 
+
+	> 1 ft = 30.48 cm
+
+	> 1 yd = 91.44 cm
+
+	> 1 mi = 5280 ft 
+
+	> 1 mi = 1.609 km 
+
+	> 1 light year = 9.461 * 10^15 m
+
+
+> Speed:
+	> 1 km/h = 0.2778 m/s
+
+	> 1 mile/h = 0.447 m/s
+
+	> 1 mile/h = 1.609 km/h 
+
+	> 1 m/s = 3.281 ft/s
+
+	> 1 mile/min = 60 mile/h = 88 ft/s
+
+	> 1 in/s = 2.54 cm/s
+
+
+> Acceleration:
+	> 1 m/s^2 = 100 cm^-2
+
+	> 1 m/s^2 = 3.281 ft/s^2
+
+	> 1 cm^-2 = 0.01 m/s^2
+
+	> 1 cm^-2 = 0.03281 ft/s^2
+
+
+> Mass:
+	> 1 kg = 1000 g
+
+	> 1 g = 10^-3 kg
+
+	> 1 mg = 10^-3 g = 10^-6 kg
+
+	> 1 ug = 10^-6 g = 10^-9 kg 
+
+
+> Force:
+	> 1 N = 1 kgms^-2
+
+	> 1 N = 10^5 dyn
+
+	> 1 N = 0.2248 lb 
+
+	> 1 lbft^2s^-1 = 0.0421 kgm^2s^-2
+
+	> 1 N = 23.75 lbft^2s^-1
+
+
+> Energy:
+	> 1 J = 1 Nm
+
+	> 1 kWh = 3.6 * 10^6 J
+
+	> 1 eV = 1.602 * 10^-19 J
+
+
+> Power:
+	> 1 W = 1 J/s
+
+	> 1 hp = 746W
+
+
+> Time:
+	> 1 min = 60 s
+
+	> 1 millisecond = 1 ms = 10^-3 s
+
+	> 1 microsecond = 1 us = 10^-6 s
+
+	> 1 nanosecond = 1 ns = 10^-9 s
+
+	> 1 h = 3600 s
+
+	> 1 d = 86400 s
+
+	> 1 y = 365.24 d
+
+	> 1 y = 3.156 * 10^7
+
+
+> Volume: 
+	> 1 m^3 = 10^6 cm^3
+
+	> 1 m^3 = 10^9 mm^3
+
+	> 1 cm^3 = 10^-6 m^3
+
+	> 1 mm^3 = 10^-9 m^3
+
+	> 1 litre = 1000 cm^3
+
+	> 1 litre = 10^-3 m^3
+
+	> 1 m^3 = 35.31 ft^3
+
+	> 1 m^3 = 61.02 * 10^3 in^3
+
+
+> Angle:
+	>  1 degree = 0.0175 rad
+
+	> 1 degree = p/180 rad
+
+	> 1 revolution = 360 degrees = 2p rad
+
+	> 1 rad = 57.30 degrees = 180 degrees/p
+
+	> 1 rev/min(rpm) = 0.1047 rad/s
+
+	> 1 rpm = 0.0167 rev/s
+
+
+> Pressure:
+	> 1 Pa = 1 Nm^-2
+
+	> 1 bar = 10^5 	Pa
+
+	> 1 mmHg = 133.3 Nm^-2
+
+	> 1 bar = 10^5 Nm^-2
+
+	> 1 mmH20 = 9.807 Nm^-2
+
+	> 1 atm = 101.325 KNm^-2
+
+
+> Mass-Energy Equivalence:
+	> 1 kg = 8.988 * 10^16 J
+
+	> 1 u = 931.5 MeV
+
+	> 1 eV = 1.074 * 10^-9 u

@@ -1,0 +1,26 @@
+>>> I can calculate:
+
+> Under photoelectricity:
+	> frequency: f = c/?
+	
+	> wavelength: ? = c/f
+	
+	> energy of a photon when:
+		
+		> plank constant and frequency are present: E = hf
+		
+		> plank constant, speed of light, and wavelength are present: E = hc/?
+		
+		> work function and kinetic energy are present: E = W + K.E (Einstein's equation)
+
+		> plank constant, frequency, threshold frequency, mass, velocity: hf = hfo + 1/2mv^2 (Einstein's equation)
+
+	> convert energy E into electronvolts(eV)
+
+> Under Maths:
+	> quadratic equations using almighty formula
+
+	> percentages
+
+	> simple arithmetic operations (+, -, /, *)
+

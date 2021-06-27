@@ -1,0 +1,84 @@
+>>> Hi there, i am sure you are here because you need help understanding proton. Lets get right into it:
+
+$$: Note: most or all commands have their abbrevations. You can decide to input the abbrevation or the full command. $$
+
+>> When proton is opened, after inputing your name, you would see something like:
+			>>> Input s or start to start
+			>>> Input h or help for help	
+			>>> Input com or commands to see commands 
+
+	> s - 'input s or start' (which ever one you choose to input) is the start command for proton. 
+
+	
+	> h - 'input h or help' (which ever one you choose to input) is the help command for users who need help understanding how to use proton.
+	    Yuou are here because you inputed either h or help
+
+
+	> com - 'input com or command' (which ever one you choose to input) shows you the list of all commands that can be run on proton.
+	       Note: any inputed command or value that is not within this list will not run and will print an error message. 
+
+
+
+>>> 'Start' or 's' (which ever one you choose to input)
+	
+	> When start or s is inputed, you would see:
+		
+		> How may i help you today 'your name': 
+							
+			> Now there are some commands you can run from here. These commands are:
+
+				> Commands:
+
+					-- calc
+					-- sc or see constants 
+					-- uc or unit conversion 
+					(Enter com or commands to see all commands at the (Input s, h, or com:) request)
+
+
+>>> calc - calc commands
+	> The calc command is to tell proton that you want it to make some calculations for you. But under this calc command, there are 
+	other commands that work with it. Some of them are:
+		
+		> Commands:
+
+			-- whc or what can you calculate - this is a request you are sending to proton to ask what operations it can perform
+			-- nothing - here, you are telling proton you dont want to calculate anything
+			-- fre or frequency
+			-- wl or wavelength
+			-- eoppf or energy of a photon when planks constant and frequency are given 
+			-- eoppsw or energy of a photon when planks constant, speed of light, and wavelength are given
+			-- wf or work function
+		
+		(check commands to see the rest of the commands)
+
+
+>>> patterns to follow:
+	> starting proton:
+		> Input s, h, or com > s 
+	or	> Input s, h, or com > start
+	
+
+	> seeking help:
+		> Input s, h, or com > h
+	or	> Input s, h, or com > help
+
+	
+	> check commands:
+		> Input s, h, or com > com
+	or	> Input s, h, or com > command
+
+	
+	> make calculations:
+		> Input s, h, or com > s > calc (check commands or com for possible calculations)
+
+	
+	> see constants:
+		> Input s, h, or com > s > sc
+	or	> Input s, h, or com > s > see constants
+
+
+	> units conversions:
+		> Input s, h, or com > s > uc
+	or	> Input s, h, or com > s > unit conversion
+
+
