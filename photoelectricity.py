@@ -8,7 +8,15 @@ import datetime
 
 from playsound import playsound
 
-from game import guess
+import speech_recognition as sr
+
+from colorama import init
+
+init()
+
+from colorama import Fore, Back, Style
+
+#import pywhatkit
 
 min_length = 2
 
@@ -19,7 +27,7 @@ print('')
 playsound(f'C:/Users/{user}/Desktop/Proton/voice/hi.mp3')
 
 while True:
-    
+
 	name = input('What is your name: ')
 
 	print()
@@ -27,8 +35,6 @@ while True:
 	if (len(name) >= min_length and name.isprintable() and name.isalpha()):
         
 		break
-
-
 
 	else:
 		print()
@@ -44,12 +50,9 @@ while True:
 		print()
 	
 	
-print(f'Hi there, {name}')
+print(f'> Hi there, {name}')
 	
-
 print()
-
-
 
 # start with unit conversi.txt
 
@@ -73,15 +76,15 @@ unit_c = open(f'C:/Users/{user}/Desktop/Proton/txt files/unit conversion.txt')
 
 unc = unit_c.read()
 
-print('>>> Input s or start to start')
+print(Fore.BLUE + '>>> Input s or start to start')
 
 print()
 
-print('>>> Input h or help for help')
+print(Fore.BLUE + '>>> Input h or help for help')
 
 print()
 
-print('>>> Input com or commands to see commands')
+print(Fore.BLUE + '>>> Input com or commands to see commands')
 
 playsound(f'C:/Users/{user}/Desktop/Proton/voice/input.mp3')
 
@@ -91,15 +94,46 @@ def main():
 
 	playsound(f'C:/Users/{user}/Desktop/Proton/voice/how may i help you today.mp3')
 	
-	start = input(f'> How may i help you today {name}: ')
+	start = input(Fore.GREEN + f'> How may i help you today {name}: ')
+	#print(f'>>> How may i help you today {name}')
 
 	print()
+
+	#print('>>> Listening...')
+
+	#print()
+
+	# r = sr.Recognizer()
+
+	# mic = sr.Microphone()
+
+	# with mic as source:
+
+	# 	r.adjust_for_ambient_noise(source)
+
+	# 	audio = r.listen(source)
+
+	# start = r.recognize_google(audio)
+
+	# print(start)
 
 	if start == 'sc' or start == 'see constants':
 
 		playsound(f'C:/Users/{user}/Desktop/Proton/voice/constants.mp3')
 		
 		print(constants)
+
+	elif start == 'cls':
+
+		os.close('cls')
+
+	elif start == 'introduce':
+
+		print('>> Greetings human. I am proton, a virtual assistant designed to carry out a lot of tasks to make life easier.  I was designed by Ayodeji Adesola. You are currently using Proton version 0.2 <<')
+
+		print()
+
+		playsound(f'C:/Users/{user}/Desktop/Proton/voice/introduce.mp3')
 
 	elif start == 'uc' or start == 'unit conversion':
 
@@ -109,31 +143,316 @@ def main():
 
 	elif start == 'game':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/one game.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/games available.mp3')
 
-		print('>>> There is only one game available at the moment which is rock, paper, sciccors')
+		print('>>> There are two games available: ')
+		
+		print('')
+
+		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/rps.mp3')
+
+		print('		> Rock paper scissors(rps for short)')
 
 		print('')
 
-		play_ = input('>>> Do you want to play it?(y/n): ')
+		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/gtng.mp3')
+
+		print('		> Guess the number game(gng for short)')
 
 		print('')
 
+		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/Which would you like to play.mp3')
 
-		if play_ == 'y':
+		play = input('> Which would you like to play?: ')
 
-	 		guess()
+		print('')
 
-		elif play_ == 'n':
+		if play == 'gng':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/game audio/level 1.mp3')
 
-			print('>>> Ok')
+			print('>>> LEVEL 1')
 
 			print('')
 
+			while True:
 
-		#print('')
+				range1 = 77
+
+				player = int(input(f'>>> Guess what number your computer picked within the range 0 - 100: '))
+
+				print('')
+
+				if player < range1:
+
+					print('>>> Too small, try again')
+
+					print('')
+
+				elif player > range1:
+
+					print('>>> Too big, try again')
+
+					print('')
+
+				elif player == range1:
+
+					print('>>> YOU HAVE WON!')
+
+					print('')
+
+					break
+
+
+			print('NEW LEVEL')
+
+			print()
+
+			print('>>> LEVEL 2')
+
+			while True:
+
+				range2 = 864
+
+				player = int(input(f'>>> Guess what number your computer picked within the range 100 - 900: '))
+
+				print('')
+
+				if player < range2:
+
+					print('>>> Too small, try again')
+
+					print('')
+
+				elif player > range2:
+
+					print('>>> Too big, try again')
+
+					print('')
+
+				elif player == range2:
+
+					print('>>> YOU HAVE WON!')
+
+					break
+
+			print('NEW LEVEL')
+
+			print('')
+
+			print('>>> LEVEL 3')
+
+			while True:
+
+				range3 = 3550
+
+				player = int(input(f'>>> Guess what number your computer picked within the range 1000 - 5000: '))
+
+				print('')
+
+				if player < range3:
+
+					print('>>> Too small, try again')
+
+					print('')
+
+				elif player > range3:
+
+					print('>>> Too big, try again')
+
+					print('')
+
+				elif player == range3:
+
+					print('>>> YOU HAVE WON!')
+
+					print('')
+
+					print('>>> YOU HAVE 3 POINTS!!!')
+
+					print('')
+
+					break
+
+
+		elif play == 'rps':
+
+			def rps():
+
+				player = 0
+
+				cpu = 0
+
+				while True:
+					
+					possible_input = ['rock', 'paper', 'scissors']
+
+					while player < 3 and cpu < 3:
+
+						print(Fore.GREEN + '>>> Listening...')
+						
+						cpu_pick = random.choice(possible_input)
+
+						r = sr.Recognizer()
+
+						mic = sr.Microphone()
+
+						with mic as source:
+							r.adjust_for_ambient_noise(source)
+							audio = r.listen(source)
+
+						player_pick = r.recognize_google(audio)
+
+
+						print('')
+
+						print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+						print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+						print('')
+
+						if player_pick == cpu_pick:
+							
+							print(Fore.WHITE + 'Its a tie!')
+
+							print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+							print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+						elif player_pick == 'rock' or player_pick == 'roar' or player_pick == 'Rock' or player_pick == 'ROCK' or player_pick == 'Roar' or player_pick == 'ROAR' :
+
+							if cpu_pick == 'paper':
+
+								cpu += 1
+
+								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu point.mp3')
+
+								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+								print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+								print('')
+
+							elif cpu_pick == 'scissors':
+
+								player += 1
+
+								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player point.mp3')
+
+								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+								print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+								print('')
+
+						elif player_pick == 'clear':
+
+							os.system('cls')
+
+						elif player_pick == 'paper' or player_pick == 'PAPER' or player_pick == 'Paper' or player_pick == 'pipi' or player_pick == 'PIPA' or player_pick == 'Pipa':
+
+							if cpu_pick == 'rock':
+
+								player += 1
+
+								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player point.mp3')
+
+								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+								print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+								print('')
+
+							elif cpu_pick == 'scissors':
+
+								cpu += 1
+
+								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu point.mp3')
+
+								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+								print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+								print('')
+
+						elif player_pick == 'scissors' or player_pick == 'SCISSORS':
+
+							if cpu_pick == 'rock':
+
+								cpu += 1
+
+								playsound(f'C:/Users/{user}Desktop/Proton/game audio/cpu point.mp3')
+
+								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+								print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+								print('')
+
+							elif cpu_pick == 'paper':
+
+								player += 1
+
+								playsound(f'C:/Users/{user}Desktop/Proton/game audio/player point.mp3')
+
+								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
+
+								print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+								print('')
+
+						else:
+							print(Fore.RED + 'Invalid input!')
+
+							print('')
+
+					if player > cpu:
+
+						print(Fore.GREEN + f'Player score: {player} VS           CPU Score: {cpu}')
+
+						print(Fore.YELLOW + 'Player wins!')
+
+						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player wins.mp3')
+
+					else:
+
+						print(Fore.BLUE + 'CPU Wins!')
+
+						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu wins.mp3')
+
+
+					print('')
+
+			rps()	
+
+	# elif start == 'send whatsapp message' or start == 'swm':
+
+	# 	num = input('> Enter recipient number(in format +2349827640745): ')
+
+	# 	print()
+
+	# 	message = input('> Type your message: ')
+
+	# 	print()
+
+	# 	time_input = input('> Enter time this message should be sent(hh, mm format (eg 08, 43)): ')
+
+	# 	splitted_time = time_input.split(',')
+
+	# 	split_1 = splitted_time[0]
+
+	# 	split_2 = splitted_time[1]
+
+	# 	hour = int(split_1)
+
+	# 	minute = int(split_2)
+
+	# 	time = hour, minute
+
+	# 	print()
+
+	# 	pywhatkit.sendwhatmsg(num, message, time)
 
 	elif start == 'time':
 		
@@ -150,36 +469,6 @@ def main():
 		playsound(f'C:/Users/{user}/Desktop/Proton/voice/goodbye.mp3')	
 		
 		exit()
-
-		#play a guessing game
-
-	#elif start == 'game':
-		
-		# def game():
-			
-		# 	x = random.randint(1, 10)
-    		
-		# 	z = int(input('> Pick a number: '))
-    		
-		# 	while True:
-        		
-		# 		if x != z:
-
-		# 			z = input('> Pick another number: ')
-
-		# 			t = '> Better luck next time'
-            	
-		# 			print(t)
-
-		# 			print(z)
-					
-		# 		else:
-					
-		# 			print('>> yaaaay')
-					
-		# 			break
-
-		# game()
 
 	elif start == 'ndir':
 
@@ -258,20 +547,34 @@ def main():
 		elif calc == 'frequency' or calc == 'fre':
 			
 			Wavelength=float(input('Wave Length: '))
+
+			print()
 			
 			print('Frequency: ', 3*10**8/Wavelength,'Hz')
+
+			print()
 			
 			solution=input('Do you want to see the steps?(yes/y or no/n): ')
+
+			print()
 			
 			if solution == 'yes' or solution == 'y':
 				
 				print('Frequency = speed of light/wavelength')
+
+				print()
 				
 				print('=3*10**8/Wavelength')    
+
+				print()
 				
 				print(f'=3*10**8/{Wavelength}')
+
+				print()
 				
 				print('Frequency: ', 3*10**8/Wavelength,'Hz')
+
+				print()
 			
 			if solution == 'no' or solution == 'n':
 
@@ -662,7 +965,10 @@ while True:
 		playsound(f'C:/Users/{user}/Desktop/Proton/voice/help details.mp3')
 
 		x = input('Do you want me to read the help details to you?(y/n): ')	
+
 		if x == 'y':
+
+			print()
 
 			print(help_me)
 			
@@ -670,9 +976,13 @@ while True:
 
 		elif x == 'n':
 
+			print()
+
 			playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
 				
-			print('Ok')
+			print('> Ok')
+
+			print()
 		
 			print(help_me)
 
@@ -681,6 +991,8 @@ while True:
 			playsound(f'C:/Users/{user}/Desktop/Proton/voice/i do not understand.mp3')
 			
 			print('I do not understand')
+
+			print()
 
 
 	# elif start == 'bk' or start == 'back':
@@ -706,7 +1018,9 @@ while True:
 
 			playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
 				
-			print('Ok')
+			print('> Ok')
+
+			print()
 
 			playsound(f'C:/Users/{user}/Desktop/Proton/voice/runnable commands.mp3')
 		
@@ -717,6 +1031,8 @@ while True:
 			playsound(f'C:/Users/{user}/Desktop/Proton/voice/i do not understand.mp3')
 			
 			print('I do not understand')
+
+			print()
 
 	elif start == 'exit':
 
@@ -729,6 +1045,8 @@ while True:
 		playsound(f'C:/Users/{user}/Desktop/Proton/voice/error2.mp3')
 		
 		print(f'----- Error, {start}, is not a command, try again')
+
+		print()
 	
 
 
