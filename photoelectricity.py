@@ -16,11 +16,121 @@ init()
 
 from colorama import Fore, Back, Style
 
-#import pywhatkit
+import pywhatkit
+
+import wikipedia as wiki
+
+from tkinter import *
 
 min_length = 2
 
-user = input('Laptop user name: ')
+user = input('>>> Laptop user name: ')
+
+print()
+
+file_open = open('pass.txt', 'r')
+
+read_file = file_open.read()
+
+if 'Password' not in read_file:
+
+	print('FIRST TIME USER')
+
+	print()
+
+	while True:
+
+		create_password = input('> Create Password: ')
+
+		print()
+
+		connirm_password = input('> Confirm Password: ')
+
+		print()
+
+		if create_password == connirm_password:
+
+			filee = open('pass.txt', 'w')
+
+			filee.write(f'> Password: {connirm_password}')
+
+			filee.close()
+
+			break
+
+		elif create_password != connirm_password:
+
+			print('-----Error, passwords do not match. Try again')
+
+else:
+	pass
+
+file_open.close()
+
+while True:
+
+	Enter_pass = input('Enter Password: ')
+
+	print()
+
+	file_open = open('pass.txt', 'r')
+
+	read_file = file_open.read()
+
+	if Enter_pass not in read_file:
+
+		print('----Error, wrong password. Try again')
+
+		print()
+
+	elif Enter_pass in read_file:
+		
+		break
+
+print()
+
+filesize = os.path.getsize('about_user.txt')
+
+size = str(filesize)
+
+if size == '0':
+
+	name = input('> What is your name: ')
+
+	print()
+
+	age = input('> How old are you: ')
+
+	print()
+
+	additional_info = input('> Add any other additional information(nil for none): ')
+
+	print()
+
+	hobby = input('> What are your hobbies: ')
+
+	splitted_hobby = hobby.split(',')
+
+	file = open('about_user.txt', 'w')
+
+	file.write(f'> Your name is {name} \n')
+
+	print()
+
+	file.write(f'> You are {age} years old\n')
+
+	print()
+
+	file.write(f'> Some additional Information you told me about you: \n {additional_info} \n')
+
+	print()
+
+	file.write(f'> Your hobbies are: \n {splitted_hobby} \n')
+
+	file.close()
+
+else:
+	pass
 
 print('')
 
@@ -28,7 +138,7 @@ playsound(f'C:/Users/{user}/Desktop/Proton/voice/hi.mp3')
 
 while True:
 
-	name = input('What is your name: ')
+	name = input('> What is your name: ')
 
 	print()
     
@@ -48,6 +158,10 @@ while True:
 		print(name)
 
 		print()
+
+	password_entry = input('Enter Password: ')
+
+	#if password_entry == 
 	
 	
 print(f'> Hi there, {name}')
@@ -126,6 +240,79 @@ def main():
 	elif start == 'cls':
 
 		os.close('cls')
+
+	elif start == 'what do you know about me' or start == 'info on me':
+
+		file = open('about_user.txt', 'r')
+
+		read_file = file.read()
+
+		print(read_file)
+
+	elif start == 'make search' or start == 'ms':
+
+		root = Tk()
+
+		root.title('Proton.com . Wikipedia')
+
+		root.geometry('700x675')
+
+		def clear():
+
+			my_entry.delete(0, END)
+
+			my_text.delete(0.0, END)
+
+		def search():
+
+			data = wiki.page(my_entry.get())
+
+			clear()
+
+			my_text.insert(0.0, data.content)	
+
+		my_label_frame = LabelFrame(root, text='Search Wikipedia')
+
+		my_label_frame.pack(pady=20)
+
+		my_entry = Entry(my_label_frame, font=('Helvetica', 18), width=47)
+
+		my_entry.pack(pady=20, padx=20)
+
+		my_frame = Frame(root)
+
+		my_frame.pack(pady=5)
+
+		text_scroll = Scrollbar(my_frame)
+
+		text_scroll.pack(side=RIGHT, fill=Y)
+
+		hor_scroll = Scrollbar(my_frame, orient='horizontal')
+
+		hor_scroll.pack(side=BOTTOM, fill=X)
+
+		my_text = Text(my_frame, yscrollcommand=text_scroll.set, wrap='none', xscrollcommand=hor_scroll.set)
+
+		my_text.pack()
+
+		text_scroll.config(command=my_text.yview)
+
+		hor_scroll.config(command=my_text.xview)
+
+		button_frame = Frame(root)
+
+		button_frame.pack(pady=10)
+
+		search_button = Button(button_frame, text='Lookup', font=('Helvetica', 32), fg='#3a3a3a', command=search)
+
+		search_button.grid(row=0, column=0, padx=20)
+
+		clear_button = Button(button_frame, text='Clear', font=('Helvetica', 32), fg='#3a3a3a', command=clear)
+
+		clear_button.grid(row=0, column=1)
+
+
+		root.mainloop()
 
 	elif start == 'introduce':
 
@@ -426,33 +613,29 @@ def main():
 
 			rps()	
 
-	# elif start == 'send whatsapp message' or start == 'swm':
+	elif start == 'send whatsapp message' or start == 'swm':
 
-	# 	num = input('> Enter recipient number(in format +2349827640745): ')
+		num = input('> Enter recipient number(in format +2349827640745): ')
 
-	# 	print()
+		print()
 
-	# 	message = input('> Type your message: ')
+		message = input('> Type your message: ')
 
-	# 	print()
+		print()
 
-	# 	time_input = input('> Enter time this message should be sent(hh, mm format (eg 08, 43)): ')
+		time_input = input('> Enter time this message should be sent(hh, mm format (eg 08, 43)): ')
 
-	# 	splitted_time = time_input.split(',')
+		splitted_time = time_input.split(',')
 
-	# 	split_1 = splitted_time[0]
+		split_1 = splitted_time[0]
 
-	# 	split_2 = splitted_time[1]
+		split_2 = splitted_time[1]
 
-	# 	hour = int(split_1)
+		hour = int(split_1)
 
-	# 	minute = int(split_2)
+		minute = int(split_2)
 
-	# 	time = hour, minute
-
-	# 	print()
-
-	# 	pywhatkit.sendwhatmsg(num, message, time)
+		pywhatkit.sendwhatmsg(num, message, hour, minute, 60)
 
 	elif start == 'time':
 		
