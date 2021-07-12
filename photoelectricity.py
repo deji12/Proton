@@ -6,6 +6,10 @@ import os
 
 import datetime
 
+import pyttsx3
+
+engine = pyttsx3.init()
+
 from playsound import playsound
 
 import speech_recognition as sr
@@ -15,8 +19,6 @@ from colorama import init
 init()
 
 from colorama import Fore, Back, Style
-
-import pywhatkit
 
 import wikipedia as wiki
 
@@ -35,6 +37,18 @@ read_file = file_open.read()
 if 'Password' not in read_file:
 
 	print('FIRST TIME USER')
+
+	rate = engine.getProperty('rate')
+
+	engine.setProperty('rate', 125)
+
+	print(engine.say('Greetings human, welcome, I am your very own virtual assistant. Call me proton'))
+
+	print(engine.say('I will need you to create a password, tell me your name, and some details about you. Lets go'))
+
+	engine.runAndWait()
+
+	engine.stop()
 
 	print()
 
@@ -62,12 +76,16 @@ if 'Password' not in read_file:
 
 			print('-----Error, passwords do not match. Try again')
 
+			print()
+
 else:
 	pass
 
 file_open.close()
 
-while True:
+i = 0
+
+while i < 3:
 
 	Enter_pass = input('Enter Password: ')
 
@@ -79,13 +97,25 @@ while True:
 
 	if Enter_pass not in read_file:
 
+		i += 1
+
 		print('----Error, wrong password. Try again')
+
+		print()
+
+		print(f'>> Tries left: {3 - i}')
 
 		print()
 
 	elif Enter_pass in read_file:
 		
 		break
+
+	if i == 3:
+
+		print('>>>> CLOSING PROTON')
+
+		exit()
 
 print()
 
@@ -162,9 +192,19 @@ while True:
 	password_entry = input('Enter Password: ')
 
 	#if password_entry == 
+
+
+rate = engine.getProperty('rate')
+
+engine.setProperty('rate', 125)	
 	
-	
-print(f'> Hi there, {name}')
+print(engine.say(f'> Hi there {name}'))
+
+print(f'> Hi there {name}')
+
+engine.runAndWait()
+
+engine.stop()
 	
 print()
 
@@ -206,7 +246,17 @@ print()
 
 def main():
 
-	playsound(f'C:/Users/{user}/Desktop/Proton/voice/how may i help you today.mp3')
+	#playsound(f'C:/Users/{user}/Desktop/Proton/voice/how may i help you today.mp3')
+
+	rate = engine.getProperty('rate')
+
+	engine.setProperty('rate', 125)
+
+	print(engine.say(f'How may i help you today {name}'))
+
+	engine.runAndWait()
+
+	engine.stop()
 	
 	start = input(Fore.GREEN + f'> How may i help you today {name}: ')
 	#print(f'>>> How may i help you today {name}')
@@ -248,6 +298,88 @@ def main():
 		read_file = file.read()
 
 		print(read_file)
+
+	elif start == 'new note' or start == 'nn':
+
+		new_note_input = input('> Name of new note: ')
+
+		print()
+
+		created_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}'
+
+		created_note_ = open(created_note, 'x')
+
+		new_note_content = input('> Body: ')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 125)
+
+		print(f'> Note has been saved {name}')
+
+		print(engine.say(f'> Note has been saved {name}'))
+
+		engine.runAndWait()
+
+		engine.stop()
+
+		note_list_1 = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
+
+		note_list_read_1 = open(note_list_1, 'a')
+
+		note_list_read_1.write(f'> {new_note_input} \n')
+
+		created_note_.close()
+
+		opened_new_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}'
+
+		opened_new_note_ = open(opened_new_note, 'a')
+
+		opened_new_note_.write(new_note_content)
+
+		opened_new_note_.close()
+
+	elif start == 'see notes' or start == 'sn':
+
+		note_list = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
+
+		note_list_read = open(note_list, 'r')
+
+		read_note = note_list_read.read()
+
+		print(read_note)
+
+		note_list_read.close()
+
+	elif start =='read note' or start == 'rn':
+
+		note_list = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
+
+		note_list_read = open(note_list, 'r')
+
+		read_note = note_list_read.read()
+
+		print(read_note)
+
+		which_read_choice = input('> Which will you like to read?: ')
+
+		print()
+
+		read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}'
+
+		read_choice_ = open(read_choice, 'r')
+
+		read_file = read_choice_.read()
+
+		print(read_file)
+
+		print()
+
+		read_choice_.close()
+
+		note_list_read.close()
 
 	elif start == 'make search' or start == 'ms':
 
@@ -614,6 +746,8 @@ def main():
 			rps()	
 
 	elif start == 'send whatsapp message' or start == 'swm':
+
+		import pywhatkit
 
 		num = input('> Enter recipient number(in format +2349827640745): ')
 
@@ -1219,7 +1353,17 @@ while True:
 
 	elif start == 'exit':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/goodbye.mp3')	
+		#playsound(f'C:/Users/{user}/Desktop/Proton/voice/goodbye.mp3')	
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 125)
+
+		print(engine.say(f'I hope i was helpful. Goodbye {name}'))
+
+		engine.runAndWait()
+
+		engine.stop()
 
 		exit()
 

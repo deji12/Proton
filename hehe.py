@@ -1,11 +1,13 @@
-# import wikipedia
+import pyttsx3
 
-# from tkinter import *
+engine = pyttsx3.init()
 
-# from tkinter.messagebox import showinfo
+rate = engine.getProperty('rate')
 
-# def on_click():
+engine.setProperty('rate', 125)
 
-#     q = get_q.get()
+print(engine.say('i am a boy'))
 
-#     text.insert
+engine.runAndWait()
+
+engine.stop()
