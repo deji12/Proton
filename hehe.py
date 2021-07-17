@@ -1,13 +1,9 @@
-import pyttsx3
+with open('C:/Users/Ayodeji/Desktop/Proton/notes/notes.txt', 'r') as file:
+    lines = file.readlines()
 
-engine = pyttsx3.init()
-
-rate = engine.getProperty('rate')
-
-engine.setProperty('rate', 125)
-
-print(engine.say('i am a boy'))
-
-engine.runAndWait()
-
-engine.stop()
+ask_content = input('input name: ')
+content = ask_content
+with open('C:/Users/Ayodeji/Desktop/Proton/notes/notes.txt', 'w') as file:
+    for line in lines:
+        if line.strip("\n") != content:
+            file.write(line)

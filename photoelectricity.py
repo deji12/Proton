@@ -1,10 +1,12 @@
-from math import sqrt
+from math import inf, sqrt
 
 import random
 
 import os
 
 import datetime
+
+from datetime import date
 
 import pyttsx3
 
@@ -23,6 +25,10 @@ from colorama import Fore, Back, Style
 import wikipedia as wiki
 
 from tkinter import *
+
+# from pyDictionary import pyDictionary
+
+# dictionary = pyDictionary()
 
 min_length = 2
 
@@ -74,7 +80,7 @@ if 'Password' not in read_file:
 
 		elif create_password != connirm_password:
 
-			print('-----Error, passwords do not match. Try again')
+			print('---- Error, passwords do not match. Try again')
 
 			print()
 
@@ -291,6 +297,12 @@ def main():
 
 		os.close('cls')
 
+	# elif start == 'dict':
+
+	# 	word = input('> What word are you searching for: ')
+
+	# 	print('> ', dictionary.meaning(word))
+
 	elif start == 'what do you know about me' or start == 'info on me':
 
 		file = open('about_user.txt', 'r')
@@ -301,13 +313,31 @@ def main():
 
 	elif start == 'new note' or start == 'nn':
 
-		new_note_input = input('> Name of new note: ')
+		while True:
+
+			new_note_input = input('> Name of new note: ')
+
+			find_if_note_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+
+			if new_note_input in find_if_note_exists:
+
+				print(f'---- Error, a note with the name {new_note_input} already exists. Pick a new name')
+
+			else:
+
+				pass
+				
+				break
 
 		print()
 
 		created_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}'
 
 		created_note_ = open(created_note, 'x')
+
+		x = datetime.datetime.now()
+
+		datetime_of_creation = f'% Date of creation: {x.strftime("%A, %d %B. %Y")}, Time of creation: {x.strftime("%I:%M%p")} % \n'
 
 		new_note_content = input('> Body: ')
 
@@ -325,61 +355,299 @@ def main():
 
 		engine.stop()
 
-		note_list_1 = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
+		# note_list_1 = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
 
-		note_list_read_1 = open(note_list_1, 'a')
+		# note_list_read_1 = open(note_list_1, 'a')
 
-		note_list_read_1.write(f'> {new_note_input} \n')
+		# note_list_read_1.write(f'> {new_note_input} \n')
 
-		created_note_.close()
+		# created_note_.close()
 
 		opened_new_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}'
 
 		opened_new_note_ = open(opened_new_note, 'a')
 
-		opened_new_note_.write(new_note_content)
+		opened_new_note_.write(f'{datetime_of_creation} \n > Body: {new_note_content} \n \n')
 
 		opened_new_note_.close()
 
 	elif start == 'see notes' or start == 'sn':
 
-		note_list = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
+		password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
 
-		note_list_read = open(note_list, 'r')
+		password_path_open = open(password_path, 'r')
 
-		read_note = note_list_read.read()
+		password_path_open_read = password_path_open.read()
 
-		print(read_note)
+		if 'Password' in password_path_open_read:
 
-		note_list_read.close()
+			pass
+
+		elif 'Password' not in password_path_open_read:
+
+			create_password = input('> Create Password: ')
+
+			print()
+
+			confirm_password = input('> Confirm Password: ')
+
+			print()
+
+			while True:
+
+				if create_password == confirm_password:
+
+					file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+
+					filee = open(file_path, 'w')
+
+					filee.write(f'> Password: {confirm_password}')
+
+					filee.close()
+
+					break
+
+				elif create_password != confirm_password:
+
+					print('---- Error, passwords do not match. Try again')
+
+					print()
+
+		i = 0
+
+		while i < 3:
+
+			file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+
+			read_file = file_pass_path.read()
+			
+			pass_word = input('> Enter password: ')
+
+			print()
+
+			if pass_word in read_file:
+
+				print('> Here are all your notes:')
+
+				print('> Ignore the pass.txt file')
+
+				print()
+
+				note_list = f'C:/Users/{user}/Desktop/Proton/notes'
+
+				note_folder_directory = os.listdir(note_list)
+
+				print(note_folder_directory)
+
+				print()
+
+				break
+
+			elif pass_word not in read_file:
+
+				i += 1
+
+				print('---- Error, wrong password. Try again')
+
+				print()
+
+				print(f'>> Tries left: {3 - i}')
+
+				print()
+
+			if i == 3:
+
+				print('>>> Suspicious activity detected')
+
+				print()
+
+				print('>>>> CLOSING PROTON. GOODBYE.')
+
+				rate = engine.getProperty('rate')
+
+				engine.setProperty('rate', 125)	
+					
+				print(engine.say('suspicious activity detected'))
+
+				engine.runAndWait()
+
+				engine.stop()
+
+				exit()
 
 	elif start =='read note' or start == 'rn':
 
-		note_list = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
+		password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
 
-		note_list_read = open(note_list, 'r')
+		password_path_open = open(password_path, 'r')
 
-		read_note = note_list_read.read()
+		password_path_open_read = password_path_open.read()
 
-		print(read_note)
+		if 'Password' in password_path_open_read:
 
-		which_read_choice = input('> Which will you like to read?: ')
+			pass
+
+		elif 'Password' not in password_path_open_read:
+
+			create_password = input('> Create Password: ')
+
+			print()
+
+			confirm_password = input('> Confirm Password: ')
+
+			print()
+
+			while True:
+
+				if create_password == confirm_password:
+
+					file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+
+					filee = open(file_path, 'w')
+
+					filee.write(f'> Password: {confirm_password}')
+
+					filee.close()
+
+					break
+
+				elif create_password != confirm_password:
+
+					print('---- Error, passwords do not match. Try again')
+
+					print()
+
+		i = 0
+
+		while i < 3:
+
+			file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+
+			read_file = file_pass_path.read()
+			
+			pass_word = input('> Enter password: ')
+
+			print()
+
+			if pass_word in read_file:
+
+				note_list = f'C:/Users/{user}/Desktop/Proton/notes'
+
+				note_folder_directory = os.listdir(note_list)
+
+				print(note_folder_directory)
+
+				print()
+
+				which_read_choice = input('> Which note will you like to read?: ')
+
+				print()
+
+				read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}'
+
+				read_choice_ = open(read_choice, 'r')
+
+				read_file = read_choice_.read()
+
+				#print(read_file)
+
+				#print()
+
+				x = datetime.datetime.now()
+				
+				open_for_new_date = open(read_choice, 'a')
+
+				new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} %')
+
+				#print()
+
+				print(read_file)
+
+				print()
+
+				read_choice_.close()
+
+				break
+
+			elif pass_word not in read_file:
+
+				i += 1
+
+				print('---- Error, wrong password. Try again')
+
+				print()
+
+				print(f'>> Tries left: {3 - i}')
+
+				print()
+
+			if i == 3:
+
+				print('>>> Suspicious activity detected')
+
+				print()
+
+				print('>>>> CLOSING PROTON. GOODBYE.')
+
+				rate = engine.getProperty('rate')
+
+				engine.setProperty('rate', 125)	
+					
+				print(engine.say('suspicious activity detected'))
+
+				engine.runAndWait()
+
+				engine.stop()
+
+				exit()
+
+	elif start == 'del note' or start == 'delete note' or start == 'dn':
+
+		note_list = f'C:/Users/{user}/Desktop/Proton/notes'
+
+		note_folder_directory = os.listdir(note_list)
+
+		print(note_folder_directory)
 
 		print()
 
-		read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}'
-
-		read_choice_ = open(read_choice, 'r')
-
-		read_file = read_choice_.read()
-
-		print(read_file)
+		del_file = input('> Enter note you want to delete: ')
 
 		print()
 
-		read_choice_.close()
+		if os.path.exists(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}'):
 
-		note_list_read.close()
+			os.remove(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}')
+
+		else:
+
+			print(f'---- Error, {del_file} does not exist')
+
+			print()
+
+			rate = engine.getProperty('rate')
+
+			engine.setProperty('rate', 125)
+
+			print(engine.say(f' Error, {del_file} does not exist'))
+
+			engine.runAndWait()
+
+			engine.stop()		
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 125)
+
+		print(f'> Note has been deleted successfully')
+
+		print(engine.say(f'> Note has been deleted successfully'))
+
+		engine.runAndWait()
+
+		engine.stop()		
 
 	elif start == 'make search' or start == 'ms':
 
@@ -771,13 +1039,43 @@ def main():
 
 		pywhatkit.sendwhatmsg(num, message, hour, minute, 60)
 
+	elif start == 'date':
+
+		x = datetime.datetime.now()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 120)
+
+		print(f'> {x.strftime("%A, %d %B. %Y")}')
+
+		print(engine.say(f'> Todays date is {x.strftime("%A, %d %B %Y")}'))
+
+		engine.runAndWait()
+
+		engine.stop()
+
+		print()
+
 	elif start == 'time':
 		
 		x = datetime.datetime.now()
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/time.mp3')
+		#playsound(f'C:/Users/{user}/Desktop/Proton/voice/time.mp3')
 
-		print(f'> Time: {x}')
+		x = datetime.datetime.now()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 120)
+
+		print(f'> Time: {x.strftime("%I:%M%p")}')
+
+		print(engine.say(f'> The Time is {x.strftime("%I:%M%p")}'))
+
+		engine.runAndWait()
+
+		engine.stop()
 
 		print()
 
