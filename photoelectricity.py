@@ -26,6 +26,16 @@ import wikipedia as wiki
 
 from tkinter import *
 
+import time
+
+import winsound
+
+from threading import *
+
+from time import strftime 
+
+from pygame import mixer
+
 # from pyDictionary import pyDictionary
 
 # dictionary = pyDictionary()
@@ -46,11 +56,11 @@ if 'Password' not in read_file:
 
 	rate = engine.getProperty('rate')
 
-	engine.setProperty('rate', 125)
+	engine.setProperty('rate', 130)
 
-	print(engine.say('Greetings human, welcome, I am your very own virtual assistant. Call me proton'))
+	engine.say('Greetings human, welcome, I am your very own virtual assistant. Call me proton')
 
-	print(engine.say('I will need you to create a password, tell me your name, and some details about you. Lets go'))
+	engine.say('I will need you to create a password, tell me your name, and some details about you. Lets go')
 
 	engine.runAndWait()
 
@@ -204,7 +214,7 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', 125)	
 	
-print(engine.say(f'> Hi there {name}'))
+engine.say(f'> Hi there {name}')
 
 print(f'> Hi there {name}')
 
@@ -258,7 +268,7 @@ def main():
 
 	engine.setProperty('rate', 125)
 
-	print(engine.say(f'How may i help you today {name}'))
+	engine.say(f'How may i help you today {name}')
 
 	engine.runAndWait()
 
@@ -296,6 +306,82 @@ def main():
 	elif start == 'cls':
 
 		os.close('cls')
+
+	elif start == 'set alarm' or start == 'sa':
+
+		root = Tk() 
+
+		root.title('Proton Alarm Clock') 
+
+		def setalarm():
+
+			alarmtime=f"{hrs.get()}:{mins.get()}:{secs.get()}"
+
+			print(alarmtime)
+
+			if(alarmtime!="::"):
+
+				alarmclock(alarmtime) 
+
+		def alarmclock(alarmtime): 
+
+			while True:
+
+				time.sleep(1)
+
+				time_now=datetime.datetime.now().strftime("%H:%M:%S")
+
+				print(time_now)
+
+				if time_now==alarmtime:
+
+					Wakeup=Label(root, font = ('arial', 20, 'bold'),
+
+					text="Wake up!Wake up!Wake up",bg="DodgerBlue2",fg="white").grid(row=6,columnspan=3)
+
+					print("wake up!")
+
+					mixer.init()
+
+					mixer.music.load(f'C:/Users/{user}/Desktop/Proton/game audio/mixkit-facility-alarm-sound-999.wav')
+
+					mixer.music.load(f'C:/Users/{user}/Desktop/Proton/game audio/mixkit-retro-emergency-notification-alarm-2970.wav')
+
+					mixer.music.play()
+
+					break
+
+		hrs=StringVar()
+
+		mins=StringVar()
+
+		secs=StringVar()
+
+		greet=Label(root, font = ('arial', 20, 'bold'),
+
+		text="Set an Alarm").grid(row=1,columnspan=3)
+
+		hrbtn=Entry(root,textvariable=hrs,width=5,font =('arial', 20, 'bold'))
+
+		hrbtn.grid(row=2,column=1)
+
+		minbtn=Entry(root,textvariable=mins,
+
+		width=5,font = ('arial', 20, 'bold')).grid(row=2,column=2)
+
+		secbtn=Entry(root,textvariable=secs,
+
+		width=5,font = ('arial', 20, 'bold')).grid(row=2,column=3)
+
+		setbtn=Button(root,text="set alarm",command=setalarm,bg="DodgerBlue2",
+
+		fg="white",font = ('arial', 20, 'bold')).grid(row=4,columnspan=3)
+
+		timeleft = Label(root,font=('arial', 20, 'bold')) 
+
+		timeleft.grid()
+		
+		mainloop() 
 
 	# elif start == 'dict':
 
@@ -349,7 +435,7 @@ def main():
 
 		print(f'> Note has been saved {name}')
 
-		print(engine.say(f'> Note has been saved {name}'))
+		engine.say(f'> Note has been saved {name}')
 
 		engine.runAndWait()
 
@@ -467,7 +553,7 @@ def main():
 
 				engine.setProperty('rate', 125)	
 					
-				print(engine.say('suspicious activity detected'))
+				engine.say('suspicious activity detected')
 
 				engine.runAndWait()
 
@@ -593,7 +679,7 @@ def main():
 
 				engine.setProperty('rate', 125)	
 					
-				print(engine.say('suspicious activity detected'))
+				engine.say('suspicious activity detected')
 
 				engine.runAndWait()
 
@@ -629,7 +715,7 @@ def main():
 
 			engine.setProperty('rate', 125)
 
-			print(engine.say(f' Error, {del_file} does not exist'))
+			engine.say(f' Error, {del_file} does not exist')
 
 			engine.runAndWait()
 
@@ -643,7 +729,7 @@ def main():
 
 		print(f'> Note has been deleted successfully')
 
-		print(engine.say(f'> Note has been deleted successfully'))
+		engine.say(f'> Note has been deleted successfully')
 
 		engine.runAndWait()
 
@@ -1049,7 +1135,7 @@ def main():
 
 		print(f'> {x.strftime("%A, %d %B. %Y")}')
 
-		print(engine.say(f'> Todays date is {x.strftime("%A, %d %B %Y")}'))
+		engine.say(f'> Todays date is {x.strftime("%A, %d %B %Y")}')
 
 		engine.runAndWait()
 
@@ -1071,7 +1157,7 @@ def main():
 
 		print(f'> Time: {x.strftime("%I:%M%p")}')
 
-		print(engine.say(f'> The Time is {x.strftime("%I:%M%p")}'))
+		engine.say(f'> The Time is {x.strftime("%I:%M%p")}')
 
 		engine.runAndWait()
 
@@ -1657,7 +1743,7 @@ while True:
 
 		engine.setProperty('rate', 125)
 
-		print(engine.say(f'I hope i was helpful. Goodbye {name}'))
+		engine.say(f'I hope i was helpful. Goodbye {name}')
 
 		engine.runAndWait()
 
