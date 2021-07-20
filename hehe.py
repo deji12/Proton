@@ -1,9 +1,16 @@
-with open('C:/Users/Ayodeji/Desktop/Proton/notes/notes.txt', 'r') as file:
-    lines = file.readlines()
+while True:
 
-ask_content = input('input name: ')
-content = ask_content
-with open('C:/Users/Ayodeji/Desktop/Proton/notes/notes.txt', 'w') as file:
-    for line in lines:
-        if line.strip("\n") != content:
-            file.write(line)
+		Enter_pass = input('Enter Password: ')
+
+		print()
+
+		if not Enter_pass:
+
+			print('> Error, empty input, enter password')
+
+			print()
+
+		elif len(Enter_pass) > 2:
+
+			break
+	

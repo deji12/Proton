@@ -8,6 +8,8 @@ import datetime
 
 from datetime import date
 
+from typing import final
+
 import pyttsx3
 
 engine = pyttsx3.init()
@@ -40,7 +42,7 @@ from pygame import mixer
 
 # dictionary = pyDictionary()
 
-min_length = 2
+
 
 user = input('>>> Laptop user name: ')
 
@@ -103,10 +105,22 @@ i = 0
 
 while i < 3:
 
-	Enter_pass = input('Enter Password: ')
+	while True:
 
-	print()
+		Enter_pass = input('Enter Password: ')
 
+		print()
+
+		if not Enter_pass:
+
+			print('> Error, empty input, enter password')
+
+			print()
+
+		elif len(Enter_pass) > 2:
+
+			break
+	
 	file_open = open('pass.txt', 'r')
 
 	read_file = file_open.read()
@@ -184,6 +198,8 @@ playsound(f'C:/Users/{user}/Desktop/Proton/voice/hi.mp3')
 
 while True:
 
+	min_length = 2
+
 	name = input('> What is your name: ')
 
 	print()
@@ -205,7 +221,7 @@ while True:
 
 		print()
 
-	password_entry = input('Enter Password: ')
+	#password_entry = input('Enter Password: ')
 
 	#if password_entry == 
 
@@ -389,6 +405,80 @@ def main():
 
 	# 	print('> ', dictionary.meaning(word))
 
+	elif start == 'shutdown' or start == 'restart':
+
+		while True:
+
+			print('1. Shutdown computer immediately.')
+
+			print()
+
+			print('2. Shutdown computer after given time.')
+
+			print()
+
+			print('3. Restart computer immediately.')
+
+			print()
+
+			print('4. Restart computer after given time.')
+
+			print()
+
+			print('5. Exit')
+
+			print()
+
+			shutdown_restart = input('> Enter number you wish to perform: ')
+
+			if shutdown_restart == '1':
+
+				os.system("shutdown /s /t 0")
+
+			elif shutdown_restart == '2':
+
+				time = int(input('> Enter number of seconds: '))
+
+				print()
+
+				str0ne = "shutdown /s /t "
+
+				str2 = str(time)
+
+				final = str0ne+str2
+
+				os.system(final)
+
+			elif shutdown_restart == '3':
+
+				os.system("shutdown /r /t 0")
+
+			elif shutdown_restart == '4':
+
+				print()
+
+				time = int(input('> Enter number of seconds: '))
+
+				print()
+
+				str0ne = "shutdown /r /t "
+
+				str2 = str(time)
+
+				final = str0ne+str2
+
+				os.system(final)
+
+			elif shutdown_restart == '5':
+
+				print('> Ok')
+
+				break
+
+			else:
+
+				print('> I do not understand')
+
 	elif start == 'what do you know about me' or start == 'info on me':
 
 		file = open('about_user.txt', 'r')
@@ -434,6 +524,8 @@ def main():
 		engine.setProperty('rate', 125)
 
 		print(f'> Note has been saved {name}')
+
+		print()
 
 		engine.say(f'> Note has been saved {name}')
 
@@ -506,14 +598,28 @@ def main():
 			file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
 
 			read_file = file_pass_path.read()
-			
-			pass_word = input('> Enter password: ')
 
-			print()
+			while True:
 
+				pass_word = input('> Enter password: ')
+
+				print()
+
+				if not pass_word:
+
+					print('> Error, empty input, enter password')
+
+					print()
+
+				elif len(Enter_pass) > 2:
+
+					break
+	
 			if pass_word in read_file:
 
 				print('> Here are all your notes:')
+
+				print()
 
 				print('> Ignore the pass.txt file')
 
@@ -523,7 +629,7 @@ def main():
 
 				note_folder_directory = os.listdir(note_list)
 
-				print(note_folder_directory)
+				print(f'> Notes: {note_folder_directory}')
 
 				print()
 
@@ -611,9 +717,21 @@ def main():
 
 			read_file = file_pass_path.read()
 			
-			pass_word = input('> Enter password: ')
+			while True:
 
-			print()
+				pass_word = input('> Enter password: ')
+
+				print()
+
+				if not pass_word:
+
+					print('> Error, empty input, enter password')
+
+					print()
+
+				elif len(Enter_pass) > 2:
+
+					break
 
 			if pass_word in read_file:
 
@@ -643,7 +761,7 @@ def main():
 				
 				open_for_new_date = open(read_choice, 'a')
 
-				new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} %')
+				new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
 
 				#print()
 
@@ -730,6 +848,8 @@ def main():
 		print(f'> Note has been deleted successfully')
 
 		engine.say(f'> Note has been deleted successfully')
+
+		print()
 
 		engine.runAndWait()
 

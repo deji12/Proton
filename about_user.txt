@@ -1,6 +1,0 @@
-> Your name is Ayo 
-> You are 17 years old
-> Some additional Information you told me about you: 
- i like billie eilish 
-> Your hobbies are: 
- ['coding', ' listening to music'] 
