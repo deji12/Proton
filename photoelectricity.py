@@ -38,11 +38,9 @@ from time import strftime
 
 from pygame import mixer
 
-# from pyDictionary import pyDictionary
+from PyDictionary import PyDictionary
 
-# dictionary = pyDictionary()
-
-
+dictionary = PyDictionary()
 
 user = input('>>> Laptop user name: ')
 
@@ -399,11 +397,25 @@ def main():
 		
 		mainloop() 
 
-	# elif start == 'dict':
+	elif start == 'dict':
 
-	# 	word = input('> What word are you searching for: ')
+		print('> This action requires internet connection')
 
-	# 	print('> ', dictionary.meaning(word))
+		ask = input('> Are you connected(y/n): ')
+
+		if ask == 'y':
+
+			word = input('> What word are you searching for: ')
+
+			meaning = dictionary.meaning(word)
+
+			print(f'> {meaning}')
+
+			print()
+
+		elif ask  == 'n':
+
+			print('> Make sure you are connected and try again.')
 
 	elif start == 'shutdown' or start == 'restart':
 
