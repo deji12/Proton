@@ -1,6 +1,6 @@
-> Your name is ayo 
+> Your name is w 
 > You are 17 years old
 > Some additional Information you told me about you: 
  nil 
 > Your hobbies are: 
- ['nil'] 
+ ['coding'] 

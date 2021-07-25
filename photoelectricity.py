@@ -288,28 +288,30 @@ def main():
 
 	engine.stop()
 	
-	start = input(Fore.GREEN + f'> How may i help you today {name}: ')
+	#start = input(Fore.GREEN + f'> How may i help you today {name}: ')
 	#print(f'>>> How may i help you today {name}')
 
 	print()
 
-	#print('>>> Listening...')
+while True:
 
-	#print()
+	print('>>> Listening...')
 
-	# r = sr.Recognizer()
+	print()
 
-	# mic = sr.Microphone()
+	r = sr.Recognizer()
 
-	# with mic as source:
+	mic = sr.Microphone()
 
-	# 	r.adjust_for_ambient_noise(source)
+	with mic as source:
 
-	# 	audio = r.listen(source)
+		r.adjust_for_ambient_noise(source)
 
-	# start = r.recognize_google(audio)
+		audio = r.listen(source)
 
-	# print(start)
+	start = r.recognize_google(audio)
+
+	print(start)
 
 	if start == 'sc' or start == 'see constants':
 
@@ -934,7 +936,7 @@ def main():
 
 	elif start == 'introduce':
 
-		print('>> Greetings human. I am proton, a virtual assistant designed to carry out a lot of tasks to make life easier.  I was designed by Ayodeji Adesola. You are currently using Proton version 0.2 <<')
+		print('>> Greetings human. I am proton, a virtual assistant designed to carry out a lot of tasks to make life easier.  I was designed by Ayodeji Adesola. You are currently using Proton version 0.4 <<')
 
 		print()
 
