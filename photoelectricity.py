@@ -288,30 +288,30 @@ def main():
 
 	engine.stop()
 	
-	#start = input(Fore.GREEN + f'> How may i help you today {name}: ')
+	start = input(Fore.GREEN + f'> How may i help you today {name}: ')
 	#print(f'>>> How may i help you today {name}')
 
 	print()
 
-while True:
+# while True:
 
-	print('>>> Listening...')
+# 	print('>>> Listening...')
 
-	print()
+# 	print()
 
-	r = sr.Recognizer()
+# 	r = sr.Recognizer()
 
-	mic = sr.Microphone()
+# 	mic = sr.Microphone()
 
-	with mic as source:
+# 	with mic as source:
 
-		r.adjust_for_ambient_noise(source)
+# 		r.adjust_for_ambient_noise(source)
 
-		audio = r.listen(source)
+# 		audio = r.listen(source)
 
-	start = r.recognize_google(audio)
+# 	start = r.recognize_google(audio)
 
-	print(start)
+# 	print(start)
 
 	if start == 'sc' or start == 'see constants':
 
@@ -403,11 +403,17 @@ while True:
 
 		print('> This action requires internet connection')
 
+		print()
+
 		ask = input('> Are you connected(y/n): ')
+
+		print()
 
 		if ask == 'y':
 
 			word = input('> What word are you searching for: ')
+
+			print()
 
 			meaning = dictionary.meaning(word)
 
@@ -418,6 +424,8 @@ while True:
 		elif ask  == 'n':
 
 			print('> Make sure you are connected and try again.')
+
+			print()
 
 	elif start == 'shutdown' or start == 'restart':
 
