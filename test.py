@@ -1,25 +1,26 @@
-import speech_recognition as sr
+# # text = text(input('Text: '))
 
-print('>>> Listening...')
+# # print()
 
-print()
+# # rate = rate(int(input('Rate: ')))
 
-r = sr.Recognizer()
 
-mic = sr.Microphone()
+# def atts(rate = int(input('Rate: ')), text = input('Text: ')):
 
-try:
+#     import pyttsx3
 
-    with mic as source:
+#     engine = pyttsx3.init()
 
-        r.adjust_for_ambient_noise(source)
+#     rate = engine.getProperty('rate')
 
-        audio = r.listen(source)
+#     engine.setProperty('rate', rate)
 
-        start = r.recognize_google(audio)
+#     engine.say(text)
 
-        print(start)
+#     engine.runAndWait()
 
-except:
+#     engine.stop()
 
-    print('could not hear you sir')
+# #atts()
+
+

@@ -42,7 +42,13 @@ from PyDictionary import PyDictionary
 
 dictionary = PyDictionary()
 
-user = input('>>> Laptop user name: ')
+try:
+
+	user = input('>>> Laptop user name: ')
+
+except:
+
+	print('System cannot find path specified')
 
 print()
 
@@ -147,21 +153,36 @@ while i < 3:
 
 print()
 
-filesize = os.path.getsize('about_user.txt')
+filesize = os.path.getsize(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt')
 
 size = str(filesize)
 
 if size == '0':
 
+	#saved_name = 'Name.txt'
+	name_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'w')
+
+	age_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/age.txt', 'w')
+
+	add_info_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
+
+	hobby_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'w')
+	
 	name = input('> What is your name: ')
+
+	name_path.write(name)
 
 	print()
 
 	age = input('> How old are you: ')
 
+	age_path.write(age)
+
 	print()
 
 	additional_info = input('> Add any other additional information(nil for none): ')
+
+	add_info_path.write(additional_info)
 
 	print()
 
@@ -169,23 +190,7 @@ if size == '0':
 
 	splitted_hobby = hobby.split(',')
 
-	file = open('about_user.txt', 'w')
-
-	file.write(f'> Your name is {name} \n')
-
-	print()
-
-	file.write(f'> You are {age} years old\n')
-
-	print()
-
-	file.write(f'> Some additional Information you told me about you: \n {additional_info} \n')
-
-	print()
-
-	file.write(f'> Your hobbies are: \n {splitted_hobby} \n')
-
-	file.close()
+	hobby_path.write(f'{splitted_hobby} \n')
 
 else:
 	pass
@@ -322,6 +327,110 @@ def main():
 	elif start == 'cls':
 
 		os.close('cls')
+
+	elif start == 'audio book':
+
+		file_exist = os.path.isdir('Audio book')
+
+		audio_book = input('> Name of audio book: ')
+
+		print()
+
+		content = input('> Content: ')
+
+		print()
+
+		if file_exist == False:
+
+			voice_type = input('> Do you want a male or a female voice?(m/f): ')
+
+			print()
+
+			if voice_type == 'm':
+
+				engine.setProperty('rate', 132)
+
+				voices = engine.getProperty('voices')
+
+				engine.setProperty('voice', voices[0].id)
+
+				os.chdir(f'C:/Users/{user}/Desktop')
+
+				os.mkdir('Audio book')
+
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+
+				engine.save_to_file(content, path)
+
+				engine.runAndWait()
+
+				engine.stop()
+
+			elif voice_type == 'f':
+
+				engine.setProperty('rate', 132)
+
+				voices = engine.getProperty('voices')
+
+				engine.setProperty('voice', voices[1].id)
+
+				os.chdir(f'C:/Users/{user}/Desktop')
+
+				os.mkdir('Audio book')
+
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+
+				engine.save_to_file(content, path)
+
+				engine.runAndWait()
+
+				engine.stop()
+
+		elif file_exist == True:
+
+			voice_type = input('> Do you want a male or a female voice?(m/f): ')
+
+			print()
+
+			if voice_type == 'm':
+
+				engine.setProperty('rate', 132)
+
+				voices = engine.getProperty('voices')
+
+				engine.setProperty('voice', voices[0].id)
+
+				os.chdir(f'C:/Users/{user}/Desktop')
+
+				#os.mkdir('Audio book')
+
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+
+				engine.save_to_file(content, path)
+
+				engine.runAndWait()
+
+				engine.stop()
+
+			elif voice_type == 'f':
+
+				engine.setProperty('rate', 132)
+
+				voices = engine.getProperty('voices')
+
+				engine.setProperty('voice', voices[1].id)
+
+				os.chdir(f'C:/Users/{user}/Desktop')
+
+				#os.mkdir('Audio book')
+
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+
+				engine.save_to_file(content, path)
+
+				engine.runAndWait()
+
+				engine.stop()
 
 	elif start == 'set alarm' or start == 'sa':
 
@@ -503,11 +612,37 @@ def main():
 
 	elif start == 'what do you know about me' or start == 'info on me':
 
-		file = open('about_user.txt', 'r')
+		name_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'r')
 
-		read_file = file.read()
+		age_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/age.txt', 'r')
 
-		print(read_file)
+		add_info_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'r')
+
+		hobby_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'r')
+
+		read_name_path = name_path.read()
+
+		read_age_path = age_path.read()
+
+		read_add_info_path = add_info_path.read()
+
+		read_hobby_path = hobby_path.read()
+
+		print(f'> Your name is {read_name_path}')
+
+		print()
+
+		print(f'> You are {read_age_path} years old')
+
+		print()
+
+		print(f'> Additional info about you: {read_add_info_path}')
+
+		print()
+
+		print(f'> Your hobbies are: {read_hobby_path}')
+
+		print()
 
 	elif start == 'new note' or start == 'nn':
 
