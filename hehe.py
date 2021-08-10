@@ -1,28 +1,78 @@
-import speech_recognition as sr
+# import os
 
-while True:
 
-    try:
+# user = input('> user: ')
 
-        print('>>> Listening...')
+# print('> Developer options available: ')
 
-        r = sr.Recognizer()
+# print()
 
-        mic = sr.Microphone()
+# print('1. New html and css project')
 
-        with mic as source:
+# print()
 
-            r.adjust_for_ambient_noise(source)
+# print('2. New html, css, and javascript project')
 
-            audio = r.listen(source)
+# print()
 
-        start = r.recognize_google(audio)
+# dev_pick = int(input('> Which will you like me to create for you?(pick choice by entering number): '))
 
-        print(start)
+# print()
 
-    except:
+# if dev_pick == 1:
 
-        print('could not hear')
+# 	output_folder = input('> Enter name of project folder: ')
 
-        print()
+# 	print()
+
+# 	os.chdir(f'C:/Users/{user}/Desktop')
+
+# 	os.mkdir(output_folder)
+
+#     parent_html = open(f'C:/Users/{user}/Desktop/Proton/test.html', 'r')
+
+#     parent_css = open(f'C:/Users/{user}/Desktop/Proton/style.css', 'r')
+
+#     create_html = open(f'C:/Users/{user}/Desktop/{output_folder}/index.html', 'w')
+
+#     create_css = open(f'C:/Users/{user}/Desktop/{output_folder}/style.css', 'w')
+
+#     read_html = parent_html.read()
+
+#     write_html = create_html.write(read_html)
+
+#     read_css = parent_css.read()
+
+#     write_css = create_css.write(read_css)
+
+# elif dev_pick == 2:
+
+#     output_folder = input('> Enter name of project folder: ')
+
+# 	print()
+
+# 	os.chdir(f'C:/Users/{user}/Desktop')
+
+# 	os.mkdir(output_folder)
+
+#     parent_html = open(f'C:/Users/{user}/Desktop/Proton/test.html', 'r')
+
+#     parent_css = open(f'C:/Users/{user}/Desktop/Proton/style.css', 'r')
+
+#     create_html = open(f'C:/Users/{user}/Desktop/{output_folder}/index.html', 'w')
+
+#     create_css = open(f'C:/Users/{user}/Desktop/{output_folder}/style.css', 'w')
+
+#     read_html = parent_html.read()
+
+#     write_html = create_html.write(read_html)
+
+#     read_css = parent_css.read()
+
+#     write_css = create_css.write(read_css)
+
+
+
+
+
 
