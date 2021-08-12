@@ -153,44 +153,55 @@ while i < 3:
 
 print()
 
-filesize = os.path.getsize(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt')
+folder_check = os.listdir(f'C:/Users/{user}/Desktop/Proton')
 
-size = str(filesize)
+if 'AboutUser' not in folder_check:
 
-if size == '0':
+	os.chdir(f'C:/Users/{user}/Desktop/Proton')
 
-	#saved_name = 'Name.txt'
-	name_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'w')
+	os.mkdir('AboutUser')
 
-	age_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/age.txt', 'w')
+	create_name_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'w')
 
-	add_info_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
+	create_age_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Age.txt', 'w')
 
-	hobby_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'w')
-	
-	name = input('> What is your name: ')
+	create_hobby_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'w')
 
-	name_path.write(name)
+	create_additional_info_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
 
-	print()
+	name_input = input('> What is your name: ')
 
-	age = input('> How old are you: ')
+	create_name_file.write(name_input)
 
-	age_path.write(age)
+	create_name_file.close()
 
 	print()
 
-	additional_info = input('> Add any other additional information(nil for none): ')
+	age_input = input('> How old are you?: ')
 
-	add_info_path.write(additional_info)
+	create_age_file.write(age_input)
+
+	create_age_file.close()
 
 	print()
 
-	hobby = input('> What are your hobbies: ')
+	hobby_input = input('> What are your hobbies: ')
 
-	splitted_hobby = hobby.split(',')
+	splitted_hobby = hobby_input.split(',')
 
-	hobby_path.write(f'{splitted_hobby} \n')
+	create_hobby_file.write(f'{splitted_hobby} \n')
+
+	create_hobby_file.close()
+
+	print()
+
+	add_info_input = input('> Additional information about you(enter nil for nothing): ')
+
+	create_additional_info_file.write(add_info_input)
+
+	create_additional_info_file.close()
+
+	print()
 
 else:
 	pass
@@ -646,6 +657,21 @@ def main():
 
 	elif start == 'new note' or start == 'nn':
 
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+
+		if 'notes' not in find_if_folder_exists:
+
+			os.chdir(f'C:/Users/{user}/Desktop/Proton')
+
+			os.mkdir('notes')
+
+			make_password_file = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt', 'w')
+
+			make_password_file.close()
+
+		else:
+			pass
+
 		while True:
 
 			new_note_input = input('> Name of new note: ')
@@ -664,7 +690,7 @@ def main():
 
 		print()
 
-		created_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}'
+		created_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}.txt'
 
 		created_note_ = open(created_note, 'x')
 
@@ -673,6 +699,8 @@ def main():
 		datetime_of_creation = f'% Date of creation: {x.strftime("%A, %d %B. %Y")}, Time of creation: {x.strftime("%I:%M%p")} % \n'
 
 		new_note_content = input('> Body: ')
+
+		created_note_.close()
 
 		print()
 
@@ -698,7 +726,7 @@ def main():
 
 		# created_note_.close()
 
-		opened_new_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}'
+		opened_new_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}.txt'
 
 		opened_new_note_ = open(opened_new_note, 'a')
 
@@ -782,11 +810,15 @@ def main():
 
 				print()
 
-				note_list = f'C:/Users/{user}/Desktop/Proton/notes'
+				note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-				note_folder_directory = os.listdir(note_list)
+				for x in range(len(note_list)):
 
-				print(f'> Notes: {note_folder_directory}')
+					rolls = note_list[x]
+
+					stripped = rolls.strip(".txt")
+
+					print(stripped)
 
 				print()
 
@@ -892,11 +924,15 @@ def main():
 
 			if pass_word in read_file:
 
-				note_list = f'C:/Users/{user}/Desktop/Proton/notes'
+				note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-				note_folder_directory = os.listdir(note_list)
+				for x in range(len(note_list)):
 
-				print(note_folder_directory)
+					rolls = note_list[x]
+
+					stripped = rolls.strip(".txt")
+
+					print(stripped)
 
 				print()
 
@@ -904,7 +940,7 @@ def main():
 
 				print()
 
-				read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}'
+				read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}.txt'
 
 				read_choice_ = open(read_choice, 'r')
 
@@ -964,21 +1000,39 @@ def main():
 
 	elif start == 'del note' or start == 'delete note' or start == 'dn':
 
-		note_list = f'C:/Users/{user}/Desktop/Proton/notes'
+		note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-		note_folder_directory = os.listdir(note_list)
+		for x in range(len(note_list)):
 
-		print(note_folder_directory)
+			rolls = note_list[x]
 
-		print()
+			stripped = rolls.strip(".txt")
+
+			print(stripped)
+
+			print()
 
 		del_file = input('> Enter note you want to delete: ')
 
 		print()
 
-		if os.path.exists(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}'):
+		if os.path.exists(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt'):
 
-			os.remove(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}')
+			os.remove(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt')
+
+			rate = engine.getProperty('rate')
+
+			engine.setProperty('rate', 125)
+
+			print(f'> Note has been deleted successfully')
+
+			engine.say(f'> Note has been deleted successfully')
+
+			print()
+
+			engine.runAndWait()
+
+			engine.stop()	
 
 		else:
 
@@ -996,21 +1050,7 @@ def main():
 
 			engine.stop()		
 
-		print()
-
-		rate = engine.getProperty('rate')
-
-		engine.setProperty('rate', 125)
-
-		print(f'> Note has been deleted successfully')
-
-		engine.say(f'> Note has been deleted successfully')
-
-		print()
-
-		engine.runAndWait()
-
-		engine.stop()		
+		print()	
 
 	elif start == 'wiki search' or start == 'ws':
 
@@ -1160,6 +1200,8 @@ def main():
 
 			print('>>> LEVEL 2')
 
+			print()
+
 			while True:
 
 				range2 = 864
@@ -1184,6 +1226,8 @@ def main():
 
 					print('>>> YOU HAVE WON!')
 
+					print()
+
 					break
 
 			print('NEW LEVEL')
@@ -1191,6 +1235,8 @@ def main():
 			print('')
 
 			print('>>> LEVEL 3')
+
+			print()
 
 			while True:
 
@@ -1222,6 +1268,10 @@ def main():
 
 					print('')
 
+					print('>>>> Text the create of Proton for your prize on instagram. Username: the_proton_guy')
+					
+					print()
+
 					break
 
 
@@ -1243,15 +1293,25 @@ def main():
 						
 						cpu_pick = random.choice(possible_input)
 
-						r = sr.Recognizer()
+						try:
 
-						mic = sr.Microphone()
+							r = sr.Recognizer()
 
-						with mic as source:
-							r.adjust_for_ambient_noise(source)
-							audio = r.listen(source)
+							mic = sr.Microphone()
 
-						player_pick = r.recognize_google(audio)
+							with mic as source:
+
+								r.adjust_for_ambient_noise(source)
+								
+								audio = r.listen(source)
+
+							player_pick = r.recognize_google(audio)
+
+						except:
+
+							print('> oops! could not hear anything, speak audibly')
+
+							print()
 
 
 						print('')
@@ -1332,7 +1392,7 @@ def main():
 
 								cpu += 1
 
-								playsound(f'C:/Users/{user}Desktop/Proton/game audio/cpu point.mp3')
+								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1365,9 +1425,13 @@ def main():
 
 						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player wins.mp3')
 
+						break
+
 					else:
 
 						print(Fore.BLUE + 'CPU Wins!')
+
+						break
 
 						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu wins.mp3')
 

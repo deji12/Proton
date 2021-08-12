@@ -71,8 +71,54 @@
 
 #     write_css = create_css.write(read_css)
 
+# # name_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'w')
+
+# # 	age_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/age.txt', 'w')
+
+# # 	add_info_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
+
+# # 	hobby_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'w')
+	
+# # 	name = input('> What is your name: ')
+
+# # 	name_path.write(name)
+
+# # 	print()
+
+# # 	age = input('> How old are you: ')
+
+# # 	age_path.write(age)
+
+# # 	print()
+
+# # 	additional_info = input('> Add any other additional information(nil for none): ')
+
+# # 	add_info_path.write(additional_info)
+
+# # 	print()
+
+# # 	hobby = input('> What are your hobbies: ')
+
+# # 	splitted_hobby = hobby.split(',')
+
+# # 	hobby_path.write(f'{splitted_hobby} \n')
 
 
+import os
 
+user = input('user: ')
+
+print()
+
+folder_check = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+
+#res = str(folder_check)[1:-1].strip(',')
+
+for x in range(len(folder_check)):
+    rolls = folder_check[x]
+    stripped = rolls.strip(". md txt py")
+    print(stripped)
+
+#print(res)
 
 
