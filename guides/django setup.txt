@@ -1,0 +1,87 @@
+=============================================================================================================					
+					>>> DJANGO PROJECT SETUP <<<
+-------------------------------------------------------------------------------------------------------------
+
+	To watch video talking django project setup, visit this link:
+				https://www.youtube.com/watch?v=um8rEorUjgw 
+--------------------------------------------------------------------------------------------------------------
+
+> Step 1 - Create a virtual enviromant:
+
+	a. Open your command line(command prompt/powershell)
+
+	b. Type in the following and press enter:
+						pip install pipenv
+	c. Create a folder for your project
+
+	d. Cd(change directory) into your project folder using your command line 
+
+	TO learn about the command line and how to use it, visit this link:
+		https://www.youtube.com/watch?v=OhpXCwyDhDM&list=PL8Loxdz4U5rqxy-9Y-MUUMqiZp57G5Y1r 
+
+	e. Next, run the following command in your command line: pipenv shell
+
+					**Virtual enviromant created**
+
+--------------------------------------------------------------------------------------------------------------
+
+
+> Step 2 - Installing django:
+
+	a. Run the following command in your command line: pip install django
+
+					**Django installed**
+
+---------------------------------------------------------------------------------------------------------------
+
+> Step 3 - Starting a project:
+
+	a. Run the following command in your command line: django-admin startproject 'project name'
+
+	Note: 'project name' means what name you wish to name your project. Lets assume i 
+	wanted a project named car, i would run the command:
+							django-admin startproject car
+
+					**Django project created**
+
+---------------------------------------------------------------------------------------------------------------
+
+> Step 4 - Starting an app:
+
+	a. After running the command: django-admin startproject 'project name', a folder with your 
+	   project name will be created. cd into that folder and run the command:
+								python manage.py startapp 'app name'
+					**App created**
+
+---------------------------------------------------------------------------------------------------------------
+
+> Step 5 - Install your app:
+
+	a. By now you should have 2 folders. One for you app, and the other for your project. Next up, 
+	   open the folder that has your app and project folders with your code editor.
+	
+	b. Then navigate to your project folder and look for  a settings.py file. Open the settings.py file
+	   and look for a list variable named: INSTALLED_APPS. It should look like this:
+
+				INSTALLED_APPS = [
+    					'django.contrib.admin',
+    					'django.contrib.auth',
+    					'django.contrib.contenttypes',
+    					'django.contrib.sessions',
+    					'django.contrib.messages',
+    					'django.contrib.staticfiles',
+ 					'app name'
+					]
+
+	c. Next up, like above, put a comma after the last item in the list and put in quote your app name.
+
+To watch tutorial video, visit here:
+				https://www.youtube.com/watch?v=um8rEorUjgw 
+
+--------------------------------------------------------------------------------------------------------------
+					PROTON PRODUCTION VERSION 6.0
+===============================================================================================================
+
+						THE PROTON GUY.
+
+	

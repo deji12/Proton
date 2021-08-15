@@ -304,7 +304,7 @@ def main():
 
 	engine.stop()
 	
-	start = input(Fore.GREEN + f'> How may i help you today {name}: ')
+	start = input(Fore.GREEN + f'> How may i help you today {name}: ').lower()
 	#print(f'>>> How may i help you today {name}')
 
 	print()
@@ -369,13 +369,17 @@ def main():
 
 				os.mkdir('Audio book')
 
-				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}.mp3'
 
 				engine.save_to_file(content, path)
 
 				engine.runAndWait()
 
 				engine.stop()
+
+				print('> In your desktop, check for a folder named "Audio Book". Your newly converted audio book is there.')
+
+				print()
 
 			elif voice_type == 'f':
 
@@ -389,13 +393,17 @@ def main():
 
 				os.mkdir('Audio book')
 
-				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}.mp3'
 
 				engine.save_to_file(content, path)
 
 				engine.runAndWait()
 
 				engine.stop()
+
+				print('> In your desktop, check for a folder named "Audio Book". Your newly converted audio book is there.')
+
+				print()
 
 		elif file_exist == True:
 
@@ -415,13 +423,17 @@ def main():
 
 				#os.mkdir('Audio book')
 
-				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}.mp3'
 
 				engine.save_to_file(content, path)
 
 				engine.runAndWait()
 
 				engine.stop()
+
+				print('> In your desktop, check for a folder named "Audio Book". Your newly converted audio book is there.')
+
+				print()
 
 			elif voice_type == 'f':
 
@@ -435,13 +447,17 @@ def main():
 
 				#os.mkdir('Audio book')
 
-				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}'
+				path = f'C:/Users/{user}/Desktop/Audio book/{audio_book}.mp3'
 
 				engine.save_to_file(content, path)
 
 				engine.runAndWait()
 
 				engine.stop()
+
+				print('> In your desktop, check for a folder named "Audio Book". Your newly converted audio book is there.')
+
+				print()
 
 	elif start == 'set alarm' or start == 'sa':
 
@@ -736,321 +752,348 @@ def main():
 
 	elif start == 'see notes' or start == 'sn':
 
-		password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
 
-		password_path_open = open(password_path, 'r')
+		if 'notes' in find_if_folder_exists:
 
-		password_path_open_read = password_path_open.read()
+			password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
 
-		if 'Password' in password_path_open_read:
+			password_path_open = open(password_path, 'r')
 
-			pass
+			password_path_open_read = password_path_open.read()
 
-		elif 'Password' not in password_path_open_read:
+			if 'Password' in password_path_open_read:
 
-			create_password = input('> Create Password: ')
+				pass
 
-			print()
+			elif 'Password' not in password_path_open_read:
 
-			confirm_password = input('> Confirm Password: ')
+				create_password = input('> Create Password: ')
 
-			print()
+				print()
 
-			while True:
+				confirm_password = input('> Confirm Password: ')
 
-				if create_password == confirm_password:
+				print()
 
-					file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+				while True:
 
-					filee = open(file_path, 'w')
+					if create_password == confirm_password:
 
-					filee.write(f'> Password: {confirm_password}')
+						file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
 
-					filee.close()
+						filee = open(file_path, 'w')
 
-					break
+						filee.write(f'> Password: {confirm_password}')
 
-				elif create_password != confirm_password:
+						filee.close()
 
-					print('---- Error, passwords do not match. Try again')
+						break
+
+					elif create_password != confirm_password:
+
+						print('---- Error, passwords do not match. Try again')
+
+						print()
+
+			i = 0
+
+			while i < 3:
+
+				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+
+				read_file = file_pass_path.read()
+
+				while True:
+
+					pass_word = input('> Enter password: ')
 
 					print()
 
-		i = 0
+					if not pass_word:
 
-		while i < 3:
+						print('> Error, empty input, enter password')
 
-			file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+						print()
 
-			read_file = file_pass_path.read()
+					elif len(Enter_pass) > 2:
 
-			while True:
+						break
+		
+				if pass_word in read_file:
 
-				pass_word = input('> Enter password: ')
-
-				print()
-
-				if not pass_word:
-
-					print('> Error, empty input, enter password')
+					print('> Here are all your notes:')
 
 					print()
 
-				elif len(Enter_pass) > 2:
+					print('> Ignore the pass.txt file')
+
+					print()
+
+					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+
+					for x in range(len(note_list)):
+
+						rolls = note_list[x]
+
+						stripped = rolls.strip(".txt")
+
+						print(stripped)
+
+					print()
 
 					break
-	
-			if pass_word in read_file:
 
-				print('> Here are all your notes:')
+				elif pass_word not in read_file:
 
-				print()
+					i += 1
 
-				print('> Ignore the pass.txt file')
+					print('---- Error, wrong password. Try again')
 
-				print()
+					print()
 
-				note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+					print(f'>> Tries left: {3 - i}')
 
-				for x in range(len(note_list)):
+					print()
 
-					rolls = note_list[x]
+				if i == 3:
 
-					stripped = rolls.strip(".txt")
+					print('>>> Suspicious activity detected')
 
-					print(stripped)
+					print()
 
-				print()
+					print('>>>> CLOSING PROTON. GOODBYE.')
 
-				break
+					rate = engine.getProperty('rate')
 
-			elif pass_word not in read_file:
+					engine.setProperty('rate', 125)	
+						
+					engine.say('suspicious activity detected')
 
-				i += 1
+					engine.runAndWait()
 
-				print('---- Error, wrong password. Try again')
+					engine.stop()
 
-				print()
+					exit()
 
-				print(f'>> Tries left: {3 - i}')
+		else:
+			print('> There are no notes')
 
-				print()
-
-			if i == 3:
-
-				print('>>> Suspicious activity detected')
-
-				print()
-
-				print('>>>> CLOSING PROTON. GOODBYE.')
-
-				rate = engine.getProperty('rate')
-
-				engine.setProperty('rate', 125)	
-					
-				engine.say('suspicious activity detected')
-
-				engine.runAndWait()
-
-				engine.stop()
-
-				exit()
+			print()
 
 	elif start =='read note' or start == 'rn':
 
-		password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
 
-		password_path_open = open(password_path, 'r')
+		if 'notes' in find_if_folder_exists:
 
-		password_path_open_read = password_path_open.read()
+			password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
 
-		if 'Password' in password_path_open_read:
+			password_path_open = open(password_path, 'r')
 
-			pass
+			password_path_open_read = password_path_open.read()
 
-		elif 'Password' not in password_path_open_read:
+			if 'Password' in password_path_open_read:
 
-			create_password = input('> Create Password: ')
+				pass
 
-			print()
+			elif 'Password' not in password_path_open_read:
 
-			confirm_password = input('> Confirm Password: ')
-
-			print()
-
-			while True:
-
-				if create_password == confirm_password:
-
-					file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
-
-					filee = open(file_path, 'w')
-
-					filee.write(f'> Password: {confirm_password}')
-
-					filee.close()
-
-					break
-
-				elif create_password != confirm_password:
-
-					print('---- Error, passwords do not match. Try again')
-
-					print()
-
-		i = 0
-
-		while i < 3:
-
-			file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
-
-			read_file = file_pass_path.read()
-			
-			while True:
-
-				pass_word = input('> Enter password: ')
+				create_password = input('> Create Password: ')
 
 				print()
 
-				if not pass_word:
-
-					print('> Error, empty input, enter password')
-
-					print()
-
-				elif len(Enter_pass) > 2:
-
-					break
-
-			if pass_word in read_file:
-
-				note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
-
-				for x in range(len(note_list)):
-
-					rolls = note_list[x]
-
-					stripped = rolls.strip(".txt")
-
-					print(stripped)
+				confirm_password = input('> Confirm Password: ')
 
 				print()
 
-				which_read_choice = input('> Which note will you like to read?: ')
+				while True:
 
-				print()
+					if create_password == confirm_password:
 
-				read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}.txt'
+						file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
 
-				read_choice_ = open(read_choice, 'r')
+						filee = open(file_path, 'w')
 
-				read_file = read_choice_.read()
+						filee.write(f'> Password: {confirm_password}')
 
-				#print(read_file)
+						filee.close()
 
-				#print()
+						break
 
-				x = datetime.datetime.now()
+					elif create_password != confirm_password:
+
+						print('---- Error, passwords do not match. Try again')
+
+						print()
+
+			i = 0
+
+			while i < 3:
+
+				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+
+				read_file = file_pass_path.read()
 				
-				open_for_new_date = open(read_choice, 'a')
+				while True:
 
-				new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
+					pass_word = input('> Enter password: ')
 
-				#print()
+					print()
 
-				print(read_file)
+					if not pass_word:
 
-				print()
+						print('> Error, empty input, enter password')
 
-				read_choice_.close()
+						print()
 
-				break
+					elif len(Enter_pass) > 2:
 
-			elif pass_word not in read_file:
+						break
 
-				i += 1
+				if pass_word in read_file:
 
-				print('---- Error, wrong password. Try again')
+					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-				print()
+					for x in range(len(note_list)):
 
-				print(f'>> Tries left: {3 - i}')
+						rolls = note_list[x]
 
-				print()
+						stripped = rolls.strip(".txt")
 
-			if i == 3:
+						print(stripped)
 
-				print('>>> Suspicious activity detected')
+					print()
 
-				print()
+					which_read_choice = input('> Which note will you like to read?: ')
 
-				print('>>>> CLOSING PROTON. GOODBYE.')
+					print()
 
-				rate = engine.getProperty('rate')
+					read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}.txt'
 
-				engine.setProperty('rate', 125)	
+					read_choice_ = open(read_choice, 'r')
+
+					read_file = read_choice_.read()
+
+					#print(read_file)
+
+					#print()
+
+					x = datetime.datetime.now()
 					
-				engine.say('suspicious activity detected')
+					open_for_new_date = open(read_choice, 'a')
 
-				engine.runAndWait()
+					new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
 
-				engine.stop()
+					#print()
 
-				exit()
+					print(read_file)
+
+					print()
+
+					read_choice_.close()
+
+					break
+
+				elif pass_word not in read_file:
+
+					i += 1
+
+					print('---- Error, wrong password. Try again')
+
+					print()
+
+					print(f'>> Tries left: {3 - i}')
+
+					print()
+
+				if i == 3:
+
+					print('>>> Suspicious activity detected')
+
+					print()
+
+					print('>>>> CLOSING PROTON. GOODBYE.')
+
+					rate = engine.getProperty('rate')
+
+					engine.setProperty('rate', 125)	
+						
+					engine.say('suspicious activity detected')
+
+					engine.runAndWait()
+
+					engine.stop()
+
+					exit()
+
+		else:
+			print('> There are no notes')
+
+			print()
 
 	elif start == 'del note' or start == 'delete note' or start == 'dn':
 
-		note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
 
-		for x in range(len(note_list)):
+		if 'name' in find_if_folder_exists:
 
-			rolls = note_list[x]
+			note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-			stripped = rolls.strip(".txt")
+			for x in range(len(note_list)):
 
-			print(stripped)
+				rolls = note_list[x]
 
-			print()
+				stripped = rolls.strip(".txt")
 
-		del_file = input('> Enter note you want to delete: ')
+				print(stripped)
 
-		print()
+				print()
 
-		if os.path.exists(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt'):
-
-			os.remove(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt')
-
-			rate = engine.getProperty('rate')
-
-			engine.setProperty('rate', 125)
-
-			print(f'> Note has been deleted successfully')
-
-			engine.say(f'> Note has been deleted successfully')
+			del_file = input('> Enter note you want to delete: ')
 
 			print()
 
-			engine.runAndWait()
+			if os.path.exists(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt'):
 
-			engine.stop()	
+				os.remove(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt')
+
+				rate = engine.getProperty('rate')
+
+				engine.setProperty('rate', 125)
+
+				print(f'> Note has been deleted successfully')
+
+				engine.say(f'> Note has been deleted successfully')
+
+				print()
+
+				engine.runAndWait()
+
+				engine.stop()	
+
+			else:
+
+				print(f'---- Error, {del_file} does not exist')
+
+				print()
+
+				rate = engine.getProperty('rate')
+
+				engine.setProperty('rate', 125)
+
+				engine.say(f' Error, {del_file} does not exist')
+
+				engine.runAndWait()
+
+				engine.stop()		
+
+			print()	
 
 		else:
-
-			print(f'---- Error, {del_file} does not exist')
+			print('> There are no notes')
 
 			print()
-
-			rate = engine.getProperty('rate')
-
-			engine.setProperty('rate', 125)
-
-			engine.say(f' Error, {del_file} does not exist')
-
-			engine.runAndWait()
-
-			engine.stop()		
-
-		print()	
 
 	elif start == 'wiki search' or start == 'ws':
 
@@ -1135,29 +1178,59 @@ def main():
 
 		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/games available.mp3')
 
-		print('>>> There are two games available: ')
+		print('>>> There are a few games available: ')
 		
 		print('')
 
 		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/rps.mp3')
 
-		print('		> Rock paper scissors(rps for short)')
+		print('		> 1 Rock paper scissors(rps for short)')
 
 		print('')
 
 		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/gtng.mp3')
 
-		print('		> Guess the number game(gng for short)')
+		print('		> 2 Guess the number(gtn for short)')
 
 		print('')
+
+		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/proton game series.mp3')
+
+		print('>	> Proton Game Series:')
+
+		print()
+
+		print('			> 3 Proton Intersteller Travels(pit)')	
+
+		print()
+
+		print('			> 4 Proton Horror Story(poh)')
+
+		print()
+
+		print('			> 5 A recipe for suicide(arfs)')
+
+		print()	
 
 		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/Which would you like to play.mp3')
 
-		play = input('> Which would you like to play?: ')
+		play = input('> Which would you like to play?: ').lower()
 
 		print('')
 
-		if play == 'gng':
+		if play == 'proton intersteller travels' or play == 'pit' or play == '3':
+
+			def pit():
+
+				print('NEW GAME')
+
+				print()
+
+				print('BACKSTORY...')
+
+				
+
+		elif play == 'gtn' or play == '2' or play == 'guess the number':
 
 			playsound(f'C:/Users/{user}/Desktop/Proton/game audio/level 1.mp3')
 
@@ -1440,6 +1513,8 @@ def main():
 
 			rps()	
 
+		#elif play == 'adventure':
+
 	elif start == 'send whatsapp message' or start == 'swm':
 
 		import pywhatkit
@@ -1468,7 +1543,7 @@ def main():
 
 	elif start == 'google search' or start == 'gs':
 
-		internet_access = input('> This action requires internet connection. Are you connected(y/n): ')
+		internet_access = input('> This action requires internet connection. Are you connected(y/n): ').lower()
 
 		print()
 
@@ -1499,7 +1574,7 @@ def main():
 
 	elif start == 'quick search' or start == 'qs':
 
-		internet_access = input('> This action requires internet connection. Are you connected(y/n): ')
+		internet_access = input('> This action requires internet connection. Are you connected(y/n): ').lower()
 
 		print()
 
@@ -2055,7 +2130,7 @@ def main():
 
 while True:
 	
-	start = input('> Input s, h, or com: ')
+	start = input('> Input s, h, or com: ').lower()
 
 	print()
 	
@@ -2155,11 +2230,29 @@ while True:
 
 		print()
 
+		print('> Backend web development')
+
+		print()
+
+		print('		3. Guide for setting up new django project')
+
+		print()
+
 		dev_pick = int(input('> Which will you like me to create for you?(pick choice by entering number): '))
 
 		print()
 
-		if dev_pick == 1:
+		if dev_pick == 3:
+
+			file_path = open(f'C:/Users/{user}/Desktop/Proton/guides/django setup.txt', 'r')
+
+			read_file = file_path.read()
+
+			print(read_file)
+
+			print()
+
+		elif dev_pick == 1:
 
 			output_folder = input('> Enter name of project folder: ')
 
@@ -2184,6 +2277,14 @@ while True:
 			read_css = parent_css.read()
 
 			write_css = create_css.write(read_css)
+
+			parent_html.close()
+
+			parent_css.close()
+
+			create_css.close()
+
+			create_html.close()
 
 		elif dev_pick == 2:
 
@@ -2212,6 +2313,16 @@ while True:
 			read_css = parent_css.read()
 
 			write_css = create_css.write(read_css)
+
+			parent_html.close()
+
+			parent_css.close()
+
+			create_css.close()
+
+			create_html.close()
+
+			create_js.close()
 
 	elif start == 'exit':
 
