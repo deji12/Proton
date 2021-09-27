@@ -1,0 +1,97 @@
+>>> Hi there new user, welcome. This is Proton-VA version 1.0.0. Below, you will find help details on how to use Proton-VA:
+
+$$: Note: most or all commands have their abbrevations. You can decide to input the abbrevation or the full command. $$
+
+>> When proton is opened, you will see:
+
+			>>> Laptop user name: 
+
+				> At this point, you need to enter the current user name of the laptop.
+
+					> If you do not know how to get the user name, follow these steps:
+
+						> 1. search for the app command prompt on your computer and open it
+
+						> 2. You will see something like this: C:\Users\'computer user'>
+
+							Note: In the above file path, 'computer user' is is replaced by who is replaced by a name which is the computer's user name
+
+						> 3. Copy the name and paste it here:
+
+							>>> Laptop user name: 'computer user name'
+
+>> When proton is opened, after inputing your name, and details, you would see something like:
+			>>> Input s or start to start
+			>>> Input h or help for help	
+			>>> Input com or commands to see commands 
+
+	> s - 'input s or start' (which ever one you choose to input) is the start command for proton. 
+
+	
+	> h - 'input h or help' (which ever one you choose to input) is the help command for users who need help understanding how to use proton.
+	    Yuou are here because you inputed either h or help
+
+
+	> com - 'input com or command' (which ever one you choose to input) shows you the list of all commands that can be run on proton.
+	       Note: any inputed command or value that is not within this list will not run and will print an error message. 
+
+
+
+>>> 'Start' or 's' (which ever one you choose to input)
+	
+	> When start or s is inputed, you would see:
+		
+		> How may i help you today 'your name': 
+							
+			> Now there are some commands you can run from here. These commands are:
+
+				> Commands:
+
+					-- calc
+					-- sc or see constants 
+					-- uc or unit conversion 
+					-- mab or make audio book 
+					-- swm or send whatsapp message
+					-- yt or youtube search
+					
+				(Enter com or commands to see all commands at the (Input s, h, or com:) request)
+					
+
+
+
+
+>>> patterns to follow:
+
+	> starting proton:
+		> Input s, h, or com > s 
+	or	> Input s, h, or com > start
+	
+
+	> seeking help:
+		> Input s, h, or com > h
+	or	> Input s, h, or com > help
+
+	
+	> check commands:
+		> Input s, h, or com > com
+	or	> Input s, h, or com > command
+
+	
+	> make calculations:
+		> Input s, h, or com > s 
+		> How may i help you today 'name': > calc (check commands or com for possible calculations)
+
+	
+	> see constants:
+		> Input s, h, or com > s
+		> How may i help you today 'name': sc
+	or	> How may i help you today 'name': see constants
+
+
+	> units conversions:
+		> Input s, h, or com > s 
+	or	> How may i help you today 'name': unit conversion
+
+Note: There will be a youtube playlist where THE PROTON GUY talks about how to use Proton.
+
+

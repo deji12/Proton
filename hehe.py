@@ -1,124 +1,147 @@
-# import os
+# # import speech_recognition as sr
 
+# # while True:
 
-# user = input('> user: ')
+# #  	print('>>> Listening...')
 
-# print('> Developer options available: ')
+# #  	print()
 
-# print()
+# #  	r = sr.Recognizer()
 
-# print('1. New html and css project')
+# #  	mic = sr.Microphone()
 
-# print()
+# #  	with mic as source:
 
-# print('2. New html, css, and javascript project')
+# #  		r.adjust_for_ambient_noise(source)
 
-# print()
+# #  		audio = r.listen(source)
 
-# dev_pick = int(input('> Which will you like me to create for you?(pick choice by entering number): '))
+# #  	try:
 
-# print()
+# #  		start = r.recognize_google(audio)
 
-# if dev_pick == 1:
+# #  		print(start)
 
-# 	output_folder = input('> Enter name of project folder: ')
+# # 		file = open('C:/Users/Ayodeji/Desktop/listen.txt', 'w')
 
-# 	print()
+# # 		write_file = file.write(start)
 
-# 	os.chdir(f'C:/Users/{user}/Desktop')
+# # 		write_file.close()
 
-# 	os.mkdir(output_folder)
+# #  	except:
+# #  		print('')
+# #  		continue
 
-#     parent_html = open(f'C:/Users/{user}/Desktop/Proton/test.html', 'r')
+# import speech_recognition as sr
 
-#     parent_css = open(f'C:/Users/{user}/Desktop/Proton/style.css', 'r')
+# while True:
 
-#     create_html = open(f'C:/Users/{user}/Desktop/{output_folder}/index.html', 'w')
-
-#     create_css = open(f'C:/Users/{user}/Desktop/{output_folder}/style.css', 'w')
-
-#     read_html = parent_html.read()
-
-#     write_html = create_html.write(read_html)
-
-#     read_css = parent_css.read()
-
-#     write_css = create_css.write(read_css)
-
-# elif dev_pick == 2:
-
-#     output_folder = input('> Enter name of project folder: ')
+# 	print('> Listening...')
 
 # 	print()
 
-# 	os.chdir(f'C:/Users/{user}/Desktop')
+# 	r = sr.Recognizer()
 
-# 	os.mkdir(output_folder)
+# 	mic = sr.Microphone()
 
-#     parent_html = open(f'C:/Users/{user}/Desktop/Proton/test.html', 'r')
+# 	with mic as source:
 
-#     parent_css = open(f'C:/Users/{user}/Desktop/Proton/style.css', 'r')
+# 		r.adjust_for_ambient_noise(source)
 
-#     create_html = open(f'C:/Users/{user}/Desktop/{output_folder}/index.html', 'w')
+# 		audio = r.listen(source)
 
-#     create_css = open(f'C:/Users/{user}/Desktop/{output_folder}/style.css', 'w')
+# 		try:
 
-#     read_html = parent_html.read()
+# 			start = r.recognize_google(audio)
 
-#     write_html = create_html.write(read_html)
+# 			print(start)
 
-#     read_css = parent_css.read()
+# 			file = open('C:/Users/Ayodeji/Desktop/listen.txt', 'w')
 
-#     write_css = create_css.write(read_css)
+# 			write_file = file.write(start)
 
-# # name_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'w')
+# 		except:
+# 			# print('oops!')
+# 			continue
 
-# # 	age_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/age.txt', 'w')
+# word = 'dhffv ijkilmnop'
 
-# # 	add_info_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
+# splitted_word = word.split()
 
-# # 	hobby_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'w')
+# for i in splitted_word:
 	
-# # 	name = input('> What is your name: ')
+# 	len_splitted_word = len(splitted_word[0])
 
-# # 	name_path.write(name)
+# 	# print(len_splitted_word)
 
-# # 	print()
+# 	len_splitted_word2 = len(splitted_word[1]) 
 
-# # 	age = input('> How old are you: ')
+# 	if len_splitted_word > len_splitted_word2:
 
-# # 	age_path.write(age)
+# 		print(f'First word: {splitted_word[0]}')
 
-# # 	print()
+# 		print()
 
-# # 	additional_info = input('> Add any other additional information(nil for none): ')
+# 		print(f'Length of first word: {len_splitted_word} VS Length of second word: {len_splitted_word2}')
 
-# # 	add_info_path.write(additional_info)
+# 		print()
 
-# # 	print()
+# 	else: 
 
-# # 	hobby = input('> What are your hobbies: ')
+# 		print(f'Second word: {splitted_word[1]}')
 
-# # 	splitted_hobby = hobby.split(',')
+# 		print()
 
-# # 	hobby_path.write(f'{splitted_hobby} \n')
+# 		print(f'Length of first word: {len_splitted_word} VS Length of second word: {len_splitted_word2}')
 
-
-import os
-
-user = input('user: ')
-
-print()
-
-folder_check = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
-
-#res = str(folder_check)[1:-1].strip(',')
-
-for x in range(len(folder_check)):
-    rolls = folder_check[x]
-    stripped = rolls.strip(". md txt py")
-    print(stripped)
-
-#print(res)
+# 		print()
 
 
+# def debt(owe = float(input('> How much do you owe: ')), duration = float(input('> Enter Duration: ')), total_interest = float(input('> Enter interest: '))):
+
+# 	debt = owe
+
+# 	#debt = money owed
+
+# 	interest = total_interest
+
+# 	#interest = interest payed with money owed
+
+# 	timeframe = duration
+
+# 	#timeframe = money needs to be paid within this timeframe
+
+# 	payment_per_month = debt/timeframe
+
+# 	interest_payment_per_month = interest/timeframe
+
+# 	payment_per_month_with_interest = payment_per_month + interest_payment_per_month
+
+# 	print(f'> Monthly Payment: {payment_per_month_with_interest}')
+
+# debt()
+
+# from tkinter.constants import X
+
+while True:
+
+	ask = input('> Operation: ')
+
+	if ask == 'btt':
+		
+		binary_string = input('> Enter binary number: ')
+
+		print()
+
+		ascii_string = "".join([chr(int(binary, 2)) for binary in binary_string.split(" ")])
+
+		print(ascii_string)
+
+	else:
+		text = input('> Enter text: ')
+
+		print()
+
+		code = ' '.join(format(x, 'b') for x in bytearray(text, 'utf-8'))
+
+		print(code)

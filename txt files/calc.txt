@@ -24,3 +24,60 @@
 
 	> simple arithmetic operations (+, -, /, *)
 
+======================================================================================================================================
+						Expect better features in the next version
+=====================================================================================================================================
+							THE PROTON GUY.	
+
+
+
+
+
+> 's' or 'S' or 'start' - Starts Proton
+
+> 'h' or 'H' or 'help' - help command
+
+> 'com' or 'commands' - to see commands that can be run
+
+> 'calc' - this command tells proton that you want it to calculate something for you
+
+> 'whc' or 'what can you calculate' - asking the calculator what it can calculate
+
+> 'y' or 'yes' - response to a question
+
+> 'n' or 'no' - response to a question
+
+> 'sc' or 'see constants' - to see mathematical and physics constants eg speed of light
+
+> 'uc' or  'unit conversions' - to see various unit conversions eg force, speed, mass, etc
+
+> 'bk' or 'back' - to go back to the (Input s, h, or com:) request
+
+
+>>>Calculations:
+
+> 'fre' or 'frequency' - calculate frequency 
+
+> 'w'l or 'wavelength' - calculate wavelength
+
+> 'wf' or 'work function' - calculate work function
+
+> 'per' or 'percentage' - calculate percentage
+
+> 'qe' or 'quadratic equation' - calculates a quadratic equation
+
+> 'add' - addition
+
+> 'sub' - subtraction
+
+> 'div' - division
+
+> 'mul' - multiplication
+
+> 'eoppsw' or 'energy of a photon when planks constant, speed of light, and wavelength are given'
+
+> 'eopwk' or 'energy of a photon when work function and kinetic energy are present'
+
+> 'eoppf' or 'energy of a photon when planks constant and frequency are given'
+
+

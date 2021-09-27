@@ -1,0 +1,17 @@
+ask for word file
+
+convert word to epub
+
+he should create a new google account and give me access
+
+ask him for email
+
+create amazon kindle account
+
+create a payonaire account and attach it to my amazon kindle account
+
+creating my account:
+
+		Asked for:
+			Name, email, password
+				OTP sent to email for validation

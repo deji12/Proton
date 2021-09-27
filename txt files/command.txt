@@ -1,3 +1,5 @@
+Proton-VA version 1.0.0
+
 Note:$$:
 
 $$: The letters and words in quotes are commands. If you want to execute a command do not add the quote
@@ -11,50 +13,108 @@ $$: Notice how there is no hyphen or quote in my input.
 
 >>> Commands:
 
-> 's' or 'S' or 'start' - Starts Proton
+> Input s, h, or com: s
 
-> 'h' or 'H' or 'help' - help command
+> How may i help you today 'name': 
 
-> 'com' or 'commands' - to see commands that can be run
+$$: Possible runnable commands:
 
-> 'calc' - this command tells proton that you want it to calculate something for you
+1. sc or see constants:
+	This command displays a bunch of mathematics and physics constants.
 
-> 'whc' or 'what can you calculate' - asking the calculator what it can calculate
+2. mab or make audio book:
+	This command tells proton that you want to create a new audio book/text to speech mp3 file.
 
-> 'y' or 'yes' - response to a question
+3. sa or set alarm:
+	This commands tells proton you want to set an alarm.
 
-> 'n' or 'no' - response to a question
+4. dict or dictionary:
+	This command tells proton you are looking for the meaning of a word.
 
-> 'sc' or 'see constants' - to see mathematical and physics constants eg speed of light
+5. shutdown:
+	This command shuts down your computer.
 
-> 'uc' or  'unit conversions' - to see various unit conversions eg force, speed, mass, etc
+6. restart:
+	This command restarts your computer.
 
-> 'bk' or 'back' - to go back to the (Input s, h, or com:) request
+7. info on me or what do you know about me:
+	This commmand tells proton to say what he knows about you.
 
+8. nn or new note:
+	This command creates a new note, requests a title for the note, and requests for what content you want in the note(the content).
 
->>>Calculations:
+9. sn or see notes:
+	This command displays all the notes that have been created and saved.
 
-> 'fre' or 'frequency' - calculate frequency 
+10. rn or read note:
+	This command requests what note you will like to read from your saved notes and displays it.
 
-> 'w'l or 'wavelength' - calculate wavelength
+11. dn or del note or delete note:
+	This command deletes a saved note.
 
-> 'wf' or 'work function' - calculate work function
+12. ws or wiki search:
+	This command opens a gui app that requests what you want to search for on wikipedia and then displays the result.
 
-> 'per' or 'percentage' - calculate percentage
+13. introduce:
+	This command tells proton to introduce himself formally. 
 
-> 'qe' or 'quadratic equation' - calculates a quadratic equation
+14. game:
+	This command tells proton you want to play a game. It then tells you the games avalable.
 
-> 'add' - addition
+15. swm or send whatsapp message:
+	Thiis command sends a whatsapp to whoever you want to, at whatever time you want.
 
-> 'sub' - subtraction
+16. gs or google search:
+	This command automates google search.
 
-> 'div' - division
+17. qs or quick search: 
+	This command requests for what you want to search for and displays it.
 
-> 'mul' - multiplication
+18. sh or search history:
+	This command displays your search history for google search(gs), quick search(qs) and wiki search(ws).
 
-> 'eoppsw' or 'energy of a photon when planks constant, speed of light, and wavelength are given'
+19. date:
+	This commands tells you the current date.
 
-> 'eopwk' or 'energy of a photon when work function and kinetic energy are present'
+20. time:
+	This command tells you the current time.  
 
-> 'eoppf' or 'energy of a photon when planks constant and frequency are given'
+21. uc or unit conversion:
 
+	This command displays a bunch of unit conversions.
+
+22. exit:
+	This command closes Proton-VA.
+
+23. calc:
+	This command launshes you into calculator mode. It asks you: > What do you want to calculate:
+		if you are new to using proton, reply with: whc or what can you calculate
+
+24. Input s, h, or com: developer
+
+	$$: This is for software developers:
+
+			when you input developer, it displays: 
+
+				> Developer options available:
+
+					> Frontend web development:
+
+                				1. New html and css project
+
+                				2. New html, css, and javascript project
+
+					> Backend web development
+
+                				3. Guide for setting up new django project
+
+				> Which will you like me to create for you?(pick choice by entering number):
+
+$$: Note: All the frontend dev files have some basic template code and have been linked together also(the html, css, and js are linked already).
+
+======================================================================================================================================
+					Anticipate and expect more commands and development proceeds!
+======================================================================================================================================
+							THE PROTON GUY.
+
+				

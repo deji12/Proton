@@ -2,7 +2,11 @@ from math import inf, sqrt
 
 import random
 
+import webbrowser
+
 import os
+
+from getpass import getpass
 
 import datetime
 
@@ -60,6 +64,10 @@ if 'Password' not in read_file:
 
 	print('FIRST TIME USER')
 
+	print()
+
+	print('> NOTE: While typing in or trying to create passwords, whatever you type in will not be displayed on the screen but it is being saved. Type in the password and press enter!')
+
 	rate = engine.getProperty('rate')
 
 	engine.setProperty('rate', 130)
@@ -76,11 +84,11 @@ if 'Password' not in read_file:
 
 	while True:
 
-		create_password = input('> Create Password: ')
+		create_password = getpass('> Create Password: ')
 
 		print()
 
-		connirm_password = input('> Confirm Password: ')
+		connirm_password = getpass('> Confirm Password: ')
 
 		print()
 
@@ -111,7 +119,7 @@ while i < 3:
 
 	while True:
 
-		Enter_pass = input('Enter Password: ')
+		Enter_pass = getpass('Enter Password: ')
 
 		print()
 
@@ -169,6 +177,8 @@ if 'AboutUser' not in folder_check:
 
 	create_additional_info_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
 
+	create_gender = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/gender.txt', 'w')
+
 	name_input = input('> What is your name: ')
 
 	create_name_file.write(name_input)
@@ -182,6 +192,14 @@ if 'AboutUser' not in folder_check:
 	create_age_file.write(age_input)
 
 	create_age_file.close()
+
+	print()
+
+	gender = input('> Gender(m/f): ')
+
+	create_gender.write(gender)
+
+	create_gender.close()
 
 	print()
 
@@ -203,10 +221,124 @@ if 'AboutUser' not in folder_check:
 
 	print()
 
+	open_beginner = open(f'C:/Users/{user}/Desktop/Proton/txt files/beginner.txt').read()
+
+	print(open_beginner)
+
+	print()
+
 else:
 	pass
 
 print('')
+
+greeting_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/gender.txt', 'r')
+
+read_path = greeting_path.read()
+
+if 'm' in read_path:
+
+	hour = datetime.datetime.now().hour
+
+	if hour>=0 and hour<12:
+
+		print('> Good morning sir.')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 130)
+
+		engine.say('Good morning sir.')
+
+		engine.runAndWait()
+
+		engine.stop()
+
+	elif hour>=12 and hour<18:
+
+		print('> Good afternoon sir.')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 130)
+
+		engine.say('Good afternoon sir.')
+
+		engine.runAndWait()
+
+		engine.stop()
+
+	else:
+
+		print('> Good evening sir.')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 130)
+
+		engine.say('Good evening sir.')
+
+		engine.runAndWait()
+
+		engine.stop()
+
+elif 'f' in read_path:
+
+	hour = datetime.datetime.now().hour
+
+	if hour>=0 and hour<12:
+
+		print('> Good morning Miss.')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 130)
+
+		engine.say('Good morning Miss.')
+
+		engine.runAndWait()
+
+		engine.stop()
+
+	elif hour>=12 and hour<18:
+
+		print('> Good afternoon Miss.')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 130)
+
+		engine.say('Good afternoon Miss.')
+
+		engine.runAndWait()
+
+		engine.stop()
+
+	else:
+
+		print('> Good evening Miss.')
+
+		print()
+
+		rate = engine.getProperty('rate')
+
+		engine.setProperty('rate', 130)
+
+		engine.say('Good evening Miss.')
+
+		engine.runAndWait()
+
+		engine.stop()
 
 playsound(f'C:/Users/{user}/Desktop/Proton/voice/hi.mp3')
 
@@ -325,9 +457,15 @@ def main():
 
 # 		audio = r.listen(source)
 
-# 	start = r.recognize_google(audio)
+# 	try:
 
-# 	print(start)
+# 		start = r.recognize_google(audio)
+
+# 		print(start)
+
+# 	except:
+# 		print('')
+# 		continue
 
 	if start == 'sc' or start == 'see constants':
 
@@ -335,11 +473,43 @@ def main():
 		
 		print(constants)
 
+	elif start == 'text to binary' or 'ttb':
+		
+		text = input('> Enter text: ')
+
+		print()
+
+		code = ' '.join(format(x, 'b') for x in bytearray(text, 'utf-8'))
+
+		print(code)
+
+		print()
+
+	elif start == 'binary to text' or 'btt':
+
+		binary_string = input('> Enter binary number: ')
+
+		print()
+
+		ascii_string = "".join([chr(int(binary, 2)) for binary in binary_string.split(" ")])
+
+		print(ascii_string)
+
+		print()
+
+	elif start == 'maths codes' or start == 'math code':
+
+		file_path = open(f'C:/Users/{user}/Desktop/Proton/txt files/math facts.txt', 'r')
+
+		read_file = file_path.read()
+
+		print(read_file)
+
 	elif start == 'cls':
 
 		os.close('cls')
 
-	elif start == 'audio book':
+	elif start == 'make audio book' or start == 'mab':
 
 		file_exist = os.path.isdir('Audio book')
 
@@ -535,7 +705,7 @@ def main():
 		
 		mainloop() 
 
-	elif start == 'dict':
+	elif start == 'dict' or start == 'distionary':
 
 		print('> This action requires internet connection')
 
@@ -692,11 +862,15 @@ def main():
 
 			new_note_input = input('> Name of new note: ')
 
+			print()
+
 			find_if_note_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-			if new_note_input in find_if_note_exists:
+			if f'{new_note_input}.txt' in find_if_note_exists:
 
-				print(f'---- Error, a note with the name {new_note_input} already exists. Pick a new name')
+				print(f'---- Error, a note with the name "{new_note_input}" already exists. Pick a new name')
+				
+				print()
 
 			else:
 
@@ -768,11 +942,11 @@ def main():
 
 			elif 'Password' not in password_path_open_read:
 
-				create_password = input('> Create Password: ')
+				create_password = getpass('> Create Password: ')
 
 				print()
 
-				confirm_password = input('> Confirm Password: ')
+				confirm_password = getpass('> Confirm Password: ')
 
 				print()
 
@@ -806,7 +980,7 @@ def main():
 
 				while True:
 
-					pass_word = input('> Enter password: ')
+					pass_word = getpass('> Enter password: ')
 
 					print()
 
@@ -899,11 +1073,11 @@ def main():
 
 			elif 'Password' not in password_path_open_read:
 
-				create_password = input('> Create Password: ')
+				create_password = getpass('> Create Password: ')
 
 				print()
 
-				confirm_password = input('> Confirm Password: ')
+				confirm_password = getpass('> Confirm Password: ')
 
 				print()
 
@@ -937,7 +1111,7 @@ def main():
 				
 				while True:
 
-					pass_word = input('> Enter password: ')
+					pass_word = getpass('> Enter password: ')
 
 					print()
 
@@ -969,31 +1143,41 @@ def main():
 
 					print()
 
-					read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}.txt'
+					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
-					read_choice_ = open(read_choice, 'r')
+					if f'{which_read_choice}.txt' not in check:
 
-					read_file = read_choice_.read()
+						print(f'> Error, "{which_read_choice}" does not exist')
 
-					#print(read_file)
+						print()
 
-					#print()
+					else:
 
-					x = datetime.datetime.now()
-					
-					open_for_new_date = open(read_choice, 'a')
+						read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}.txt'
 
-					new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
+						read_choice_ = open(read_choice, 'r')
 
-					#print()
+						read_file = read_choice_.read()
 
-					print(read_file)
+						#print(read_file)
 
-					print()
+						#print()
 
-					read_choice_.close()
+						x = datetime.datetime.now()
+						
+						open_for_new_date = open(read_choice, 'a')
 
-					break
+						new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
+
+						#print()
+
+						print(read_file)
+
+						print()
+
+						read_choice_.close()
+
+						break
 
 				elif pass_word not in read_file:
 
@@ -1036,7 +1220,7 @@ def main():
 
 		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
 
-		if 'name' in find_if_folder_exists:
+		if 'notes' in find_if_folder_exists:
 
 			note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
 
@@ -1162,7 +1346,7 @@ def main():
 
 	elif start == 'introduce':
 
-		print('>> Greetings human. I am proton, a virtual assistant designed to carry out a lot of tasks to make life easier.  I was designed by Ayodeji Adesola. You are currently using Proton version 0.4 <<')
+		print('>> Greetings human. I am proton, a virtual assistant designed to carry out a lot of tasks to make life easier.  I was designed by Ayodeji Adesola. You are currently using Proton version 1.0.0 <<')
 
 		print()
 
@@ -1194,43 +1378,47 @@ def main():
 
 		print('')
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/proton game series.mp3')
+		# playsound(f'C:/Users/{user}/Desktop/Proton/game audio/proton game series.mp3')
 
-		print('>	> Proton Game Series:')
+		# print('>	> Proton Game Series:')
 
-		print()
+		# print()
 
-		print('			> 3 Proton Intersteller Travels(pit)')	
+		# print('			> 3 Proton Intersteller Travels(pit)')	
 
-		print()
+		# print()
 
-		print('			> 4 Proton Horror Story(poh)')
+		# print('			> 4 Proton Horror Story(poh)')
 
-		print()
+		# print()
 
-		print('			> 5 A recipe for suicide(arfs)')
+		# print('			> 5 A recipe for suicide(arfs)')
 
-		print()	
+		# print()	
 
 		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/Which would you like to play.mp3')
+
+		print('> Enter nothing if you do not want to play any.')
+
+		print()
 
 		play = input('> Which would you like to play?: ').lower()
 
 		print('')
 
-		if play == 'proton intersteller travels' or play == 'pit' or play == '3':
+		# if play == 'proton intersteller travels' or play == 'pit' or play == '3':
 
-			def pit():
+		# 	def pit():
 
-				print('NEW GAME')
+		# 		print('NEW GAME')
 
-				print()
+		# 		print()
 
-				print('BACKSTORY...')
+		# 		print('BACKSTORY...')
 
 				
 
-		elif play == 'gtn' or play == '2' or play == 'guess the number':
+		if play == 'gtn' or play == '2' or play == 'guess the number':
 
 			playsound(f'C:/Users/{user}/Desktop/Proton/game audio/level 1.mp3')
 
@@ -1504,9 +1692,9 @@ def main():
 
 						print(Fore.BLUE + 'CPU Wins!')
 
-						break
-
 						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu wins.mp3')
+
+						break
 
 
 					print('')
@@ -1559,6 +1747,32 @@ def main():
 
 				kit.search(search)
 
+				check = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+
+				if 'GoogleSearchHistory.txt' not in check:
+
+					create_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'w')
+
+					x = datetime.datetime.now()
+
+					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+					create_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+
+					create_googleSearch_history_file.write('')
+
+				elif 'GoogleSearchHistory.txt' in check: 
+
+					save_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'a')
+
+					x = datetime.datetime.now()
+
+					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+					save_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+
+					save_googleSearch_history_file.write('')
+
 			except:
 
 				print('> Error, connect to the internet and try again')
@@ -1588,6 +1802,32 @@ def main():
 
 				kit.info(quick_search)
 
+				check = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+
+				if 'QuickSearchHistory.txt' not in check:
+
+					create_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'w')
+
+					x = datetime.datetime.now()
+
+					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+					create_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+
+					create_quickSearch_history_file.write('')
+
+				elif 'QuickSearchHistory.txt' in check: 
+
+					save_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'a')
+
+					x = datetime.datetime.now()
+
+					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+					save_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+
+					save_quickSearch_history_file.write('')
+
 				print()
 
 			except:
@@ -1601,6 +1841,114 @@ def main():
 			print('> Error, connect to the internet and try again')
 
 			print()
+
+	elif start == 'search history' or start == 'sh':
+
+		check_if_folder_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+
+		if 'history' in check_if_folder_exist:
+
+			check_if_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+
+			if 'GoogleSearchHistory.txt' in check_if_exist:
+
+				google_search = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'r')
+
+				read_google_history = google_search.read()
+
+				print('> Google search history: ')
+
+				print()
+
+				print(read_google_history)
+
+				google_search.close()
+
+				print()
+
+			elif 'GoogleSearchHistory.txt' not in check_if_exist:
+
+				print('> No Google Search history')
+
+				print()
+
+			check_if_exist2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+
+			if 'QuickSearchHistory.txt' in check_if_exist2:
+
+				quick_search = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'r')
+
+				read_quick_search_history = quick_search.read()
+
+				print('> Quick search history: ')
+
+				print()
+
+				print(read_quick_search_history)
+
+				print()
+
+				quick_search.close()
+
+			elif 'QuickSearchHistory.txt' not in check_if_exist2:
+
+				print('> No quick Search history')
+
+				print()
+
+		elif 'history' not in check_if_folder_exist:
+
+			os.chdir(f'C:/Users/{user}/Desktop/Proton')
+
+			os.mkdir('history')
+
+			check_if_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+
+			if 'GoogleSearchHistory.txt' in check_if_exist:
+
+				google_search = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'r')
+
+				read_google_history = google_search.read()
+
+				print('> Google search history: ')
+
+				print()
+
+				print(read_google_history)
+
+				google_search.close()
+
+				print()
+
+			elif 'GoogleSearchHistory.txt' not in check_if_exist:
+
+				print('> No Google Search history')
+
+				print()
+
+			check_if_exist2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+
+			if 'QuickSearchHistory.txt' in check_if_exist2:
+
+				quick_search = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'r')
+
+				read_quick_search_history = quick_search.read()
+
+				print('> Quick search history: ')
+
+				print()
+
+				print(read_quick_search_history)
+
+				print()
+
+				quick_search.close()
+
+			elif 'QuickSearchHistory.txt' not in check_if_exist2:
+
+				print('> No quick Search history')
+
+				print()
 
 	elif start == 'date':
 
@@ -1621,10 +1969,6 @@ def main():
 		print()
 
 	elif start == 'time':
-		
-		x = datetime.datetime.now()
-
-		#playsound(f'C:/Users/{user}/Desktop/Proton/voice/time.mp3')
 
 		x = datetime.datetime.now()
 
