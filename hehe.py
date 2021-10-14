@@ -65,44 +65,44 @@ from pytube.cli import on_progress
 
 # yt_streams.download(output_path='C:/Users/Ayodeji/Desktop/YouTube Download')
 
-save_path = f'C:/Users/Ayodeji/Desktop/YouTube Download'
+# save_path = f'C:/Users/Ayodeji/Desktop/YouTube Download'
 
-search = input('> Enter video link: ')
+# search = input('> Enter video link: ')
 
-print()
+# print()
 
-yt = YouTube(search, on_progress_callback=on_progress)
+# yt = YouTube(search, on_progress_callback=on_progress)
 
-print(f'> Video Title: {yt.title}')
+# print(f'> Video Title: {yt.title}')
 
-print()
+# print()
 
-print('==============================')
+# print('==============================')
 
-print()
+# print()
 
-print(f'> Number of views: {yt.views}')
+# print(f'> Number of views: {yt.views}')
 
-print()
+# print()
 
-print('==============================')
+# print('==============================')
 
-print()
+# print()
 
-print(f'> Thumbnail image: {yt.thumbnail_url}')
+# print(f'> Thumbnail image: {yt.thumbnail_url}')
 
-print()
+# print()
 
-print('====================================')
+# print('====================================')
 
-print()
+# print()
 
-lowest = (yt.streams.get_lowest_resolution().resolution)
+# lowest = (yt.streams.get_lowest_resolution().resolution)
 
-highest = (yt.streams.get_highest_resolution().resolution)
+# highest = (yt.streams.get_highest_resolution().resolution)
 
-print(highest)
-print(lowest)
+# print(highest)
+# print(lowest)
 
 #print('> These are the qualities/resolutions of the video')
 
@@ -114,14 +114,25 @@ print(lowest)
 
 #quality = input("> Which quality/resolution of the video will you like to download: ")
 
-print()
+# print()
 
-print(f'> Downloading {yt.title}...')
+# print(f'> Downloading {yt.title}...')
 
-print()
+# print()
 
-video = yt.streams.get_lowest_resolution()
+# video = yt.streams.get_lowest_resolution()
 
-video.download(output_path=save_path)
+# video.download(output_path=save_path)
 
-print('> Video downloaded!')
+# print('> Video downloaded!')
+
+import requests
+
+url = 'https://api.exchangerate.host/convert'
+response = requests.get(url, params={
+    "from": input('> from: '),
+    "to": input('> To: '),
+    "amount": input('> Amount: ')
+})
+data = response.json()['result']
+print(data)
