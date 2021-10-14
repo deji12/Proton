@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: grey;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: 50px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 10px;
+} 
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: dodgerblue;
+    color: white;
+}
+
+.parent {
+    margin: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    display: block;
+    border-radius: 10px;
+    margin: 50px;
+}
+
+img:hover {
+    width: 400px;
+    height: 400px;
+    transition: 0.8s;
+}
+
+
+.greetings {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+.greetings:hover {
+    font-size: 60px;
+    color: dodgerblue;
+    transition: 0.8s;
+    background-color: white;
+}
+
+

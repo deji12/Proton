@@ -4,3 +4,9 @@
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
 }
+
+body h1 {
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+}

@@ -1,147 +1,127 @@
-# # import speech_recognition as sr
+# import speech_recognition as sr 
 
-# # while True:
+# import playsound
 
-# #  	print('>>> Listening...')
+# import gtts
 
-# #  	print()
+# import googletrans
 
-# #  	r = sr.Recognizer()
+# #print(googletrans.LANGUAGES)
 
-# #  	mic = sr.Microphone()
+# r = sr.Recognizer()
 
-# #  	with mic as source:
+# mic = sr.Microphone()
 
-# #  		r.adjust_for_ambient_noise(source)
+# translator = googletrans.Translator()
 
-# #  		audio = r.listen(source)
+# input_lang = 'es-MX'
 
-# #  	try:
+# output_lang = 'ru'
 
-# #  		start = r.recognize_google(audio)
+# try:
+#     with mic as source:
+#         print('> Speak now')
+#         r.adjust_for_ambient_noise(source)
+#         audio = r.listen(source)
+#         result = r.recognize_google(audio, input_lang)
+#         print(result)
+# except:
+#     pass
 
-# #  		print(start)
+# translated = translator.translate(result, dest=output_lang)
 
-# # 		file = open('C:/Users/Ayodeji/Desktop/listen.txt', 'w')
+# print(translated.result)
 
-# # 		write_file = file.write(start)
+# converted_audio = gtts.gTTS(translated.result, lang=output_lang)
 
-# # 		write_file.close()
+# converted_audio.save('romantic.mp3')
 
-# #  	except:
-# #  		print('')
-# #  		continue
+# playsound.playsound('romantic.mp3')
 
-# import speech_recognition as sr
+from pytube import YouTube
+from pytube.cli import on_progress
 
-# while True:
+# search = input('> Input link: ')
 
-# 	print('> Listening...')
+# print()
 
-# 	print()
+# yt = YouTube(search)
 
-# 	r = sr.Recognizer()
+# for stream in yt.streams.order_by('resolution'):
+#     print(stream.resolution)
 
-# 	mic = sr.Microphone()
+# print(yt.title)
 
-# 	with mic as source:
+# print(yt.views)
 
-# 		r.adjust_for_ambient_noise(source)
+#print(yt.description)
 
-# 		audio = r.listen(source)
+# lowest = (yt.streams.get_lowest_resolution().resolution)
 
-# 		try:
+# highest = (yt.streams.get_highest_resolution().resolution)
 
-# 			start = r.recognize_google(audio)
 
-# 			print(start)
+# yt_streams = yt.streams.filter(file_extension ='mp4').get_by_resolution()
 
-# 			file = open('C:/Users/Ayodeji/Desktop/listen.txt', 'w')
+# yt_streams.download(output_path='C:/Users/Ayodeji/Desktop/YouTube Download')
 
-# 			write_file = file.write(start)
+save_path = f'C:/Users/Ayodeji/Desktop/YouTube Download'
 
-# 		except:
-# 			# print('oops!')
-# 			continue
+search = input('> Enter video link: ')
 
-# word = 'dhffv ijkilmnop'
+print()
 
-# splitted_word = word.split()
+yt = YouTube(search, on_progress_callback=on_progress)
 
-# for i in splitted_word:
-	
-# 	len_splitted_word = len(splitted_word[0])
+print(f'> Video Title: {yt.title}')
 
-# 	# print(len_splitted_word)
+print()
 
-# 	len_splitted_word2 = len(splitted_word[1]) 
+print('==============================')
 
-# 	if len_splitted_word > len_splitted_word2:
+print()
 
-# 		print(f'First word: {splitted_word[0]}')
+print(f'> Number of views: {yt.views}')
 
-# 		print()
+print()
 
-# 		print(f'Length of first word: {len_splitted_word} VS Length of second word: {len_splitted_word2}')
+print('==============================')
 
-# 		print()
+print()
 
-# 	else: 
+print(f'> Thumbnail image: {yt.thumbnail_url}')
 
-# 		print(f'Second word: {splitted_word[1]}')
+print()
 
-# 		print()
+print('====================================')
 
-# 		print(f'Length of first word: {len_splitted_word} VS Length of second word: {len_splitted_word2}')
+print()
 
-# 		print()
+lowest = (yt.streams.get_lowest_resolution().resolution)
 
+highest = (yt.streams.get_highest_resolution().resolution)
 
-# def debt(owe = float(input('> How much do you owe: ')), duration = float(input('> Enter Duration: ')), total_interest = float(input('> Enter interest: '))):
+print(highest)
+print(lowest)
 
-# 	debt = owe
+#print('> These are the qualities/resolutions of the video')
 
-# 	#debt = money owed
+# print()
 
-# 	interest = total_interest
+# for stream in yt.streams.order_by('resolution'):
+    
+# 		print(stream.resolution)
 
-# 	#interest = interest payed with money owed
+#quality = input("> Which quality/resolution of the video will you like to download: ")
 
-# 	timeframe = duration
+print()
 
-# 	#timeframe = money needs to be paid within this timeframe
+print(f'> Downloading {yt.title}...')
 
-# 	payment_per_month = debt/timeframe
+print()
 
-# 	interest_payment_per_month = interest/timeframe
+video = yt.streams.get_lowest_resolution()
 
-# 	payment_per_month_with_interest = payment_per_month + interest_payment_per_month
+video.download(output_path=save_path)
 
-# 	print(f'> Monthly Payment: {payment_per_month_with_interest}')
-
-# debt()
-
-# from tkinter.constants import X
-
-while True:
-
-	ask = input('> Operation: ')
-
-	if ask == 'btt':
-		
-		binary_string = input('> Enter binary number: ')
-
-		print()
-
-		ascii_string = "".join([chr(int(binary, 2)) for binary in binary_string.split(" ")])
-
-		print(ascii_string)
-
-	else:
-		text = input('> Enter text: ')
-
-		print()
-
-		code = ' '.join(format(x, 'b') for x in bytearray(text, 'utf-8'))
-
-		print(code)
+print('> Video downloaded!')

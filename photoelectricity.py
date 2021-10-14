@@ -2,11 +2,19 @@ from math import inf, sqrt
 
 import random
 
+import tkinter
+
 import webbrowser
+
+import requests
 
 import os
 
 from getpass import getpass
+
+from pytube import YouTube
+
+from pytube.cli import on_progress
 
 import datetime
 
@@ -32,15 +40,19 @@ import wikipedia as wiki
 
 from tkinter import *
 
+from tkinter import ttk
+
 import time
 
-import winsound
+#import winsound
 
 from threading import *
 
 from time import strftime 
 
 from pygame import mixer
+
+import array
 
 from PyDictionary import PyDictionary
 
@@ -56,7 +68,7 @@ except:
 
 print()
 
-file_open = open('pass.txt', 'r')
+file_open = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'r')
 
 read_file = file_open.read()
 
@@ -94,9 +106,11 @@ if 'Password' not in read_file:
 
 		if create_password == connirm_password:
 
-			filee = open('pass.txt', 'w')
+			bin_code = ' '.join(format(x, 'b') for x in bytearray(connirm_password, 'utf-8'))
 
-			filee.write(f'> Password: {connirm_password}')
+			filee = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'w')
+
+			filee.write(f'> Password: {bin_code}')
 
 			filee.close()
 
@@ -121,6 +135,8 @@ while i < 3:
 
 		Enter_pass = getpass('Enter Password: ')
 
+		bin_code = ' '.join(format(x, 'b') for x in bytearray(Enter_pass, 'utf-8'))
+
 		print()
 
 		if not Enter_pass:
@@ -133,11 +149,11 @@ while i < 3:
 
 			break
 	
-	file_open = open('pass.txt', 'r')
+	file_open = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'r')
 
 	read_file = file_open.read()
 
-	if Enter_pass not in read_file:
+	if bin_code not in read_file:
 
 		i += 1
 
@@ -149,7 +165,7 @@ while i < 3:
 
 		print()
 
-	elif Enter_pass in read_file:
+	elif bin_code in read_file:
 		
 		break
 
@@ -161,23 +177,23 @@ while i < 3:
 
 print()
 
-folder_check = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+folder_check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 if 'AboutUser' not in folder_check:
 
-	os.chdir(f'C:/Users/{user}/Desktop/Proton')
+	os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 	os.mkdir('AboutUser')
 
-	create_name_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'w')
+	create_name_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/Name.txt', 'w')
 
-	create_age_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Age.txt', 'w')
+	create_age_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/Age.txt', 'w')
 
-	create_hobby_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'w')
+	create_hobby_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/hobby.txt', 'w')
 
-	create_additional_info_file = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'w')
+	create_additional_info_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/additional info.txt', 'w')
 
-	create_gender = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/gender.txt', 'w')
+	create_gender = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/gender.txt', 'w')
 
 	name_input = input('> What is your name: ')
 
@@ -221,7 +237,7 @@ if 'AboutUser' not in folder_check:
 
 	print()
 
-	open_beginner = open(f'C:/Users/{user}/Desktop/Proton/txt files/beginner.txt').read()
+	open_beginner = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/beginner.txt').read()
 
 	print(open_beginner)
 
@@ -232,7 +248,7 @@ else:
 
 print('')
 
-greeting_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/gender.txt', 'r')
+greeting_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/gender.txt', 'r')
 
 read_path = greeting_path.read()
 
@@ -340,7 +356,7 @@ elif 'f' in read_path:
 
 		engine.stop()
 
-playsound(f'C:/Users/{user}/Desktop/Proton/voice/hi.mp3')
+playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/hi.mp3')
 
 while True:
 
@@ -357,7 +373,7 @@ while True:
 	else:
 		print()
 
-		playsound(f'C:/Users/Ayodeji/Desktop/Proton/voice/error.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/error.mp3')
 		
 		print('>>> Error, name can only contain alphabets')
 
@@ -388,23 +404,23 @@ print()
 
 # start with unit conversi.txt
 
-calculator2 = open(f'C:/Users/{user}/Desktop/Proton/txt files/calc.txt')
+calculator2 = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/calc.txt')
 
 calc2 = calculator2.read()
 
-file_path1 = open(f'C:/Users/{user}/Desktop/Proton/txt files/command.txt')
+file_path1 = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/command.txt')
 
 com = file_path1.read()
 
-help_m = open(f'C:/Users/{user}/Desktop/Proton/txt files/help.txt')
+help_m = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/help.txt')
 
 help_me = help_m.read()
 
-constant_ = open(f'C:/Users/{user}/Desktop/Proton/txt files/constants.txt')
+constant_ = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/constants.txt')
 
 constants = constant_.read()
 
-unit_c = open(f'C:/Users/{user}/Desktop/Proton/txt files/unit conversion.txt')
+unit_c = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/unit conversion.txt')
 
 unc = unit_c.read()
 
@@ -418,7 +434,7 @@ print()
 
 print(Fore.BLUE + '>>> Input com or commands to see commands')
 
-playsound(f'C:/Users/{user}/Desktop/Proton/voice/input.mp3')
+playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/input.mp3')
 
 print()
 
@@ -438,6 +454,8 @@ def main():
 	
 	start = input(Fore.GREEN + f'> How may i help you today {name}: ').lower()
 	#print(f'>>> How may i help you today {name}')
+
+	
 
 	print()
 
@@ -467,15 +485,485 @@ def main():
 # 		print('')
 # 		continue
 
+	# r = sr.Recognizer()
+
+	# mic = sr.Microphone()
+
+	# with mic as source:
+
+	# 	print('> Listening...')
+
+	# 	print()
+
+	# 	r.adjust_for_ambient_noise(source)
+
+	# 	audio = r.listen(source)
+
+	# start = r.recognize_google(audio)
+
 	if start == 'sc' or start == 'see constants':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/constants.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/constants.mp3')
 		
 		print(constants)
 
-	elif start == 'text to binary' or 'ttb':
+		print()
+
+	elif start == 'youtube download' or start == 'youtube downloader' or start == 'yd':
+
+		int_con = input('> Are you connected to the interet(y/n): ').lower()
+
+		print()
+
+		if int_con == 'y':
+
+			try:
+
+				desktop_content = os.listdir(f'C:/Users/{user}/Desktop')
+
+				if 'YouTube Download' in desktop_content:
+
+					save_path = f'C:/Users/{user}/Desktop/YouTube Download'
+
+					search = input('> Enter video link: ')
+
+					print()
+
+					yt = YouTube(search, on_progress_callback=on_progress)
+
+					print(f'<---> Video Title: {yt.title}')
+
+					print()
+
+					print('====================')
+
+					print()
+
+					print(f'<---> Number of views: {yt.views}')
+
+					print()
+
+					print('====================')
+
+					print()
+
+					print(f'<---> Thumbnail image: {yt.thumbnail_url}')
+
+					print()
+
+					print('====================')
+
+					print()
+
+					print('> These are the highest and lowest qualities/resolutions of the video')
+
+					print()
+
+					lowest = yt.streams.get_lowest_resolution().resolution
+
+					highest = yt.streams.get_highest_resolution().resolution
+
+					print(f'> Highest: {highest}')
+
+					print()
+
+					print(f'> Lowest: {lowest}')
+
+					# for stream in yt.streams.order_by('resolution'):
+			
+					# 	print(stream.resolution)
+
+					print()
+
+					quality = input('> Which quality/resolution of the video will you like to download(h for highest -> l for lowest): ').lower()
+
+					print()
+
+					if quality == 'h':
+
+						video = yt.streams.get_highest_resolution()
+
+						video_res = yt.streams.get_highest_resolution().resolution
+
+						print(f'> Downloading {yt.title} in {video_res}...')
+
+						print()
+
+						video.download(output_path=save_path)
+
+						print('> Video downloaded!')
+
+						print()
+
+					elif quality == 'l':
+
+						video = yt.streams.get_highest_resolution()
+
+						video_res = yt.streams.get_lowest_resolution().resolution
+
+						print(f'> Downloading {yt.title} in {video_res}...')
+
+						print()
+
+						video.download(output_path=save_path)
+
+						print('> Video downloaded!')
+
+						print()
+
+				elif 'YouTube Download' not in desktop_content:
+
+					os.chdir(f'C:/Users/{user}/Desktop')
+
+					os.mkdir('YouTube Download')
+
+					save_path = f'C:/Users/{user}/Desktop/YouTube Download'
+
+					search = input('> Enter video link: ')
+
+					print()
+
+					yt = YouTube(search, on_progress_callback=on_progress)
+
+					print(f'<---> Video Title: {yt.title}')
+
+					print()
+
+					print('====================')
+
+					print()
+
+					print(f'<---> Number of views: {yt.views}')
+
+					print()
+
+					print('====================')
+
+					print()
+
+					print(f'<---> Thumbnail image: {yt.thumbnail_url}')
+
+					print()
+
+					print('====================')
+
+					print()
+
+					print('> These are the highest and lowest qualities/resolutions of the video')
+
+					print()
+
+					lowest = yt.streams.get_lowest_resolution().resolution
+
+					highest = yt.streams.get_highest_resolution().resolution
+
+					print(f'> Highest: {highest}')
+
+					print()
+
+					print(f'> Lowest: {lowest}')
+
+					# for stream in yt.streams.order_by('resolution'):
+			
+					# 	print(stream.resolution)
+
+					print()
+
+					quality = input('> Which quality/resolution of the video will you like to download(h for highest -> l for lowest): ').lower()
+
+					print()
+
+					if quality == 'h':
+
+						video = yt.streams.get_highest_resolution()
+
+						video_res = yt.streams.get_highest_resolution().resolution
+
+						print(f'> Downloading {yt.title} in {video_res}...')
+
+						print()
+
+						video.download(output_path=save_path)
+
+						print('> Video downloaded!')
+
+						print()
+
+					elif quality == 'l':
+
+						video = yt.streams.get_highest_resolution()
+
+						video_res = yt.streams.get_lowest_resolution().resolution
+
+						print(f'> Downloading {yt.title} in {video_res}...')
+
+						print()
+
+						video.download(output_path=save_path)
+
+						print('> Video downloaded!')
+
+						print()
+
+			except: 
+
+				print('> Connect to the internet and try again')
+
+				print()
+
+		elif int_con == 'n':
+
+			print('> Connect to the internet and try again')
+
+			print()			
+
+	elif start == 'cc' or start == 'convert currency':
+
+		connected_or_not = input('> This action requires internet connection. Are you connected(y/n): ').lower()
+
+		print()
+
+		if connected_or_not == 'y' or connected_or_not == 'yes':
+
+			class RealTimeCurrencyConverter():
+
+				def __init__(self,url):
+
+						self.data = requests.get(url).json()
+
+						self.currencies = self.data['rates']
+
+				def convert(self, from_currency, to_currency, amount): 
+
+					initial_amount = amount 
+
+					if from_currency != 'USD' : 
+
+						amount = amount / self.currencies[from_currency] 	
+
+						amount = round(amount * self.currencies[to_currency], 4) 
+						
+						return amount	
+
+			class App(tkinter.Tk):
+
+				def __init__(self, converter):
+
+					tkinter.Tk.__init__(self)
+
+					self.winfo_toplevel().title("Proton Currency Converter")
+
+					self.title = 'Currency Converter'
+
+					self.currency_converter = converter
+
+					#self.configure(background = 'blue')
+					self.geometry("500x200")
+
+					self.intro_label = Label(self, text = 'Welcome to Real Time Currency Convertor',  fg = 'blue', relief = tkinter.RAISED, borderwidth = 3)
+					
+					self.intro_label.config(font = ('Courier',15,'bold'))
+
+					self.date_label = Label(self, text = f"1 Indian Rupee equals = {self.currency_converter.convert('NGN','USD',1)} USD \n Date : {self.currency_converter.data['date']}", relief = tkinter.GROOVE, borderwidth = 5)
+
+					self.intro_label.place(x = 10 , y = 5)
+					
+					self.date_label.place(x = 160, y= 50)
+
+					# Entry box
+					valid = (self.register(self.restrictNumberOnly), '%d', '%P')
+					
+					self.amount_field = Entry(self,bd = 3, relief = tkinter.RIDGE, justify = tkinter.CENTER,validate='key', validatecommand=valid)
+					
+					self.converted_amount_field_label = Label(self, text = '', fg = 'black', bg = 'white', relief = tkinter.RIDGE, justify = tkinter.CENTER, width = 17, borderwidth = 3)
+
+					# dropdown
+					
+					self.from_currency_variable = StringVar(self)
+					
+					self.from_currency_variable.set("INR") # default value
+					
+					self.to_currency_variable = StringVar(self)
+					
+					self.to_currency_variable.set("USD") # default value
+
+					font = ("Courier", 12, "bold")
+					
+					self.option_add('*TCombobox*Listbox.font', font)
+					
+					self.from_currency_dropdown = ttk.Combobox(self, textvariable=self.from_currency_variable,values=list(self.currency_converter.currencies.keys()), font = font, state = 'readonly', width = 12, justify = tkinter.CENTER)
+					
+					self.to_currency_dropdown = ttk.Combobox(self, textvariable=self.to_currency_variable,values=list(self.currency_converter.currencies.keys()), font = font, state = 'readonly', width = 12, justify = tkinter.CENTER)
+
+					# placing
+					self.from_currency_dropdown.place(x = 30, y= 120)
+					
+					self.amount_field.place(x = 36, y = 150)
+					
+					self.to_currency_dropdown.place(x = 340, y= 120)
+					#self.converted_amount_field.place(x = 346, y = 150)
+					self.converted_amount_field_label.place(x = 346, y = 150)
+					
+					# Convert button
+					self.convert_button = Button(self, text = "Convert", fg = "black", command = self.perform) 
+					
+					self.convert_button.config(font=('Courier', 10, 'bold'))
+					
+					self.convert_button.place(x = 225, y = 135)
+
+				def perform(self):
+					amount = float(self.amount_field.get())
+
+					from_curr = self.from_currency_variable.get()
+
+					to_curr = self.to_currency_variable.get()
+
+					converted_amount = self.currency_converter.convert(from_curr,to_curr,amount)
+
+					converted_amount = round(converted_amount, 2)
+
+					self.converted_amount_field_label.config(text = str(converted_amount))
+				
+				def restrictNumberOnly(self, action, string):
+
+					regex = re.compile(r"[0-9,]*?(\.)?[0-9,]*$")
+
+					result = regex.match(string)
+
+					return (string == "" or (string.count('.') <= 1 and result is not None))
+
+			if __name__ == '__main__':
+
+				url = 'https://api.exchangerate-api.com/v4/latest/USD'
+
+				converter = RealTimeCurrencyConverter(url)
+
+				App(converter)
+
+				mainloop()
+
+		elif connected_or_not == 'n' or connected_or_not == 'no':
+
+			print('> Connect to the internet and try again.')
+
+			print()
+
+	elif start == 'password generator' or start == 'pg' or start == 'generate password' or start == 'gp':
+
+		MAX_LEN = int(input('> Character length of password: '))
+
+		print()
+
+		DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']  
+
+		LOCASE_CHARACTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+                     'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q',
+                     'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+                     'z']
+
+		UPCASE_CHARACTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 
+                     'I', 'J', 'K', 'M', 'N', 'O', 'p', 'Q',
+                     'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+                     'Z']
+  
+		SYMBOLS = ['@', '#', '$', '%', '=', ':', '?', '.', '/', '|', '~', '>', 
+				'*', '(', ')', '<']
+
+		COMBINED_LIST = DIGITS + UPCASE_CHARACTERS + LOCASE_CHARACTERS + SYMBOLS
+
+		rand_digit = random.choice(DIGITS)
+
+		rand_upper = random.choice(UPCASE_CHARACTERS)
+
+		rand_lower = random.choice(LOCASE_CHARACTERS)
+
+		rand_symbol = random.choice(SYMBOLS)
+
+		temp_pass = rand_digit + rand_upper + rand_lower + rand_symbol
+
+		for x in range(MAX_LEN - 4):
+
+			temp_pass = temp_pass + random.choice(COMBINED_LIST)
+
+			temp_pass_list = array.array('u', temp_pass)
+
+			random.shuffle(temp_pass_list)
+
+		password = ""
+
+		for x in temp_pass_list:
+
+				password = password + x
+
+		print(password)		
+
+		print()
+
+		password_gen_parent_path = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
+
+		if 'RP' in password_gen_parent_path:
+
+			password_gen_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/RP/recorvery.txt', 'a')
+
+			x = datetime.datetime.now()
+
+			last_accessed = f'% Created on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n'
+
+			password_gen_path.write(f'Generated Password: {password} ----> {last_accessed}')
+
+			password_gen_path.close()
+
+		else: 
+
+			os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
+
+			os.mkdir('RP')
+
+			password_gen_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/RP/recorvery.txt', 'w')
+
+			x = datetime.datetime.now()
+
+			last_accessed = f'% Created on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n'
+
+			password_gen_path.write(f'Generated Password: {password} ----> {last_accessed}')
+
+			password_gen_path.close()
+
+	elif start == 'recorver generated password' or start == 'rgp':
+
+		proton_password = getpass('> What is your Proton account password: ')
+
+		proton_password_code = ' '.join(format(x, 'b') for x in bytearray(proton_password, 'utf-8'))
+
+		print()
+
+		pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'r')
+
+		read_pass_path = pass_path.read()
+
+		pass_path.close()
+
+		if proton_password_code in read_pass_path:
+
+			recorvery_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/RP/recorvery.txt', 'r')	
+
+			read_recorvery_path = recorvery_path.read()
+
+			print(read_recorvery_path)
+
+			recorvery_path.close()
+
+			print()
+
+		else:
+
+			print('> Error, wrong password!')
+
+			print()		
+
+	elif start == 'text to binary' or start == 'ttb':
 		
-		text = input('> Enter text: ')
+		text: str = input('> Enter text: ')
 
 		print()
 
@@ -485,7 +973,7 @@ def main():
 
 		print()
 
-	elif start == 'binary to text' or 'btt':
+	elif start == 'binary to text' or start == 'btt':
 
 		binary_string = input('> Enter binary number: ')
 
@@ -497,9 +985,13 @@ def main():
 
 		print()
 
+	# elif start == 'language translate' or start == 'lt':
+
+	# 	text_to_translate = input('> Enter test you want translated: ')
+
 	elif start == 'maths codes' or start == 'math code':
 
-		file_path = open(f'C:/Users/{user}/Desktop/Proton/txt files/math facts.txt', 'r')
+		file_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/math facts.txt', 'r')
 
 		read_file = file_path.read()
 
@@ -631,81 +1123,85 @@ def main():
 
 	elif start == 'set alarm' or start == 'sa':
 
-		root = Tk() 
+		def validate_time(alarm_time):
 
-		root.title('Proton Alarm Clock') 
+			if len(alarm_time) != 11:
 
-		def setalarm():
+				return "Invalid time format! Please try again..."
 
-			alarmtime=f"{hrs.get()}:{mins.get()}:{secs.get()}"
+			else:
 
-			print(alarmtime)
+				if int(alarm_time[0:2]) > 12:
 
-			if(alarmtime!="::"):
+					return "Invalid HOUR format! Please try again..."
 
-				alarmclock(alarmtime) 
+				elif int(alarm_time[3:5]) > 59:
 
-		def alarmclock(alarmtime): 
+					return "Invalid MINUTE format! Please try again..."
 
-			while True:
+				elif int(alarm_time[6:8]) > 59:
 
-				time.sleep(1)
+					return "Invalid SECOND format! Please try again..."
 
-				time_now=datetime.datetime.now().strftime("%H:%M:%S")
+				else:
 
-				print(time_now)
+					return "ok"
 
-				if time_now==alarmtime:
+		while True:
 
-					Wakeup=Label(root, font = ('arial', 20, 'bold'),
+			alarm_time = input("Enter time in 'HH:MM:SS AM/PM' format: ")
 
-					text="Wake up!Wake up!Wake up",bg="DodgerBlue2",fg="white").grid(row=6,columnspan=3)
+			print()
+			
+			validate = validate_time(alarm_time.lower())
+			
+			if validate != "ok":
 
-					print("wake up!")
+				print(validate)
 
-					mixer.init()
+			else:
 
-					mixer.music.load(f'C:/Users/{user}/Desktop/Proton/game audio/mixkit-facility-alarm-sound-999.wav')
+				print(f"Setting alarm for {alarm_time}...")
 
-					mixer.music.load(f'C:/Users/{user}/Desktop/Proton/game audio/mixkit-retro-emergency-notification-alarm-2970.wav')
+				print()
 
-					mixer.music.play()
+				break
+		alarm_hour = alarm_time[0:2]
 
-					break
+		alarm_min = alarm_time[3:5]
 
-		hrs=StringVar()
+		alarm_sec = alarm_time[6:8]
 
-		mins=StringVar()
+		alarm_period = alarm_time[9:].upper()
 
-		secs=StringVar()
+		while True:
+			now = datetime.datetime.now()
 
-		greet=Label(root, font = ('arial', 20, 'bold'),
+			current_hour = now.strftime("%I")
 
-		text="Set an Alarm").grid(row=1,columnspan=3)
+			current_min = now.strftime("%M")
 
-		hrbtn=Entry(root,textvariable=hrs,width=5,font =('arial', 20, 'bold'))
+			current_sec = now.strftime("%S")
 
-		hrbtn.grid(row=2,column=1)
+			current_period = now.strftime("%p")
 
-		minbtn=Entry(root,textvariable=mins,
+			if alarm_period == current_period:
 
-		width=5,font = ('arial', 20, 'bold')).grid(row=2,column=2)
+				if alarm_hour == current_hour:
 
-		secbtn=Entry(root,textvariable=secs,
+					if alarm_min == current_min:
 
-		width=5,font = ('arial', 20, 'bold')).grid(row=2,column=3)
+						if alarm_sec == current_sec:
 
-		setbtn=Button(root,text="set alarm",command=setalarm,bg="DodgerBlue2",
+							print("Wake Up!")
 
-		fg="white",font = ('arial', 20, 'bold')).grid(row=4,columnspan=3)
+							print()
 
-		timeleft = Label(root,font=('arial', 20, 'bold')) 
+							playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/mixkit-facility-alarm-sound-999.wav')
+							
+							break
 
-		timeleft.grid()
-		
-		mainloop() 
-
-	elif start == 'dict' or start == 'distionary':
+	elif start == 'dict' or start == 'dictionary':
 
 		print('> This action requires internet connection')
 
@@ -809,13 +1305,13 @@ def main():
 
 	elif start == 'what do you know about me' or start == 'info on me':
 
-		name_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/Name.txt', 'r')
+		name_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/Name.txt', 'r')
 
-		age_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/age.txt', 'r')
+		age_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/age.txt', 'r')
 
-		add_info_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/additional info.txt', 'r')
+		add_info_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/additional info.txt', 'r')
 
-		hobby_path = open(f'C:/Users/{user}/Desktop/Proton/AboutUser/hobby.txt', 'r')
+		hobby_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/hobby.txt', 'r')
 
 		read_name_path = name_path.read()
 
@@ -843,15 +1339,15 @@ def main():
 
 	elif start == 'new note' or start == 'nn':
 
-		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 		if 'notes' not in find_if_folder_exists:
 
-			os.chdir(f'C:/Users/{user}/Desktop/Proton')
+			os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials/')
 
 			os.mkdir('notes')
 
-			make_password_file = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt', 'w')
+			make_password_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt', 'w')
 
 			make_password_file.close()
 
@@ -864,7 +1360,7 @@ def main():
 
 			print()
 
-			find_if_note_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+			find_if_note_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
 
 			if f'{new_note_input}.txt' in find_if_note_exists:
 
@@ -880,7 +1376,7 @@ def main():
 
 		print()
 
-		created_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}.txt'
+		created_note = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt'
 
 		created_note_ = open(created_note, 'x')
 
@@ -916,7 +1412,7 @@ def main():
 
 		# created_note_.close()
 
-		opened_new_note = f'C:/Users/{user}/Desktop/Proton/notes/{new_note_input}.txt'
+		opened_new_note = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt'
 
 		opened_new_note_ = open(opened_new_note, 'a')
 
@@ -926,11 +1422,11 @@ def main():
 
 	elif start == 'see notes' or start == 'sn':
 
-		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 		if 'notes' in find_if_folder_exists:
 
-			password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+			password_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
 
 			password_path_open = open(password_path, 'r')
 
@@ -948,17 +1444,19 @@ def main():
 
 				confirm_password = getpass('> Confirm Password: ')
 
+				bin_code = ' '.join(format(x, 'b') for x in bytearray(confirm_password, 'utf-8'))
+
 				print()
 
 				while True:
 
 					if create_password == confirm_password:
 
-						file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+						file_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
 
 						filee = open(file_path, 'w')
 
-						filee.write(f'> Password: {confirm_password}')
+						filee.write(f'> Password: {bin_code}')
 
 						filee.close()
 
@@ -974,13 +1472,15 @@ def main():
 
 			while i < 3:
 
-				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt')
 
 				read_file = file_pass_path.read()
 
 				while True:
 
 					pass_word = getpass('> Enter password: ')
+
+					pass_word_bin_code = ' '.join(format(x, 'b') for x in bytearray(pass_word, 'utf-8'))
 
 					print()
 
@@ -994,7 +1494,7 @@ def main():
 
 						break
 		
-				if pass_word in read_file:
+				if pass_word_bin_code in read_file:
 
 					print('> Here are all your notes:')
 
@@ -1004,7 +1504,7 @@ def main():
 
 					print()
 
-					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
 
 					for x in range(len(note_list)):
 
@@ -1057,11 +1557,11 @@ def main():
 
 	elif start =='read note' or start == 'rn':
 
-		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 		if 'notes' in find_if_folder_exists:
 
-			password_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+			password_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
 
 			password_path_open = open(password_path, 'r')
 
@@ -1079,17 +1579,19 @@ def main():
 
 				confirm_password = getpass('> Confirm Password: ')
 
+				bin_code = ' '.join(format(x, 'b') for x in bytearray(confirm_password, 'utf-8'))
+
 				print()
 
 				while True:
 
 					if create_password == confirm_password:
 
-						file_path = f'C:/Users/{user}/Desktop/Proton/notes/pass.txt'
+						file_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
 
 						filee = open(file_path, 'w')
 
-						filee.write(f'> Password: {confirm_password}')
+						filee.write(f'> Password: {bin_code}')
 
 						filee.close()
 
@@ -1105,13 +1607,15 @@ def main():
 
 			while i < 3:
 
-				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/notes/pass.txt')
+				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt')
 
 				read_file = file_pass_path.read()
 				
 				while True:
 
 					pass_word = getpass('> Enter password: ')
+
+					pass_bin_code = ' '.join(format(x, 'b') for x in bytearray(pass_word, 'utf-8'))
 
 					print()
 
@@ -1125,9 +1629,9 @@ def main():
 
 						break
 
-				if pass_word in read_file:
+				if pass_bin_code in read_file:
 
-					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
 
 					for x in range(len(note_list)):
 
@@ -1143,7 +1647,7 @@ def main():
 
 					print()
 
-					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
 
 					if f'{which_read_choice}.txt' not in check:
 
@@ -1153,7 +1657,7 @@ def main():
 
 					else:
 
-						read_choice = f'C:/Users/{user}/Desktop/Proton/notes/{which_read_choice}.txt'
+						read_choice = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{which_read_choice}.txt'
 
 						read_choice_ = open(read_choice, 'r')
 
@@ -1218,11 +1722,11 @@ def main():
 
 	elif start == 'del note' or start == 'delete note' or start == 'dn':
 
-		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 		if 'notes' in find_if_folder_exists:
 
-			note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/notes')
+			note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
 
 			for x in range(len(note_list)):
 
@@ -1238,9 +1742,9 @@ def main():
 
 			print()
 
-			if os.path.exists(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt'):
+			if os.path.exists(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{del_file}.txt'):
 
-				os.remove(f'C:/Users/{user}/Desktop/Proton/notes/{del_file}.txt')
+				os.remove(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{del_file}.txt')
 
 				rate = engine.getProperty('rate')
 
@@ -1350,29 +1854,29 @@ def main():
 
 		print()
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/introduce.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/introduce.mp3')
 
 	elif start == 'uc' or start == 'unit conversion':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/unit conversions.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/unit conversions.mp3')
 		
 		print(unc)
 
 	elif start == 'game':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/games available.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/games available.mp3')
 
 		print('>>> There are a few games available: ')
 		
 		print('')
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/rps.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/rps.mp3')
 
 		print('		> 1 Rock paper scissors(rps for short)')
 
 		print('')
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/gtng.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/gtng.mp3')
 
 		print('		> 2 Guess the number(gtn for short)')
 
@@ -1396,7 +1900,7 @@ def main():
 
 		# print()	
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/game audio/Which would you like to play.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/Which would you like to play.mp3')
 
 		print('> Enter nothing if you do not want to play any.')
 
@@ -1420,7 +1924,7 @@ def main():
 
 		if play == 'gtn' or play == '2' or play == 'guess the number':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/game audio/level 1.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/level 1.mp3')
 
 			print('>>> LEVEL 1')
 
@@ -1550,29 +2054,31 @@ def main():
 
 					while player < 3 and cpu < 3:
 
-						print(Fore.GREEN + '>>> Listening...')
+						# print(Fore.GREEN + '>>> Listening...')
 						
 						cpu_pick = random.choice(possible_input)
 
-						try:
+						# try:
 
-							r = sr.Recognizer()
+						# 	r = sr.Recognizer()
 
-							mic = sr.Microphone()
+						# 	mic = sr.Microphone()
 
-							with mic as source:
+						# 	with mic as source:
 
-								r.adjust_for_ambient_noise(source)
+						# 		r.adjust_for_ambient_noise(source)
 								
-								audio = r.listen(source)
+						# 		audio = r.listen(source)
 
-							player_pick = r.recognize_google(audio)
+						# 	player_pick = r.recognize_google(audio)
 
-						except:
+						# except:
 
-							print('> oops! could not hear anything, speak audibly')
+						# 	print('> oops! could not hear anything, speak audibly')
 
-							print()
+						# 	print()
+
+						player_pick = input('> rock, paper, or scissors: ')
 
 
 						print('')
@@ -1597,7 +2103,7 @@ def main():
 
 								cpu += 1
 
-								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu point.mp3')
+								playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/cpu point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1609,7 +2115,7 @@ def main():
 
 								player += 1
 
-								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player point.mp3')
+								playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/player point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1627,7 +2133,7 @@ def main():
 
 								player += 1
 
-								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player point.mp3')
+								playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/player point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1639,7 +2145,7 @@ def main():
 
 								cpu += 1
 
-								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu point.mp3')
+								playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/cpu point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1653,7 +2159,7 @@ def main():
 
 								cpu += 1
 
-								playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu point.mp3')
+								playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/cpu point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1665,7 +2171,7 @@ def main():
 
 								player += 1
 
-								playsound(f'C:/Users/{user}Desktop/Proton/game audio/player point.mp3')
+								playsound(f'C:/Users/{user}Desktop/Proton/Essentials/game audio/player point.mp3')
 
 								print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
@@ -1684,7 +2190,7 @@ def main():
 
 						print(Fore.YELLOW + 'Player wins!')
 
-						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/player wins.mp3')
+						playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/player wins.mp3')
 
 						break
 
@@ -1692,7 +2198,7 @@ def main():
 
 						print(Fore.BLUE + 'CPU Wins!')
 
-						playsound(f'C:/Users/{user}/Desktop/Proton/game audio/cpu wins.mp3')
+						playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/cpu wins.mp3')
 
 						break
 
@@ -1747,31 +2253,67 @@ def main():
 
 				kit.search(search)
 
-				check = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+				check_2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
-				if 'GoogleSearchHistory.txt' not in check:
+				if 'history' in check_2:
 
-					create_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'w')
+					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
 
-					x = datetime.datetime.now()
+					if 'GoogleSearchHistory.txt' not in check:
 
-					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+						create_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/GoogleSearchHistory.txt', 'w')
 
-					create_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+						x = datetime.datetime.now()
 
-					create_googleSearch_history_file.write('')
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
 
-				elif 'GoogleSearchHistory.txt' in check: 
+						create_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
 
-					save_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'a')
+						create_googleSearch_history_file.write('')
 
-					x = datetime.datetime.now()
+					elif 'GoogleSearchHistory.txt' in check: 
 
-					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+						save_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/GoogleSearchHistory.txt', 'a')
 
-					save_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+						x = datetime.datetime.now()
 
-					save_googleSearch_history_file.write('')
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+						save_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+
+						save_googleSearch_history_file.write('')
+
+				else: 
+
+					os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
+
+					os.mkdir('history')
+
+					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
+
+					if 'GoogleSearchHistory.txt' not in check:
+
+						create_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/GoogleSearchHistory.txt', 'w')
+
+						x = datetime.datetime.now()
+
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+						create_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+
+						create_googleSearch_history_file.write('')
+
+					elif 'GoogleSearchHistory.txt' in check: 
+
+						save_googleSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/GoogleSearchHistory.txt', 'a')
+
+						x = datetime.datetime.now()
+
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+						save_googleSearch_history_file.write(f'Search: {search} ----- Date/Time of search: {date_time_search} \n')
+
+						save_googleSearch_history_file.write('')
 
 			except:
 
@@ -1802,31 +2344,67 @@ def main():
 
 				kit.info(quick_search)
 
-				check = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+				check_2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
-				if 'QuickSearchHistory.txt' not in check:
+				if 'history' in check_2:
 
-					create_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'w')
+					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
 
-					x = datetime.datetime.now()
+					if 'QuickSearchHistory.txt' not in check:
 
-					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+						create_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/QuickSearchHistory.txt', 'w')
 
-					create_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+						x = datetime.datetime.now()
 
-					create_quickSearch_history_file.write('')
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
 
-				elif 'QuickSearchHistory.txt' in check: 
+						create_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
 
-					save_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'a')
+						create_quickSearch_history_file.write('')
 
-					x = datetime.datetime.now()
+					elif 'QuickSearchHistory.txt' in check: 
 
-					date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+						save_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/QuickSearchHistory.txt', 'a')
 
-					save_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+						x = datetime.datetime.now()
 
-					save_quickSearch_history_file.write('')
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+						save_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+
+						save_quickSearch_history_file.write('')
+
+				else:
+
+					os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
+
+					os.mkdir('history')
+
+					check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
+
+					if 'QuickSearchHistory.txt' not in check:
+
+						create_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/QuickSearchHistory.txt', 'w')
+
+						x = datetime.datetime.now()
+
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+						create_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+
+						create_quickSearch_history_file.write('')
+
+					elif 'QuickSearchHistory.txt' in check: 
+
+						save_quickSearch_history_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/QuickSearchHistory.txt', 'a')
+
+						x = datetime.datetime.now()
+
+						date_time_search = f'{x.strftime("%A, %d %B. %Y")} / {x.strftime("%I:%M%p")}'
+
+						save_quickSearch_history_file.write(f'Search: {quick_search} ----- Date/Time of search: {date_time_search} \n')
+
+						save_quickSearch_history_file.write('')
 
 				print()
 
@@ -1844,15 +2422,15 @@ def main():
 
 	elif start == 'search history' or start == 'sh':
 
-		check_if_folder_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton')
+		check_if_folder_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 		if 'history' in check_if_folder_exist:
 
-			check_if_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+			check_if_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
 
 			if 'GoogleSearchHistory.txt' in check_if_exist:
 
-				google_search = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'r')
+				google_search = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/GoogleSearchHistory.txt', 'r')
 
 				read_google_history = google_search.read()
 
@@ -1872,11 +2450,11 @@ def main():
 
 				print()
 
-			check_if_exist2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+			check_if_exist2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
 
 			if 'QuickSearchHistory.txt' in check_if_exist2:
 
-				quick_search = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'r')
+				quick_search = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/QuickSearchHistory.txt', 'r')
 
 				read_quick_search_history = quick_search.read()
 
@@ -1898,15 +2476,15 @@ def main():
 
 		elif 'history' not in check_if_folder_exist:
 
-			os.chdir(f'C:/Users/{user}/Desktop/Proton')
+			os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 			os.mkdir('history')
 
-			check_if_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+			check_if_exist = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
 
 			if 'GoogleSearchHistory.txt' in check_if_exist:
 
-				google_search = open(f'C:/Users/{user}/Desktop/Proton/history/GoogleSearchHistory.txt', 'r')
+				google_search = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/GoogleSearchHistory.txt', 'r')
 
 				read_google_history = google_search.read()
 
@@ -1926,11 +2504,11 @@ def main():
 
 				print()
 
-			check_if_exist2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/history')
+			check_if_exist2 = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/history')
 
 			if 'QuickSearchHistory.txt' in check_if_exist2:
 
-				quick_search = open(f'C:/Users/{user}/Desktop/Proton/history/QuickSearchHistory.txt', 'r')
+				quick_search = open(f'C:/Users/{user}/Desktop/Proton/Essentials/history/QuickSearchHistory.txt', 'r')
 
 				read_quick_search_history = quick_search.read()
 
@@ -1988,7 +2566,7 @@ def main():
 
 	elif start == 'exit':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/goodbye.mp3')	
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/goodbye.mp3')	
 		
 		exit()
 
@@ -1996,7 +2574,7 @@ def main():
 
 		def ndir():
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/new directory.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/new directory.mp3')
 
 			ndir_ = input('Name of new directory: ')
 
@@ -2006,14 +2584,14 @@ def main():
 			
 			os.mkdir(ndir_)
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/directory created.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/directory created.mp3')
 
 		ndir()
 
 			
 	elif start == 'calc':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/calculate.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/calculate.mp3')
 		
 		calc=input(f'> Ok {name}, what do you want to calculate: ')
 
@@ -2026,13 +2604,13 @@ def main():
 
 		if calc == 'nothing':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/ok.mp3')
 			
 			print('> ok')
 
 		elif calc == 'find odd numbers' or calc == 'fon' or calc == 'prime numbers' or calc == 'pn': 
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/range of values.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/range of values.mp3')
 			
 			rangee = int(input('Range of numbers: '))
 
@@ -2050,7 +2628,7 @@ def main():
 
 		elif calc == 'fen' or calc == 'find even numbers':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/range of values.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/range of values.mp3')
  
 			rangee2 = int(input('Range of numbers: '))
 
@@ -2060,7 +2638,7 @@ def main():
 					
 					print(i) 
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/done.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/done.mp3')
  
 			print('Done')
  
@@ -2100,7 +2678,7 @@ def main():
 			
 			if solution == 'no' or solution == 'n':
 
-				playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
+				playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/ok.mp3')
 				
 				print('Ok')
 
@@ -2251,7 +2829,7 @@ def main():
 
 				print()
 
-				playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
+				playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/ok.mp3')
 				
 				print('Ok')
 			
@@ -2289,14 +2867,14 @@ def main():
 		
 		elif calc == 'what can you calculate' or calc == 'whc':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/i can calculate.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/i can calculate.mp3')
 			
 			print(calc2)
 
 		
 		elif calc == 'quadratic equation' or calc == 'qe':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/quadratic equation.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/quadratic equation.mp3')
 			
 			a=float(input('a: '))
 
@@ -2341,13 +2919,13 @@ def main():
 
 		elif calc == 'percentage' or calc == 'per':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/percentage, given number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/percentage, given number.mp3')
 			
 			num=float(input('Enter given number: '))
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/percentage, percentage given.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/percentage, percentage given.mp3')
 			
 			num2=float(input('Enter the percentage given: '))
 
@@ -2357,13 +2935,13 @@ def main():
 
 		elif calc == 'add':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/addition.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/addition.mp3')
 			
 			num1 = float(input('First number: '))
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/add second number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/add second number.mp3')
 			
 			num2 = float(input('Second number: '))
 
@@ -2375,15 +2953,15 @@ def main():
 
 		elif calc == 'sub':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/subtraction.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/subtraction.mp3')
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/input first number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/input first number.mp3')
 			
 			num1 = float(input('First number: '))
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/add second number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/add second number.mp3')
 			
 			num2 = float(input('Second number: '))
 
@@ -2395,15 +2973,15 @@ def main():
 
 		elif calc == 'mul':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/multiplication.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/multiplication.mp3')
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/input first number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/input first number.mp3')
 			
 			num1 = float(input('First number: '))
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/add second number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/add second number.mp3')
 			
 			num2 = float(input('Second number: '))
 
@@ -2415,15 +2993,15 @@ def main():
 
 		elif calc == 'div':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/dividion.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/dividion.mp3')
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/input first number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/input first number.mp3')
 			
 			num1 = float(input('First number: '))
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/add second number.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/add second number.mp3')
 			
 			num2 = float(input('Second number: '))
 
@@ -2435,13 +3013,13 @@ def main():
 
 		else:
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/i do not understand.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/i do not understand.mp3')
 			
 			print('I do not understand')
 
 		print()
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/another operation.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/another operation.mp3')
 
 		Repeat = input('> Do you want to perform another operation?(yes/y or no/n): ').lower()
 
@@ -2458,7 +3036,7 @@ def main():
 
 		elif Repeat == 'exit':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/goodbye.mp3')	
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/goodbye.mp3')	
 			
 			print('Bye', name)
 			
@@ -2466,7 +3044,7 @@ def main():
 
 	else:
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/error2.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/error2.mp3')
 		
 		print(f'----- Error, {start}, is not a command, try again')
 
@@ -2484,7 +3062,7 @@ while True:
 
 	elif start == 'h' or start == 'H' or start == 'help':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/help details.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/help details.mp3')
 
 		x = input('Do you want me to read the help details to you?(y/n): ')	
 
@@ -2494,13 +3072,13 @@ while True:
 
 			print(help_me)
 			
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/help audio.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/help audio.mp3')
 
 		elif x == 'n':
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/ok.mp3')
 				
 			print('> Ok')
 
@@ -2510,7 +3088,7 @@ while True:
 
 		elif x != 'y' and x != 'n':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/i do not understand.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/i do not understand.mp3')
 			
 			print('I do not understand')
 
@@ -2522,7 +3100,7 @@ while True:
 
 	elif start == 'com' or start == 'commands':
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/read commands.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/read commands.mp3')
 
 		x = input('Do you want me to read the commands to you?(y/n): ')
 
@@ -2532,25 +3110,25 @@ while True:
 			
 			print(com)
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/commands audio.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/commands audio.mp3')
 
 			print()
 
 		elif x == 'n':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/ok.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/ok.mp3')
 				
 			print('> Ok')
 
 			print()
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/runnable commands.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/runnable commands.mp3')
 		
 			print(com)
 
 		elif x != 'y' and x != 'n':
 
-			playsound(f'C:/Users/{user}/Desktop/Proton/voice/i do not understand.mp3')
+			playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/i do not understand.mp3')
 			
 			print('I do not understand')
 
@@ -2574,11 +3152,15 @@ while True:
 
 		print()
 
+		print('		3. Nav-Bar template')
+
+		print()
+
 		print('> Backend web development')
 
 		print()
 
-		print('		3. Guide for setting up new django project')
+		print('		4. Guide for setting up new django project')
 
 		print()
 
@@ -2586,13 +3168,51 @@ while True:
 
 		print()
 
-		if dev_pick == 3:
+		if dev_pick == 4:
 
-			file_path = open(f'C:/Users/{user}/Desktop/Proton/guides/django setup.txt', 'r')
+			file_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/guides/django setup.txt', 'r')
 
 			read_file = file_path.read()
 
 			print(read_file)
+
+			print()
+
+		elif dev_pick == 3:
+
+			project_name = input('> Project folder name: ')
+
+			print()
+
+			html_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bar-1/index.html', 'r')
+
+			css_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bar-1/style.css', 'r')
+
+			read_html_file = html_file.read()
+
+			read_css_file = css_file.read()
+
+			os.chdir(f'C:/Users/{user}/Desktop')
+
+			os.mkdir(project_name)
+
+			create_new_html = open(f'C:/Users/{user}/Desktop/{project_name}/index.html', 'w')
+
+			create_new_css = open(f'C:/Users/{user}/Desktop/{project_name}/style.css', 'w')
+
+			create_new_html.write(read_html_file)
+
+			create_new_css.write(read_css_file)
+
+			html_file.close()
+
+			css_file.close()
+
+			create_new_html.close()
+
+			create_new_css.close()
+
+			print('> Check your desktop. The project folder has been created.')
 
 			print()
 
@@ -2606,9 +3226,9 @@ while True:
 
 			os.mkdir(output_folder)
 
-			parent_html = open(f'C:/Users/{user}/Desktop/Proton/templates/test.html', 'r')
+			parent_html = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/test.html', 'r')
 
-			parent_css = open(f'C:/Users/{user}/Desktop/Proton/templates/style.css', 'r')
+			parent_css = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/style.css', 'r')
 
 			create_html = open(f'C:/Users/{user}/Desktop/{output_folder}/index.html', 'w')
 
@@ -2640,9 +3260,9 @@ while True:
 
 			os.mkdir(output_folder)
 
-			parent_html = open(f'C:/Users/{user}/Desktop/Proton/templates/test.html', 'r')
+			parent_html = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/test.html', 'r')
 
-			parent_css = open(f'C:/Users/{user}/Desktop/Proton/templates/style.css', 'r')
+			parent_css = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/style.css', 'r')
 
 			create_html = open(f'C:/Users/{user}/Desktop/{output_folder}/index.html', 'w')
 
@@ -2686,7 +3306,7 @@ while True:
 
 	else:
 
-		playsound(f'C:/Users/{user}/Desktop/Proton/voice/error2.mp3')
+		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/error2.mp3')
 		
 		print(f'----- Error, {start}, is not a command, try again')
 
