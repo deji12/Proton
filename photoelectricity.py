@@ -58,6 +58,8 @@ from PyDictionary import PyDictionary
 
 dictionary = PyDictionary()
 
+from cryptography.fernet import Fernet
+
 try:
 
 	user = input('>>> Laptop user name: ')
@@ -68,11 +70,9 @@ except:
 
 print()
 
-file_open = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'r')
+file_size = os.path.getsize(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt')
 
-read_file = file_open.read()
-
-if 'Password' not in read_file:
+if file_size == 0:
 
 	print('FIRST TIME USER')
 
@@ -106,11 +106,35 @@ if 'Password' not in read_file:
 
 		if create_password == connirm_password:
 
-			bin_code = ' '.join(format(x, 'b') for x in bytearray(connirm_password, 'utf-8'))
+			os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
-			filee = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'w')
+			os.mkdir('gibberish')
 
-			filee.write(f'> Password: {bin_code}')
+			key = Fernet.generate_key()
+
+			write_key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'wb')
+
+			write_key.write(key)
+
+			write_key.close()
+
+			open_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'rb')
+
+			key = open_file.read()
+
+			open_file.close()
+
+			encoded = connirm_password.encode()
+
+			fernet = Fernet(key)
+
+			encrypted = fernet.encrypt(encoded)
+
+			# print(encrypted)
+
+			filee = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'wb')
+
+			filee.write(encrypted)
 
 			filee.close()
 
@@ -125,7 +149,6 @@ if 'Password' not in read_file:
 else:
 	pass
 
-file_open.close()
 
 i = 0
 
@@ -135,7 +158,19 @@ while i < 3:
 
 		Enter_pass = getpass('Enter Password: ')
 
-		bin_code = ' '.join(format(x, 'b') for x in bytearray(Enter_pass, 'utf-8'))
+		open_key_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'rb')
+
+		key = open_key_file.read()
+
+		open_key_file.close()
+
+		fernet = Fernet(key)
+
+		open_pass_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'rb').read()
+
+		decrypted = fernet.decrypt(open_pass_file)
+
+		decode_decrypted = decrypted.decode()
 
 		print()
 
@@ -149,11 +184,13 @@ while i < 3:
 
 			break
 	
-	file_open = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'r')
+	# file_open = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'rb')
 
-	read_file = file_open.read()
+	# read_file = file_open.read()
 
-	if bin_code not in read_file:
+	# print(read_file)
+
+	if Enter_pass != decode_decrypted:
 
 		i += 1
 
@@ -165,7 +202,7 @@ while i < 3:
 
 		print()
 
-	elif bin_code in read_file:
+	elif Enter_pass == decode_decrypted:
 		
 		break
 
@@ -531,7 +568,7 @@ def main():
 
 					yt = YouTube(search, on_progress_callback=on_progress)
 
-					print(f'<---> Video Title: {yt.title}')
+					print(f'-----> Video Title: {yt.title}')
 
 					print()
 
@@ -539,7 +576,7 @@ def main():
 
 					print()
 
-					print(f'<---> Number of views: {yt.views}')
+					print(f'-----> Number of views: {yt.views}')
 
 					print()
 
@@ -547,7 +584,7 @@ def main():
 
 					print()
 
-					print(f'<---> Thumbnail image: {yt.thumbnail_url}')
+					print(f'-----> Thumbnail image: {yt.thumbnail_url}')
 
 					print()
 
@@ -842,17 +879,23 @@ def main():
 
 		proton_password = getpass('> What is your Proton account password: ')
 
-		proton_password_code = ' '.join(format(x, 'b') for x in bytearray(proton_password, 'utf-8'))
-
 		print()
 
-		pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'r')
+		file_key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'rb')
 
-		read_pass_path = pass_path.read()
+		key = file_key.read()
 
-		pass_path.close()
+		file_key.close()
 
-		if proton_password_code in read_pass_path:
+		fernet = Fernet(key)
+
+		open_password_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'rb').read()
+
+		decrypted = fernet.decrypt(open_password_file)
+
+		decoded_decrypted = decrypted.decode()
+
+		if proton_password == decoded_decrypted:
 
 			recorvery_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/RP/recorvery.txt', 'r')	
 
@@ -1122,15 +1165,23 @@ def main():
 
 		if ask == 'y':
 
-			word = input('> What word are you searching for: ')
+			try:
 
-			print()
+				word = input('> What word are you searching for: ')
 
-			meaning = dictionary.meaning(word)
+				print()
 
-			print(f'> {meaning}')
+				meaning = dictionary.meaning(word)
 
-			print()
+				print(f'> {meaning}')
+
+				print()
+
+			except:
+
+				print('> Make sure you are connected and try again.')
+
+				print()
 
 		elif ask  == 'n':
 
@@ -1335,17 +1386,13 @@ def main():
 
 		if 'notes' in find_if_folder_exists:
 
-			password_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
+			password_file_size = os.path.getsize(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt')
 
-			password_path_open = open(password_path, 'r')
-
-			password_path_open_read = password_path_open.read()
-
-			if 'Password' in password_path_open_read:
+			if password_file_size > 0:
 
 				pass
 
-			elif 'Password' not in password_path_open_read:
+			else:
 
 				create_password = getpass('> Create Password: ')
 
@@ -1353,9 +1400,21 @@ def main():
 
 				confirm_password = getpass('> Confirm Password: ')
 
-				bin_code = ' '.join(format(x, 'b') for x in bytearray(confirm_password, 'utf-8'))
-
 				print()
+
+				key = Fernet.generate_key()
+
+				write_key_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'wb')
+
+				write_key_file.write(key)
+
+				write_key_file.close()
+
+				fernet = Fernet(key)
+
+				encoded = confirm_password.encode()
+
+				encrypted = fernet.encrypt(encoded)
 
 				while True:
 
@@ -1363,9 +1422,9 @@ def main():
 
 						file_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
 
-						filee = open(file_path, 'w')
+						filee = open(file_path, 'wb')
 
-						filee.write(f'> Password: {bin_code}')
+						filee.write(encrypted)
 
 						filee.close()
 
@@ -1381,17 +1440,23 @@ def main():
 
 			while i < 3:
 
-				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt')
-
-				read_file = file_pass_path.read()
-
 				while True:
 
 					pass_word = getpass('> Enter password: ')
 
-					pass_word_bin_code = ' '.join(format(x, 'b') for x in bytearray(pass_word, 'utf-8'))
-
 					print()
+
+					file_key_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'rb')
+
+					key = file_key_path.read()
+
+					password_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt', 'rb').read()
+
+					fernet = Fernet(key)
+
+					decrypted = fernet.decrypt(password_file)
+
+					decoded = decrypted.decode()
 
 					if not pass_word:
 
@@ -1403,7 +1468,7 @@ def main():
 
 						break
 		
-				if pass_word_bin_code in read_file:
+				if pass_word == decoded:
 
 					print('> Here are all your notes:')
 
@@ -1414,6 +1479,8 @@ def main():
 					print()
 
 					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
+
+					note_list.remove('pass.txt')
 
 					for x in range(len(note_list)):
 
@@ -1427,7 +1494,7 @@ def main():
 
 					break
 
-				elif pass_word not in read_file:
+				elif pass_word != decoded:
 
 					i += 1
 
@@ -1466,21 +1533,21 @@ def main():
 
 	elif start =='read note' or start == 'rn':
 
+		print('> Note: Password created at the see notes request is the password to be used here.')
+
+		print()
+
 		find_if_folder_exists = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
 
 		if 'notes' in find_if_folder_exists:
 
-			password_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
+			password_size_path = os.path.getsize(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt')
 
-			password_path_open = open(password_path, 'r')
-
-			password_path_open_read = password_path_open.read()
-
-			if 'Password' in password_path_open_read:
+			if password_size_path > 0:
 
 				pass
 
-			elif 'Password' not in password_path_open_read:
+			elif password_size_path < 0:
 
 				create_password = getpass('> Create Password: ')
 
@@ -1488,9 +1555,21 @@ def main():
 
 				confirm_password = getpass('> Confirm Password: ')
 
-				bin_code = ' '.join(format(x, 'b') for x in bytearray(confirm_password, 'utf-8'))
-
 				print()
+
+				key = Fernet.generate_key()
+
+				write_key_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'wb')
+
+				write_key_file.write(key)
+
+				write_key_file.close()
+
+				fernet = Fernet(key)
+
+				encoded = confirm_password.encode()
+
+				encrypted = fernet.encrypt(encoded)
 
 				while True:
 
@@ -1498,9 +1577,9 @@ def main():
 
 						file_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
 
-						filee = open(file_path, 'w')
+						filee = open(file_path, 'wb')
 
-						filee.write(f'> Password: {bin_code}')
+						filee.write(encrypted)
 
 						filee.close()
 
@@ -1515,18 +1594,24 @@ def main():
 			i = 0
 
 			while i < 3:
-
-				file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt')
-
-				read_file = file_pass_path.read()
 				
 				while True:
 
 					pass_word = getpass('> Enter password: ')
 
-					pass_bin_code = ' '.join(format(x, 'b') for x in bytearray(pass_word, 'utf-8'))
-
 					print()
+
+					file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt', 'rb').read()
+
+					key_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'rb')
+
+					key = key_path.read()
+
+					fernet = Fernet(key)
+
+					decrypted = fernet.decrypt(file_pass_path)
+
+					decoded = decrypted.decode()
 
 					if not pass_word:
 
@@ -1538,9 +1623,11 @@ def main():
 
 						break
 
-				if pass_bin_code in read_file:
+				if decoded == pass_word:
 
 					note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
+
+					note_list.remove('pass.txt')
 
 					for x in range(len(note_list)):
 
@@ -1578,9 +1665,9 @@ def main():
 
 						x = datetime.datetime.now()
 						
-						open_for_new_date = open(read_choice, 'a')
+						open_for_new_date_time = open(read_choice, 'a')
 
-						new_appended_date = open_for_new_date.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
+						new_appended_date = open_for_new_date_time.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
 
 						#print()
 
@@ -1592,7 +1679,7 @@ def main():
 
 						break
 
-				elif pass_word not in read_file:
+				else:
 
 					i += 1
 
@@ -1636,6 +1723,8 @@ def main():
 		if 'notes' in find_if_folder_exists:
 
 			note_list = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials/notes')
+
+			note_list.remove('pass.txt')
 
 			for x in range(len(note_list)):
 
@@ -1949,7 +2038,7 @@ def main():
 					break
 
 
-		elif play == 'rps':
+		elif play == 'rps' or play == 'rock paper scissors':
 
 			def rps():
 
