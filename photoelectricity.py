@@ -3150,9 +3150,11 @@ while True:
 
 		print()
 
-		print('		3. Nav-Bar template')
+		print('		3. Nav-Bar template - Number 1')
 
 		print()
+
+		print('		3.1 Nav-bar template - number 2')
 
 		print('> Backend web development')
 
@@ -3182,9 +3184,47 @@ while True:
 
 			print()
 
-			html_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bar-1/index.html', 'r')
+			html_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bars/nav-bar-1/index.html', 'r')
 
-			css_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bar-1/style.css', 'r')
+			css_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bars/nav-bar-1/style.css', 'r')
+
+			read_html_file = html_file.read()
+
+			read_css_file = css_file.read()
+
+			os.chdir(f'C:/Users/{user}/Desktop')
+
+			os.mkdir(project_name)
+
+			create_new_html = open(f'C:/Users/{user}/Desktop/{project_name}/index.html', 'w')
+
+			create_new_css = open(f'C:/Users/{user}/Desktop/{project_name}/style.css', 'w')
+
+			create_new_html.write(read_html_file)
+
+			create_new_css.write(read_css_file)
+
+			html_file.close()
+
+			css_file.close()
+
+			create_new_html.close()
+
+			create_new_css.close()
+
+			print('> Check your desktop. The project folder has been created.')
+
+			print()
+
+		elif dev_pick == 3.1:
+
+			project_name = input('> Project folder name: ')
+
+			print()
+
+			html_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bars/nav-bar-2/index.html', 'r')
+
+			css_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/templates/nav-bars/nav-bar-2/style.css', 'r')
 
 			read_html_file = html_file.read()
 
