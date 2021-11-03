@@ -60,13 +60,7 @@ dictionary = PyDictionary()
 
 from cryptography.fernet import Fernet
 
-try:
-
-	user = input('>>> Laptop user name: ')
-
-except:
-
-	print('System cannot find path specified')
+user = os.getlogin()
 
 print()
 
@@ -1311,6 +1305,10 @@ def main():
 
 			make_password_file.close()
 
+			gen_key = Fernet.generate_key()
+
+			write_note_key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'wb').write(gen_key)
+
 		else:
 			pass
 
@@ -1340,15 +1338,33 @@ def main():
 
 		created_note_ = open(created_note, 'x')
 
+		created_note_.close()
+
 		x = datetime.datetime.now()
 
-		datetime_of_creation = f'% Date of creation: {x.strftime("%A, %d %B. %Y")}, Time of creation: {x.strftime("%I:%M%p")} % \n'
+		datetime_of_creation = f'% Date of creation: {x.strftime("%A, %d %B. %Y")} --> Time of creation: {x.strftime("%I:%M%p")} %'.encode()
 
 		new_note_content = input('> Body: ')
 
-		created_note_.close()
+		new_note_content_ = f'-----> Body: {new_note_content} <-----'.encode()
 
 		print()
+
+		key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'rb').read()
+
+		fernet = Fernet(key)
+
+		enc_datetime = fernet.encrypt(datetime_of_creation)
+
+		con_enc = fernet.encrypt(new_note_content_)
+
+		write_date_time = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt', 'wb').write(enc_datetime)
+
+		write_space = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt', 'a').write('\n')
+
+		write_note_con = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt', 'ab').write(con_enc)
+
+		write_space2 = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt', 'a').write('\n')
 
 		rate = engine.getProperty('rate')
 
@@ -1363,22 +1379,6 @@ def main():
 		engine.runAndWait()
 
 		engine.stop()
-
-		# note_list_1 = f'C:/Users/{user}/Desktop/Proton/notes/notes.txt'
-
-		# note_list_read_1 = open(note_list_1, 'a')
-
-		# note_list_read_1.write(f'> {new_note_input} \n')
-
-		# created_note_.close()
-
-		opened_new_note = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{new_note_input}.txt'
-
-		opened_new_note_ = open(opened_new_note, 'a')
-
-		opened_new_note_.write(f'{datetime_of_creation} \n > Body: {new_note_content} \n \n')
-
-		opened_new_note_.close()
 
 	elif start == 'see notes' or start == 'sn':
 
@@ -1402,13 +1402,7 @@ def main():
 
 				print()
 
-				key = Fernet.generate_key()
-
-				write_key_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'wb')
-
-				write_key_file.write(key)
-
-				write_key_file.close()
+				key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'rb').read()
 
 				fernet = Fernet(key)
 
@@ -1446,9 +1440,7 @@ def main():
 
 					print()
 
-					file_key_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'rb')
-
-					key = file_key_path.read()
+					key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'rb').read()
 
 					password_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt', 'rb').read()
 
@@ -1471,10 +1463,6 @@ def main():
 				if pass_word == decoded:
 
 					print('> Here are all your notes:')
-
-					print()
-
-					print('> Ignore the pass.txt file')
 
 					print()
 
@@ -1533,7 +1521,7 @@ def main():
 
 	elif start =='read note' or start == 'rn':
 
-		print('> Note: Password created at the see notes request is the password to be used here.')
+		print('> Notice: Password created at the see notes request is the password to be used here.')
 
 		print()
 
@@ -1547,7 +1535,7 @@ def main():
 
 				pass
 
-			elif password_size_path < 0:
+			elif password_size_path == 0:
 
 				create_password = getpass('> Create Password: ')
 
@@ -1557,13 +1545,7 @@ def main():
 
 				print()
 
-				key = Fernet.generate_key()
-
-				write_key_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'wb')
-
-				write_key_file.write(key)
-
-				write_key_file.close()
+				key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'rb').read()
 
 				fernet = Fernet(key)
 
@@ -1575,13 +1557,7 @@ def main():
 
 					if create_password == confirm_password:
 
-						file_path = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt'
-
-						filee = open(file_path, 'wb')
-
-						filee.write(encrypted)
-
-						filee.close()
+						file_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt', 'wb').write(encrypted)
 
 						break
 
@@ -1590,6 +1566,8 @@ def main():
 						print('---- Error, passwords do not match. Try again')
 
 						print()
+
+						break
 
 			i = 0
 
@@ -1603,9 +1581,7 @@ def main():
 
 					file_pass_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/pass.txt', 'rb').read()
 
-					key_path = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/notes.key', 'rb')
-
-					key = key_path.read()
+					key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'rb').read()
 
 					fernet = Fernet(key)
 
@@ -1629,6 +1605,10 @@ def main():
 
 					note_list.remove('pass.txt')
 
+					print('> Here are all your available notes: ')
+
+					print()
+
 					for x in range(len(note_list)):
 
 						rolls = note_list[x]
@@ -1639,7 +1619,7 @@ def main():
 
 					print()
 
-					which_read_choice = input('> Which note will you like to read?: ')
+					which_read_choice = input('> Which note will you like to read: ')
 
 					print()
 
@@ -1652,30 +1632,30 @@ def main():
 						print()
 
 					else:
+				
+						key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/note_content.key', 'rb').read()
 
-						read_choice = f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{which_read_choice}.txt'
+						note_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{which_read_choice}.txt', 'rb').readlines()
 
-						read_choice_ = open(read_choice, 'r')
+						f = Fernet(key)
 
-						read_file = read_choice_.read()
+						for line in note_file:
 
-						#print(read_file)
+							dec = f.decrypt(line)
 
-						#print()
+							print(dec.decode())
 
+							print()
+					
 						x = datetime.datetime.now()
-						
-						open_for_new_date_time = open(read_choice, 'a')
 
-						new_appended_date = open_for_new_date_time.write(f'% This note was accessed on: {x.strftime("%A, %d %B. %Y")}, At: {x.strftime("%I:%M%p")}, By: {name} % \n')
+						new_appended_date = f'% Last accessed on: {x.strftime("%A, %d %B. %Y")} --> At: {x.strftime("%I:%M%p")} --> By: {name} %'.encode()
 
-						#print()
+						enc_nad = f.encrypt(new_appended_date)
 
-						print(read_file)
+						note_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{which_read_choice}.txt', 'ab').write(enc_nad)
 
-						print()
-
-						read_choice_.close()
+						write_space = open(f'C:/Users/{user}/Desktop/Proton/Essentials/notes/{which_read_choice}.txt', 'a').write('\n')
 
 						break
 
