@@ -1,4 +1,3 @@
-import pywhatkit as kit
 import os
 import datetime 
 user=os.getlogin()
@@ -11,6 +10,7 @@ def quick_searchh():
     if internet_access == 'y':
 
         try:
+            import pywhatkit as kit
 
             quick_search = input('> What do you want to search for: ')
 

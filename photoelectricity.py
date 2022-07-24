@@ -1,20 +1,6 @@
-from math import inf, sqrt
-
-import random
-
-import tkinter
-
-import webbrowser
-
-import requests
-
 import os
 
 from getpass import getpass
-
-from pytube import YouTube
-
-from pytube.cli import on_progress
 
 import datetime
 
@@ -28,15 +14,11 @@ engine = pyttsx3.init()
 
 from playsound import playsound
 
-import speech_recognition as sr
-
 from colorama import init
 
 init()
 
 from colorama import Fore, Back, Style
-
-import wikipedia as wiki
 
 from tkinter import *
 
@@ -48,19 +30,9 @@ import time
 
 from threading import *
 
-from time import strftime 
-
-from pygame import mixer
-
-import array
-
-# from PyDictionary import PyDictionary
-
-# dictionary = PyDictionary()
-
 from cryptography.fernet import Fernet
 
-from mypackages.note.note import note
+from mypackages.note.note import create_note
 
 from mypackages.note.see_notes import see_notes
 
@@ -100,228 +72,29 @@ from mypackages.binary_text_conversion.text_to_binary import ttb
 
 from mypackages.audio_books.create_audio_book import mab
 
-from .mypackages.alarm.set_alarm import alarm
+from mypackages.alarm.set_alarm import alarm
 
 from mypackages.power.power import power_control
 
 from mypackages.developer_mode.developer import developer
 
+from mypackages.authentication.register import register_new_user
+
+from mypackages.authentication.login import login_user
+
+
+
 user = os.getlogin()
 
 print()
 
-file_size = os.path.getsize(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt')
+register_new_user()
 
-if file_size == 0:
-
-	print('FIRST TIME USER')
-
-	print()
-
-	print('> NOTE: While typing in or trying to create passwords, whatever you type in will not be displayed on the screen but it is being saved. Type in the password and press enter!')
-
-	rate = engine.getProperty('rate')
-
-	engine.setProperty('rate', 130)
-
-	engine.say('Greetings human, welcome, I am your very own virtual assistant. Call me proton')
-
-	engine.say('I will need you to create a password, tell me your name, and some details about you. Lets go')
-
-	engine.runAndWait()
-
-	engine.stop()
-
-	print()
-
-	while True:
-
-		create_password = getpass('> Create Password: ')
-
-		print()
-
-		connirm_password = getpass('> Confirm Password: ')
-
-		print()
-
-		if create_password == connirm_password:
-
-			os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
-
-			os.mkdir('gibberish')
-
-			key = Fernet.generate_key()
-
-			write_key = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'wb')
-
-			write_key.write(key)
-
-			write_key.close()
-
-			open_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'rb')
-
-			key = open_file.read()
-
-			open_file.close()
-
-			encoded = connirm_password.encode()
-
-			fernet = Fernet(key)
-
-			encrypted = fernet.encrypt(encoded)
-
-			# print(encrypted)
-
-			filee = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'wb')
-
-			filee.write(encrypted)
-
-			filee.close()
-
-			break
-
-		elif create_password != connirm_password:
-
-			print('---- Error, passwords do not match. Try again')
-
-			print()
-
-else:
-	pass
-
-
-i = 0
-
-while i < 3:
-
-	while True:
-
-		Enter_pass = getpass('Enter Password: ')
-
-		open_key_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/gibberish/gibberish.key', 'rb')
-
-		key = open_key_file.read()
-
-		open_key_file.close()
-
-		fernet = Fernet(key)
-
-		open_pass_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'rb').read()
-
-		decrypted = fernet.decrypt(open_pass_file)
-
-		decode_decrypted = decrypted.decode()
-
-		print()
-
-		if not Enter_pass:
-
-			print('> Error, empty input, enter password')
-
-			print()
-
-		elif len(Enter_pass) > 2:
-
-			break
-	
-	# file_open = open(f'C:/Users/{user}/Desktop/Proton/Essentials/pass.txt', 'rb')
-
-	# read_file = file_open.read()
-
-	# print(read_file)
-
-	if Enter_pass != decode_decrypted:
-
-		i += 1
-
-		print('----Error, wrong password. Try again')
-
-		print()
-
-		print(f'>> Tries left: {3 - i}')
-
-		print()
-
-	elif Enter_pass == decode_decrypted:
-		
-		break
-
-	if i == 3:
-
-		print('>>>> CLOSING PROTON')
-
-		exit()
+print('> Proceed to Login')
 
 print()
 
-folder_check = os.listdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
-
-if 'AboutUser' not in folder_check:
-
-	os.chdir(f'C:/Users/{user}/Desktop/Proton/Essentials')
-
-	os.mkdir('AboutUser')
-
-	create_name_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/Name.txt', 'w')
-
-	create_age_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/Age.txt', 'w')
-
-	create_hobby_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/hobby.txt', 'w')
-
-	create_additional_info_file = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/additional info.txt', 'w')
-
-	create_gender = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/gender.txt', 'w')
-
-	name_input = input('> What is your name: ')
-
-	create_name_file.write(name_input)
-
-	create_name_file.close()
-
-	print()
-
-	age_input = input('> How old are you?: ')
-
-	create_age_file.write(age_input)
-
-	create_age_file.close()
-
-	print()
-
-	gender = input('> Gender(m/f): ')
-
-	create_gender.write(gender)
-
-	create_gender.close()
-
-	print()
-
-	hobby_input = input('> What are your hobbies: ')
-
-	splitted_hobby = hobby_input.split(',')
-
-	create_hobby_file.write(f'{splitted_hobby} \n')
-
-	create_hobby_file.close()
-
-	print()
-
-	add_info_input = input('> Additional information about you(enter nil for nothing): ')
-
-	create_additional_info_file.write(add_info_input)
-
-	create_additional_info_file.close()
-
-	print()
-
-	open_beginner = open(f'C:/Users/{user}/Desktop/Proton/Essentials/txt files/beginner.txt').read()
-
-	print(open_beginner)
-
-	print()
-
-else:
-	pass
+login_user()
 
 print('')
 
@@ -433,37 +206,9 @@ elif 'f' in read_path:
 
 		engine.stop()
 
-playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/hi.mp3')
+# playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/hi.mp3')
 
-while True:
-
-	min_length = 2
-
-	name = input('> What is your name: ')
-
-	print()
-    
-	if (len(name) >= min_length and name.isprintable() and name.isalpha()):
-        
-		break
-
-	else:
-		print()
-
-		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/error.mp3')
-		
-		print('>>> Error, name can only contain alphabets')
-
-		print()
-
-		print(name)
-
-		print()
-
-	#password_entry = input('Enter Password: ')
-
-	#if password_entry == 
-
+name = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/username.txt', 'r').read()
 
 rate = engine.getProperty('rate')
 
@@ -645,15 +390,15 @@ def main():
 
 	elif start == 'new note' or start == 'nn':
 
-		note(name=name)
+		create_note(name=name)
 
 	elif start == 'see notes' or start == 'sn':
 
-		see_notes(Enter_pass=Enter_pass)
+		see_notes()
 
 	elif start =='read note' or start == 'rn':
 
-		read_note(name=name, Enter_pass=Enter_pass)
+		read_note(name=name)
 		
 
 	elif start == 'del note' or start == 'delete note' or start == 'dn':
@@ -713,7 +458,19 @@ def main():
 
 	elif start == 'send whatsapp message' or start == 'swm':
 
-		send_whatsapp_message()
+		connected = input('> Are you connected to a stable internet(y/n): ')
+		
+		print()
+
+		if connected == 'y' or connected == 'yes' or connected == 'Y':
+			try:
+				send_whatsapp_message()
+			except:
+				print('> Network error, connect to a stable internet amd try again!')
+				print()
+		elif connected == 'n' or connected == 'N' or connected == 'no':
+			print('> Network error, connect to a stable internet amd try again!')
+			print()
 
 	elif start == 'google search' or start == 'gs':
 
@@ -740,24 +497,6 @@ def main():
 		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/goodbye.mp3')	
 		
 		exit()
-
-	# elif start == 'ndir':
-
-	# 	def ndir():
-
-	# 		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/new directory.mp3')
-
-	# 		ndir_ = input('Name of new directory: ')
-
-	# 		print()
-			
-	# 		os.chdir(f'C:/Users/{user}/Desktop')
-			
-	# 		os.mkdir(ndir_)
-
-	# 		playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/voice/directory created.mp3')
-
-	# 	ndir()
 
 	#==========================
 		# calculate
@@ -882,9 +621,3 @@ while True:
 		print(f'----- Error, {start}, is not a command, try again')
 
 		print()
-	
-
-
-
-
-

@@ -112,7 +112,7 @@ def rps():
 
                     player += 1
 
-                    playsound(f'C:/Users/{user}Desktop/Proton/Essentials/game audio/player point.mp3')
+                    playsound(f'C:/Users/{user}/Desktop/Proton/Essentials/game audio/player point.mp3')
 
                     print(f'Player pick: {player_pick} VS           CPU pick: {cpu_pick}')
 
