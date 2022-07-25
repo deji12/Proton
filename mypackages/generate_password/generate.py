@@ -62,7 +62,7 @@ def online_and_offline_generator(name):
 
 
     response = requests.post(
-        url= 'http://127.0.0.1:8000/save-generated-password/',
+        url= 'https://protonva.herokuapp.com/save-generated-password/',
         headers = {
 			'authorization': f'Token {token}'
 		},

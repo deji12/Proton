@@ -17,7 +17,7 @@ def download_template():
 
     email = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/email.txt', 'r').read()
     response = requests.get(
-        url = 'http://127.0.0.1:8000/get-available-templates/',
+        url = 'https://protonva.herokuapp.com/get-available-templates/',
         headers = {
 			'authorization': f'Token {token}'
 		},

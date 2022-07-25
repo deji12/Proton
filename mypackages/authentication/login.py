@@ -78,7 +78,7 @@ def login_user_online():
                     hobby = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/hobby.txt', 'r').read()
                     gender = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/gender.txt', 'r').read()
 
-                    url = 'http://127.0.0.1:8000/create-user/'
+                    url = 'https://protonva.herokuapp.com/create-user/'
                     response = requests.post(
                         url,
                         json = {
@@ -91,7 +91,7 @@ def login_user_online():
                         }
                             ) 
 
-                    profile_url = 'http://127.0.0.1:8000/create-profile/'
+                    profile_url = 'https://protonva.herokuapp.com/create-profile/'
                     response = requests.post(
                         profile_url,
                         json = {
@@ -112,7 +112,7 @@ def login_user_online():
                 else:
                     pass
 
-                login_url = 'http://127.0.0.1:8000/token/login/'
+                login_url = 'https://protonva.herokuapp.com/token/login/'
                 response = requests.post(
                     login_url,
                     json  = {
@@ -140,7 +140,7 @@ def login_user_online():
                     for i in check_if_new_backups_exist_for_generated_password:
                         password_val = open(f'C:/Users/{user}/Desktop/Proton/Essentials/backup/generated_passwords/{i}', 'r').read()
                         response = requests.post(
-                            url= 'http://127.0.0.1:8000/save-generated-password/',
+                            url= 'https://protonva.herokuapp.com/save-generated-password/',
                             headers = {
                                 'authorization': f'Token {token}'
                             },
@@ -161,7 +161,7 @@ def login_user_online():
                         note_content = open(f'C:/Users/{user}/Desktop/Proton/Essentials/backup/notes/{i}', 'r').read()
                         note_name = i.split(".")[0]
                         response = requests.post(
-                            url = 'http://127.0.0.1:8000/add-note/',
+                            url = 'https://protonva.herokuapp.com/add-note/',
                             headers = {
                                 'authorization': f'Token {token}'
                             },

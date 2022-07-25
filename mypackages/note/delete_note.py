@@ -37,7 +37,7 @@ def delete_note_online_and_offline():
             email = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/email.txt', 'r').read()
 
             response = requests.post(
-				url = 'http://127.0.0.1:8000/delete-note/',
+				url = 'https://protonva.herokuapp.com/delete-note/',
 				headers = {
 					'authorization': f'Token {token}'
 				},

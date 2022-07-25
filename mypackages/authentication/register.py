@@ -39,7 +39,7 @@ def create_user_locally_and_online():
 
                 print('> Saving data...')
                 print()
-                url = 'http://127.0.0.1:8000/create-user/'
+                url = 'https://protonva.herokuapp.com/create-user/'
                 response = requests.post(
                 url,
                 json = {
@@ -111,7 +111,7 @@ def create_user_locally_and_online():
                 # create_additional_info_file.close()
                 # print()
                 print()
-                profile_url = 'http://127.0.0.1:8000/create-profile/'
+                profile_url = 'https://protonva.herokuapp.com/create-profile/'
                 response = requests.post(
                     profile_url,
                     json = {

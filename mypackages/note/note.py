@@ -61,7 +61,7 @@ def note(name):
 			email = open(f'C:/Users/{user}/Desktop/Proton/Essentials/AboutUser/email.txt', 'r').read()
 
 			response = requests.post(
-				url = 'http://127.0.0.1:8000/add-note/',
+				url = 'https://protonva.herokuapp.com/add-note/',
 				headers = {
 					'authorization': f'Token {token}'
 				},
